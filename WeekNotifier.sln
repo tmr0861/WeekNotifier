@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifier", "WeekNotifier\WeekNotifier.csproj", "{0BE37A35-20FA-4185-A547-7C466D19098C}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifier", "WeekNotifier\WeekNotifier.csproj", "{E8E0745E-2009-45F8-B3E7-E7DE4563BE16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BE37A35-20FA-4185-A547-7C466D19098C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BE37A35-20FA-4185-A547-7C466D19098C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BE37A35-20FA-4185-A547-7C466D19098C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BE37A35-20FA-4185-A547-7C466D19098C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E0745E-2009-45F8-B3E7-E7DE4563BE16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E0745E-2009-45F8-B3E7-E7DE4563BE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E0745E-2009-45F8-B3E7-E7DE4563BE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E0745E-2009-45F8-B3E7-E7DE4563BE16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3984B4E-F4FF-47AA-B205-9929CE9A8CF8}
 	EndGlobalSection
 EndGlobal

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle( "Week Number Notifier" )]
 [assembly: AssemblyDescription( "Displays the current week number in the notify icon tray.  The week number is refreshed about once an hour or manually." )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "Volvo Group Trucks Technology" )]
+[assembly: AssemblyCompany( "Volvo Group Trucks North America" )]
 [assembly: AssemblyProduct( "WeekNotifier" )]
-[assembly: AssemblyCopyright( "Copyright ©  2012-2015" )]
+[assembly: AssemblyCopyright( "Copyright ©  2012-2019" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion( "1.5.*" )]
-[assembly: AssemblyFileVersion( "1.5" )]
+[assembly: AssemblyVersion( "2.0.0" )]
+[assembly: AssemblyFileVersion( "2.0.0" )]
