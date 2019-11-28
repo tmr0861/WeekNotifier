@@ -6,24 +6,25 @@
     <!-- The taskbar context menu - the first row is a dummy to show off simple data binding -->
     <!-- The "shared" directive is needed if we reopen the sample window a few times - WPF will otherwise reuse the same context menu (which is a resource) again (which will have its DataContext set to the old TaskbarIcon) -->
     <ContextMenu x:Shared="false" x:Key="SysTrayMenu">
-        <MenuItem Header="Show Window" Command="{Binding ShowWindowCommand}" />
-        <MenuItem Header="Hide Window" Command="{Binding HideWindowCommand}" />
+        <MenuItem Header="Refresh" Command="{Binding RefreshCommand}" FontWeight="Bold" />
+        <MenuItem Header="Settings..." Command="{Binding ShowHideWindowCommand}" />
         <Separator />
         <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
 
 
-    <!-- the application's NotifyIcon - started from App.xaml.cs. Declares its own view model. -->
-    <tb:TaskbarIcon x:Key="NotifyIcon"
-                    IconSource="{Binding TaskbarIcon}"
+    <!-- the application's NotifyIcon - started from App.xaml.cs. Declares its own viewmodel. -->
+    <!-- I can't figure out how to create an image with text so this data binding would work.  Programatically set the Icon property. IconSource="{Binding TaskbarIconSource}"-->
+
+    <tb:TaskbarIcon x:Key="NotifyIcon" 
                     ToolTipText="{Binding ToolTipText}"
-                    DoubleClickCommand="{Binding ShowWindowCommand}"
+                    DoubleClickCommand="{Binding RefreshCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
 
-        <!-- self-assign a data context (could also be done programmatically) -->
-        <tb:TaskbarIcon.DataContext>
+        <!-- self-assign a data context (done programmatically to set Icon) -->
+        <!--<tb:TaskbarIcon.DataContext>
             <weekNumberToast:NotifyIconViewModel />
-        </tb:TaskbarIcon.DataContext>
+        </tb:TaskbarIcon.DataContext>-->
     </tb:TaskbarIcon>
 
 </ResourceDictionary>
