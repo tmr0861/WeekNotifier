@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WeekNumberToast</name>
+    </assembly>
+    <members>
+        <member name="T:WeekNumberToast.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.App.OnStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Application.Startup" /> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.StartupEventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:WeekNumberToast.App.OnExit(System.Windows.ExitEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Application.Exit" /> event.
+            </summary>
+            <param name="e">An <see cref="T:System.Windows.ExitEventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:WeekNumberToast.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:WeekNumberToast.Helpers.BaseConverter">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNumberToast.Helpers.BaseConverter.ProvideValue(System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNumberToast.Helpers.ColorConverter">
+            <summary>
+            Class ColorConverter.
+            Implements the <see cref="T:WeekNumberToast.Helpers.BaseConverter" />
+            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
+            </summary>
+            <seealso cref="T:WeekNumberToast.Helpers.BaseConverter" />
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNumberToast.Helpers.ColorExt">
+            <summary>
+            Class Color Extension Methods.
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ColorExt.ToSwmColor(System.Drawing.Color)">
+            <summary>
+            Converts a System.Drawing.Color to a System.Windows.Media.Color.
+            </summary>
+            <param name="color">The System.Drawing.Color.</param>
+            <returns>System.Windows.Media.Color.</returns>
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ColorExt.ToSdColor(System.Windows.Media.Color)">
+            <summary>
+            Converts to System.Windows.Media.Color to a System.Drawing.Color.
+            </summary>
+            <param name="color">The System.Windows.Media.Color.</param>
+            <returns>System.Drawing.Color.</returns>
+        </member>
+        <member name="T:WeekNumberToast.Helpers.DateHelper">
+            <summary>
+            Class DateHelper.
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.Helpers.DateHelper.GetIso8601WeekOfYear(System.DateTime)">
+            <summary>
+            Gets the ISO8601 week of year.
+            </summary>
+            <param name="date">The date.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="T:WeekNumberToast.Helpers.DelegateCommand">
+            <summary>
+            Simplistic delegate command for the demo.
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Helpers.DelegateCommand.CommandAction">
+            <summary>
+            Gets or sets the command action.
+            </summary>
+            <value>The command action.</value>
+        </member>
+        <member name="P:WeekNumberToast.Helpers.DelegateCommand.CanExecuteFunc">
+            <summary>
+            Gets or sets the can execute function.
+            </summary>
+            <value>The can execute function.</value>
+        </member>
+        <member name="M:WeekNumberToast.Helpers.DelegateCommand.Execute(System.Object)">
+            <summary>
+            Defines the method to be called when the command is invoked.
+            </summary>
+            <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to <see langword="null" />.</param>
+        </member>
+        <member name="M:WeekNumberToast.Helpers.DelegateCommand.CanExecute(System.Object)">
+            <summary>
+            Defines the method that determines whether the command can execute in its current state.
+            </summary>
+            <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to <see langword="null" />.</param>
+            <returns><see langword="true" /> if this command can be executed; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="E:WeekNumberToast.Helpers.DelegateCommand.CanExecuteChanged">
+            <summary>
+            Occurs when changes occur that affect whether or not the command should execute.
+            </summary>
+        </member>
+        <member name="T:WeekNumberToast.Helpers.ImageConverter">
+            <summary>
+            Class ImageConverter.
+            Implements the <see cref="T:WeekNumberToast.Helpers.BaseConverter" />
+            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
+            </summary>
+            <seealso cref="T:WeekNumberToast.Helpers.BaseConverter" />
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ImageConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ImageConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNumberToast.Helpers.ImageHelper">
+            <summary>
+            Class ImageHelper.
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.Helpers.ImageHelper.ToBitmapSource(System.Drawing.Bitmap)">
+            <summary>
+            Converts a Bitmap to a BitmapSource.
+            </summary>
+            <param name="bitmap">The Bitmap to convert.</param>
+            <returns>BitmapSource.</returns>
+        </member>
+        <member name="T:WeekNumberToast.NotifyIconViewModel">
+            <summary>
+            Provides bindable properties and commands for the NotifyIcon. In this sample, the
+            view model is assigned to the NotifyIcon in XAML. Alternatively, the startup routing
+            in App.xaml.cs could have created this view model, and assigned it to the NotifyIcon.
+            </summary>
+        </member>
+        <member name="E:WeekNumberToast.NotifyIconViewModel.RefreshIcon">
+            <summary>
+            Occurs when [refresh icon].
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.NotifyIconViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNumberToast.NotifyIconViewModel"/> class.
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.ToggleSettingsWindowCommand">
+            <summary>
+            Gets the command to toggle the Settings Window Visibility.
+            </summary>
+            <value>The show hide settings command.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.SaveSettingsCommand">
+            <summary>
+            Gets the save settings command.
+            </summary>
+            <value>The save settings command.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.CancelSettingsCommand">
+            <summary>
+            Gets the cancel settings command.
+            </summary>
+            <value>The cancel settings command.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.RefreshCommand">
+            <summary>
+            Gets the refresh command that updates the current week number.
+            </summary>
+            <value>The refresh command.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.ExitApplicationCommand">
+            <summary>
+            Shuts down the application.
+            </summary>
+            <value>The exit application command.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.CurrentWeek">
+            <summary>
+            Gets or sets the week number.
+            </summary>
+            <value>The week number.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.ToolTipText">
+            <summary>
+            Gets the tool tip text.
+            </summary>
+            <value>The tool tip text.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.BackgroundColor">
+            <summary>
+            Gets or sets the color of the background.
+            </summary>
+            <value>The color of the background.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.FontColor">
+            <summary>
+            Gets or sets the color of the font.
+            </summary>
+            <value>The color of the font.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.FontType">
+            <summary>
+            Gets or sets the type of the font.
+            </summary>
+            <value>The type of the font.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.OffsetX">
+            <summary>
+            Gets or sets the offset x.
+            </summary>
+            <value>The offset x.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.OffsetY">
+            <summary>
+            Gets or sets the offset y.
+            </summary>
+            <value>The offset y.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.SampleWeek">
+            <summary>
+            Gets or sets the sample week.
+            </summary>
+            <value>The sample week.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.SampleIcon">
+            <summary>
+            Gets or sets the sample icon.
+            </summary>
+            <value>The sample icon.</value>
+        </member>
+        <member name="P:WeekNumberToast.NotifyIconViewModel.CurrentIcon">
+            <summary>
+            Gets or sets the current icon.
+            </summary>
+            <value>The current icon.</value>
+        </member>
+        <member name="M:WeekNumberToast.NotifyIconViewModel.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.NotifyIconViewModel.GetIcon">
+            <summary>
+            Gets the icon representing the week of the current day.
+            </summary>
+            <returns>Icon.</returns>
+        </member>
+        <member name="M:WeekNumberToast.NotifyIconViewModel.GetIcon(System.Int32)">
+            <summary>
+            Gets the icon representing the given week number.
+            </summary>
+            <param name="weekNumber">The week number.</param>
+            <returns>Icon.</returns>
+        </member>
+        <member name="E:WeekNumberToast.NotifyIconViewModel.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:WeekNumberToast.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.AppIcon">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.Calendar">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.CalendarBlue">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.CalendarImage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.Properties.Resources.CalendarRed">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="T:WeekNumberToast.SettingsWindow">
+            <summary>
+            Interaction logic for SettingsWindow.xaml
+            </summary>
+            <summary>
+            SettingsWindow
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.SettingsWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNumberToast.SettingsWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:WeekNumberToast.SettingsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WeekNumberToast.TraceSources">
+            <summary>
+            Trace Sources for Windows Service component
+            </summary>
+        </member>
+        <member name="T:WeekNumberToast.TraceSources.Names">
+            <summary>
+            TraceSource Names used in this assembly
+            </summary>
+        </member>
+        <member name="F:WeekNumberToast.TraceSources.Names.WEEK_NUMBER_TOAST">
+            <summary>
+            The WeekNumberToast trace source
+            </summary>
+        </member>
+        <member name="P:WeekNumberToast.TraceSources.WeekNumberToast">
+            <summary>
+            Gets the WeekNumberToast trace source.
+            </summary>
+            <value>
+            The managed service Trace Source.
+            </value>
+        </member>
+        <member name="M:WeekNumberToast.TraceSources.AsWeekNumberToast(EEVCNA.Common.Utilities.Logging.TraceSourceManager)">
+            <summary>
+            Gets the WeekNumberToast trace source.
+            </summary>
+            <param name="manager">The trace source manager.</param>
+            <returns></returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>
