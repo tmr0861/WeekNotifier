@@ -2,21 +2,36 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0</Version>
-    <Description>Displays the current week number in the notify icon tray.  The week number is refreshed about once an hour or manually.</Description>
-    <Authors>Tom Richter</Authors>
-    <Company>Volvo Group Trucks North America</Company>
-    <Copyright>Copyright ©  2012-2019</Copyright>
-    <PackageReleaseNotes>Updated to DotNet Core 3.0</PackageReleaseNotes>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\WeekNumberToast.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\AppIcon.ico" />
+    <None Remove="Resources\Calendar.ico" />
+    <None Remove="Resources\CalendarBlue.ico" />
+    <None Remove="Resources\CalendarImage.png" />
+    <None Remove="Resources\CalendarRed.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EEVCNA.Common.Utilities" Version="1.8.1" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.7.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\AppIcon.ico" />
+    <Resource Include="Resources\Calendar.ico" />
+    <Resource Include="Resources\CalendarBlue.ico" />
+    <Resource Include="Resources\CalendarImage.png" />
+    <Resource Include="Resources\CalendarRed.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WeekNumberToast.Helpers
+namespace WeekNotifier.Helpers
 {
     /// <summary>
     /// Simplistic delegate command for the demo.

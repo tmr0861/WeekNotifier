@@ -1,7 +1,7 @@
 ﻿using SDColor = System.Drawing.Color;
 using SWMColor = System.Windows.Media.Color;
 
-namespace WeekNumberToast.Helpers
+namespace WeekNotifier.Helpers
 {
     /// <summary>
     /// Class Color Extension Methods.

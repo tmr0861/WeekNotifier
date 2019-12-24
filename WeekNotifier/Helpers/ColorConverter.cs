@@ -5,14 +5,14 @@ using SDColor = System.Drawing.Color;
 using SWMColor = System.Windows.Media.Color;
 
 
-namespace WeekNumberToast.Helpers
+namespace WeekNotifier.Helpers
 {
     /// <summary>
     /// Class ColorConverter.
-    /// Implements the <see cref="WeekNumberToast.Helpers.BaseConverter" />
+    /// Implements the <see cref="BaseConverter" />
     /// Implements the <see cref="System.Windows.Data.IValueConverter" />
     /// </summary>
-    /// <seealso cref="WeekNumberToast.Helpers.BaseConverter" />
+    /// <seealso cref="BaseConverter" />
     /// <seealso cref="System.Windows.Data.IValueConverter" />
     [ValueConversion(typeof(SDColor), typeof(SWMColor))]
     public class ColorConverter : BaseConverter, IValueConverter

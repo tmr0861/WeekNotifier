@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WeekNumberToast
+namespace WeekNotifier
 {
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml

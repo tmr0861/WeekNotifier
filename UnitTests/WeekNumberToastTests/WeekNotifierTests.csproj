@@ -64,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WeekNumberToast\WeekNumberToast.csproj">
-      <Project>{cfb01709-1dd9-4d5f-ba1a-fb98dcfb3b23}</Project>
-      <Name>WeekNumberToast</Name>
+    <ProjectReference Include="..\..\WeekNotifier\WeekNotifier.csproj">
+      <Project>{3c70a254-2464-467b-a788-18c00b7dc0b5}</Project>
+      <Name>WeekNotifier</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

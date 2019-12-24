@@ -2,8 +2,7 @@ using System;
 using System.Data.Odbc;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WeekNumberToast;
-using WeekNumberToast.Helpers;
+using WeekNotifier.Helpers;
 
 namespace WeekNumberToastTests
 {

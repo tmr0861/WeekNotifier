@@ -5,14 +5,14 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace WeekNumberToast.Helpers
+namespace WeekNotifier.Helpers
 {
     /// <summary>
     /// Class ImageConverter.
-    /// Implements the <see cref="WeekNumberToast.Helpers.BaseConverter" />
+    /// Implements the <see cref="BaseConverter" />
     /// Implements the <see cref="System.Windows.Data.IValueConverter" />
     /// </summary>
-    /// <seealso cref="WeekNumberToast.Helpers.BaseConverter" />
+    /// <seealso cref="BaseConverter" />
     /// <seealso cref="System.Windows.Data.IValueConverter" />
     [ValueConversion(typeof(Icon), typeof(ImageSource))]
     public class ImageConverter : BaseConverter, IValueConverter

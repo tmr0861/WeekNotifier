@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace WeekNumberToast.Helpers
+namespace WeekNotifier.Helpers
 {
     /// <summary>
     /// Class ImageHelper.

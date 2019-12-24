@@ -1,7 +1,7 @@
-﻿<Application x:Class="WeekNumberToast.App"
+﻿<Application x:Class="WeekNotifier.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:properties="clr-namespace:WeekNumberToast.Properties"
+             xmlns:properties="clr-namespace:WeekNotifier.Properties"
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
 

@@ -3,7 +3,7 @@ using System.Windows;
 using EEVCNA.Common.Utilities.Logging;
 using Hardcodet.Wpf.TaskbarNotification;
 
-namespace WeekNumberToast
+namespace WeekNotifier
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -22,6 +22,7 @@ namespace WeekNumberToast
             base.OnStartup(e);
 
             Log.Manager.AsWeekNumberToast().Switch.Level = SourceLevels.All;
+            Log.Manager.AsMouseMover().Switch.Level = SourceLevels.All;
 
             //create the NotifyIcon (it's a resource declared in NotifyIconResources.xaml
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");

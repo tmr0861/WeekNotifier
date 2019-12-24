@@ -73,9 +73,9 @@ namespace WeekNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon BlueCalendar {
+        internal static System.Drawing.Icon Calendar {
             get {
-                object obj = ResourceManager.GetObject("BlueCalendar", resourceCulture);
+                object obj = ResourceManager.GetObject("Calendar", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace WeekNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon calendar {
+        internal static System.Drawing.Icon CalendarBlue {
             get {
-                object obj = ResourceManager.GetObject("calendar", resourceCulture);
+                object obj = ResourceManager.GetObject("CalendarBlue", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace WeekNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon RedCalendar {
+        internal static System.Drawing.Icon CalendarRed {
             get {
-                object obj = ResourceManager.GetObject("RedCalendar", resourceCulture);
+                object obj = ResourceManager.GetObject("CalendarRed", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

@@ -7,11 +7,11 @@ using System.Windows;
 using System.Windows.Input;
 using EEVCNA.Common.Utilities.Logging;
 using JetBrains.Annotations;
-using WeekNumberToast.Helpers;
-using WeekNumberToast.Properties;
+using WeekNotifier.Helpers;
+using WeekNotifier.Properties;
 using Color = System.Drawing.Color;
 
-namespace WeekNumberToast
+namespace WeekNotifier
 {
     /// <summary>
     /// Provides bindable properties and commands for the NotifyIcon. In this sample, the
@@ -20,7 +20,9 @@ namespace WeekNumberToast
     /// </summary>
     public class NotifyIconViewModel : INotifyPropertyChanged
     {
+        private readonly MouseMover _mouseMover = new MouseMover();
         private readonly double _refreshTimerInterval;
+
         private int _currentWeek;
         private Icon _sampleIcon;
         private Icon _currentIcon;
@@ -87,6 +89,22 @@ namespace WeekNumberToast
         public ICommand RefreshCommand => new DelegateCommand
         {
             CommandAction = () => CurrentWeek = DateTime.Today.GetIso8601WeekOfYear()
+        };
+
+        /// <summary>
+        /// Gets the toggle mouse mover command.
+        /// </summary>
+        /// <value>The toggle mouse mover command.</value>
+        public ICommand ToggleMouseMoverCommand => new DelegateCommand
+        {
+            CommandAction = () =>
+            {
+                // Toggle active
+                if (_mouseMover != null) _mouseMover.Active = !_mouseMover.Active;
+
+                // Refresh the Icon
+                CurrentIcon = GetIcon();
+            }
         };
 
         /// <summary>
@@ -266,7 +284,10 @@ namespace WeekNumberToast
         {
             try
             {
-                var bmp = Resources.Calendar.ToBitmap();
+                var bmp = _mouseMover != null && _mouseMover.Active 
+                    ? Resources.CalendarRed.ToBitmap() 
+                    : Resources.CalendarBlue.ToBitmap();
+
                 var g = Graphics.FromImage(bmp);
 
                 g.FillRectangle(new SolidBrush(BackgroundColor), new Rectangle(1, 8, 29, 22));
