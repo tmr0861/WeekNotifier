@@ -8,8 +8,8 @@
     <ProjectGuid>{0DB76007-B864-4D6A-ABCC-E53AA19D5A7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WeekNumberToastTests</RootNamespace>
-    <AssemblyName>WeekNumberToastTests</AssemblyName>
+    <RootNamespace>WeekNotifierTests</RootNamespace>
+    <AssemblyName>WeekNotifierTests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

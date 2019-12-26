@@ -1,10 +1,8 @@
 using System;
-using System.Data.Odbc;
-using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WeekNotifier.Helpers;
 
-namespace WeekNumberToastTests
+namespace WeekNotifierTests
 {
     [TestClass]
     public class DateTests
