@@ -10,3 +10,14 @@ C:\_work\BusinessTools\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.csproj.G
 C:\_work\BusinessTools\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.csproj.CoreCompileInputs.cache
 C:\_work\BusinessTools\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.exe
 C:\_work\BusinessTools\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.pdb
+D:\_source.home\WeekNotifier\WeekNotifier\bin\Debug\WeekNotifier.exe.config
+D:\_source.home\WeekNotifier\WeekNotifier\bin\Debug\WeekNotifier.exe
+D:\_source.home\WeekNotifier\WeekNotifier\bin\Debug\WeekNotifier.pdb
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.csprojAssemblyReference.cache
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.AboutBox.resources
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.MainForm.resources
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.WeekNumberIcon.resources
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.Properties.Resources.resources
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.csproj.GenerateResource.cache
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.exe
+D:\_source.home\WeekNotifier\WeekNotifier\obj\Debug\WeekNotifier.pdb
