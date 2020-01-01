@@ -14,9 +14,9 @@ namespace WeekNotifier
         public static class Names
         {
             /// <summary>
-            /// The WeekNumberToast trace source
+            /// The WeekNotifier trace source
             /// </summary>
-            public const string WEEK_NUMBER_TOAST = "WeekNumberToast";
+            public const string WEEK_NOTIFIER = "WeekNotifier";
 
             /// <summary>
             /// The mouse mover trace source
@@ -25,12 +25,12 @@ namespace WeekNotifier
         }
 
         /// <summary>
-        /// Gets the WeekNumberToast trace source.
+        /// Gets the WeekNotifier trace source.
         /// </summary>
         /// <value>
         /// The WeekNumber Trace Source.
         /// </value>
-        public static TraceSource WeekNumberToast { get; } = Log.Manager.GetSource(Names.WEEK_NUMBER_TOAST);
+        public static TraceSource WeekNotifier { get; } = Log.Manager.GetSource(Names.WEEK_NOTIFIER);
 
         /// <summary>
         /// Gets the mouse mover Trace Source.
@@ -39,13 +39,13 @@ namespace WeekNotifier
         public static TraceSource MouseMover { get; } = Log.Manager.GetSource(Names.MOUSE_MOVER);
 
         /// <summary>
-        /// Gets the WeekNumberToast trace source.
+        /// Gets the WeekNotifier trace source.
         /// </summary>
         /// <param name="manager">The trace source manager.</param>
         /// <returns></returns>
-        public static TraceSource AsWeekNumberToast(this TraceSourceManager manager)
+        public static TraceSource AsWeekNotifier(this TraceSourceManager manager)
         {
-            return manager.GetSource(Names.WEEK_NUMBER_TOAST);
+            return manager.GetSource(Names.WEEK_NOTIFIER);
         }
 
         /// <summary>

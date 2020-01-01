@@ -21,7 +21,7 @@ namespace WeekNotifier
         {
             base.OnStartup(e);
 
-            Log.Manager.AsWeekNumberToast().Switch.Level = SourceLevels.All;
+            Log.Manager.AsWeekNotifier().Switch.Level = SourceLevels.All;
             Log.Manager.AsMouseMover().Switch.Level = SourceLevels.All;
 
             //create the NotifyIcon (it's a resource declared in NotifyIconResources.xaml

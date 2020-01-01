@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace WeekNotifier.Helpers
 {
     /// <summary>
-    /// Simplistic delegate command for the demo.
+    /// Simplistic delegate command.
     /// </summary>
     public class DelegateCommand : ICommand
     {

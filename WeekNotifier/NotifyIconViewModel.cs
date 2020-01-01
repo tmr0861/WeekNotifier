@@ -3,30 +3,36 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Timers;
-using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using EEVCNA.Common.Utilities.Logging;
 using JetBrains.Annotations;
 using WeekNotifier.Helpers;
 using WeekNotifier.Properties;
+using Timer = System.Timers.Timer;
 using Color = System.Drawing.Color;
+using Application = System.Windows.Application;
 
 namespace WeekNotifier
 {
     /// <summary>
-    /// Provides bindable properties and commands for the NotifyIcon. In this sample, the
-    /// view model is assigned to the NotifyIcon in XAML. Alternatively, the startup routing
-    /// in App.xaml.cs could have created this view model, and assigned it to the NotifyIcon.
+    /// Provides bind-able properties and commands for the NotifyIcon.
     /// </summary>
     public class NotifyIconViewModel : INotifyPropertyChanged
     {
+        #region Private Data
+
         private readonly MouseMover _mouseMover = new MouseMover();
         private readonly double _refreshTimerInterval;
+
+        private SettingsWindow _settingsWindow;
 
         private int _currentWeek;
         private Icon _sampleIcon;
         private Icon _currentIcon;
         private Timer _refreshTimer;
+
+        #endregion
 
         /// <summary>
         /// Occurs when [refresh icon].
@@ -42,6 +48,8 @@ namespace WeekNotifier
             _refreshTimerInterval = Settings.Default.RefreshMinutes * 60 * 1000;
         }
 
+        #region Databound ICommands
+
         /// <summary>
         /// Gets the command to toggle the Settings Window Visibility.
         /// </summary>
@@ -50,17 +58,23 @@ namespace WeekNotifier
         {
             CommandAction = () =>
             {
-                if (Application.Current.MainWindow == null)
+                if (_settingsWindow == null)
                 {
-                    Application.Current.MainWindow = new SettingsWindow()
-                    {
-                        DataContext = this
-                    };
+                    Log.Manager.AsWeekNotifier().LogVerbose("Creating SettingsWindow");
+                    _settingsWindow = new SettingsWindow() {DataContext = this};
+                    _settingsWindow.Closed += SettingsWindow_Closed;
                 }
 
-                Application.Current.MainWindow.Visibility = Application.Current.MainWindow.IsVisible 
-                    ? Visibility.Hidden 
-                    : Visibility.Visible;
+                if (_settingsWindow.IsVisible)
+                {
+                    Log.Manager.AsWeekNotifier().LogVerbose("Closing SettingsWindow");
+                    _settingsWindow.Close();
+                }
+                else
+                {
+                    Log.Manager.AsWeekNotifier().LogVerbose("Showing SettingsWindow");
+                    _settingsWindow.ShowDialog();
+                }
             }
         };
 
@@ -70,7 +84,13 @@ namespace WeekNotifier
         /// <value>The save settings command.</value>
         public ICommand SaveSettingsCommand => new DelegateCommand
         {
-            CommandAction = SaveSettings
+            CommandAction = () =>
+            {
+                // Save the new settings
+                Settings.Default.Save();
+                CurrentIcon = GetIcon();
+                _settingsWindow.Close();
+            }
         };
 
         /// <summary>
@@ -79,7 +99,35 @@ namespace WeekNotifier
         /// <value>The cancel settings command.</value>
         public ICommand CancelSettingsCommand => new DelegateCommand
         {
-            CommandAction = CancelSettings
+            CommandAction = () =>
+            {
+                // Put the original settings back
+                Settings.Default.Reload();
+                SampleIcon = GetIcon(SampleWeek);
+                _settingsWindow.Close();
+            }
+        };
+
+        /// <summary>
+        /// Gets the pick font command.
+        /// </summary>
+        /// <value>The pick font command.</value>
+        public ICommand PickFontCommand => new DelegateCommand
+        {
+            CommandAction = () =>
+            {
+                using (var fd = new FontDialog())
+                {
+                    fd.ShowColor = true;
+                    fd.Color = FontColor;
+                    fd.Font = FontType;
+
+                    if (fd.ShowDialog() == DialogResult.Cancel) return;
+
+                    FontColor = fd.Color;
+                    FontType = fd.Font;
+                }
+            }
         };
 
         /// <summary>
@@ -115,6 +163,10 @@ namespace WeekNotifier
         {
             CommandAction = () => Application.Current.Shutdown()
         };
+
+        #endregion
+
+        #region Databound Properties
 
         /// <summary>
         /// Gets or sets the week number.
@@ -177,6 +229,7 @@ namespace WeekNotifier
             {
                 Settings.Default.FontType = value;
                 SampleIcon = GetIcon(SampleWeek);
+                OnPropertyChanged();
             }
         }
 
@@ -245,12 +298,16 @@ namespace WeekNotifier
             get => _currentIcon;
             set
             {
-                Log.Manager.AsWeekNumberToast().LogInformation($"CurrentIcon updated to week {CurrentWeek}");
+                Log.Manager.AsWeekNotifier().LogInformation($"CurrentIcon updated to week {CurrentWeek}");
                 _currentIcon = value;
                 OnPropertyChanged();
                 OnRefreshIcon();
             }
         }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Starts this instance.
@@ -284,8 +341,8 @@ namespace WeekNotifier
         {
             try
             {
-                var bmp = _mouseMover != null && _mouseMover.Active 
-                    ? Resources.CalendarRed.ToBitmap() 
+                var bmp = _mouseMover != null && _mouseMover.Active
+                    ? Resources.CalendarRed.ToBitmap()
                     : Resources.CalendarBlue.ToBitmap();
 
                 var g = Graphics.FromImage(bmp);
@@ -302,25 +359,19 @@ namespace WeekNotifier
             }
         }
 
-        private void CancelSettings()
-        {
-            // Put the original settings back
-            Settings.Default.Reload();
-            SampleIcon = GetIcon(SampleWeek);
-            Application.Current.MainWindow?.Close();
-        }
+        #endregion
 
-        private void SaveSettings()
+        #region Private Methods
+
+        private void SettingsWindow_Closed(object sender, EventArgs e)
         {
-            // Save the new settings
-            Settings.Default.Save();
-            Application.Current.MainWindow?.Close();
-            CurrentIcon = GetIcon();
+            // Ensure the settings window gets recreated if needed again
+            _settingsWindow = null;
         }
 
         private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Log.Manager.AsWeekNumberToast().LogInformation("Refresh Timer Elapsed!");
+            Log.Manager.AsWeekNotifier().LogInformation("Refresh Timer Elapsed!");
             RefreshCommand?.Execute(null);
         }
 
@@ -328,6 +379,10 @@ namespace WeekNotifier
         {
             RefreshIcon?.Invoke();
         }
+
+        #endregion
+
+        #region INotifyPropertyChanged Implementation
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -339,5 +394,7 @@ namespace WeekNotifier
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

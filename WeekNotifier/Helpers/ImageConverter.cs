@@ -26,6 +26,8 @@ namespace WeekNotifier.Helpers
         /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            // TODO: Implement ImageConverter.ConvertBack
+
             // For now I only need one way conversion
             return DependencyProperty.UnsetValue;
         }

@@ -2,9 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:tb="http://www.hardcodet.net/taskbar"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:weekNotifier="clr-namespace:WeekNotifier"
+                    mc:Ignorable="d">
 
-    <!-- The taskbar context menu - the first row is a dummy to show off simple data binding -->
+    <!-- The taskbar context menu -->
     <!-- The "shared" directive is needed if we reopen the sample window a few times - WPF will otherwise reuse the same context menu (which is a resource) again (which will have its DataContext set to the old TaskbarIcon) -->
     <ContextMenu x:Shared="false" x:Key="SysTrayMenu" d:DataContext="{d:DesignData NotifyIconViewModel}">
         <MenuItem Header="Refresh" Command="{Binding RefreshCommand}" FontWeight="Bold" />
@@ -15,13 +17,14 @@
 
 
     <!-- the application's NotifyIcon - started from App.xaml.cs. Declares its own viewmodel. -->
-    <!-- I can't figure out how to create an image with text so this data binding would work.  Programatically set the Icon property. IconSource="{Binding TaskbarIconSource}"-->
+    <!-- I can't figure out how to create an IconSource image with text so this data binding would work. -->
+    <!-- Programatically set the Icon property instead of using IconSource="{Binding TaskbarIconSource}"-->
 
     <tb:TaskbarIcon x:Key="NotifyIcon" 
                     ToolTipText="{Binding ToolTipText}"
                     DoubleClickCommand="{Binding RefreshCommand}"
                     LeftClickCommand="{Binding ToggleMouseMoverCommand}"
-                    ContextMenu="{StaticResource SysTrayMenu}" d:DataContext="{d:DesignData NotifyIconViewModel}">
+                    ContextMenu="{StaticResource SysTrayMenu}">
 
         <!-- self-assign a data context (done programmatically to set Icon) -->
         <!--<tb:TaskbarIcon.DataContext>

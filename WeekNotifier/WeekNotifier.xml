@@ -88,7 +88,7 @@
         </member>
         <member name="T:WeekNotifier.Helpers.DelegateCommand">
             <summary>
-            Simplistic delegate command for the demo.
+            Simplistic delegate command.
             </summary>
         </member>
         <member name="P:WeekNotifier.Helpers.DelegateCommand.CommandAction">
@@ -169,9 +169,7 @@
         </member>
         <member name="T:WeekNotifier.NotifyIconViewModel">
             <summary>
-            Provides bindable properties and commands for the NotifyIcon. In this sample, the
-            view model is assigned to the NotifyIcon in XAML. Alternatively, the startup routing
-            in App.xaml.cs could have created this view model, and assigned it to the NotifyIcon.
+            Provides bind-able properties and commands for the NotifyIcon.
             </summary>
         </member>
         <member name="E:WeekNotifier.NotifyIconViewModel.RefreshIcon">
@@ -201,6 +199,12 @@
             Gets the cancel settings command.
             </summary>
             <value>The cancel settings command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.PickFontCommand">
+            <summary>
+            Gets the pick font command.
+            </summary>
+            <value>The pick font command.</value>
         </member>
         <member name="P:WeekNotifier.NotifyIconViewModel.RefreshCommand">
             <summary>
@@ -372,9 +376,9 @@
             TraceSource Names used in this assembly
             </summary>
         </member>
-        <member name="F:WeekNotifier.TraceSources.Names.WEEK_NUMBER_TOAST">
+        <member name="F:WeekNotifier.TraceSources.Names.WEEK_NOTIFIER">
             <summary>
-            The WeekNumberToast trace source
+            The WeekNotifier trace source
             </summary>
         </member>
         <member name="F:WeekNotifier.TraceSources.Names.MOUSE_MOVER">
@@ -382,9 +386,9 @@
             The mouse mover trace source
             </summary>
         </member>
-        <member name="P:WeekNotifier.TraceSources.WeekNumberToast">
+        <member name="P:WeekNotifier.TraceSources.WeekNotifier">
             <summary>
-            Gets the WeekNumberToast trace source.
+            Gets the WeekNotifier trace source.
             </summary>
             <value>
             The WeekNumber Trace Source.
@@ -396,9 +400,9 @@
             </summary>
             <value>The mouse mover Trace Source.</value>
         </member>
-        <member name="M:WeekNotifier.TraceSources.AsWeekNumberToast(EEVCNA.Common.Utilities.Logging.TraceSourceManager)">
+        <member name="M:WeekNotifier.TraceSources.AsWeekNotifier(EEVCNA.Common.Utilities.Logging.TraceSourceManager)">
             <summary>
-            Gets the WeekNumberToast trace source.
+            Gets the WeekNotifier trace source.
             </summary>
             <param name="manager">The trace source manager.</param>
             <returns></returns>
@@ -409,36 +413,6 @@
             </summary>
             <param name="manager">The trace source manager.</param>
             <returns>TraceSource.</returns>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
-            </summary>
         </member>
     </members>
 </doc>

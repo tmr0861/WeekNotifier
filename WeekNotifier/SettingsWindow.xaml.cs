@@ -14,6 +14,5 @@ namespace WeekNotifier
         {
             InitializeComponent();
         }
-
     }
 }
