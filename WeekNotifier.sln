@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{EE271772-BF08-45F6-A2AC-32073B15A39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifierTests", "UnitTests\WeekNumberToastTests\WeekNotifierTests.csproj", "{0DB76007-B864-4D6A-ABCC-E53AA19D5A7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifierTests", "UnitTests\WeekNotifierTests\WeekNotifierTests.csproj", "{0DB76007-B864-4D6A-ABCC-E53AA19D5A7C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeekNotifier", "WeekNotifier\WeekNotifier.csproj", "{3C70A254-2464-467B-A788-18C00B7DC0B5}"
 EndProject
