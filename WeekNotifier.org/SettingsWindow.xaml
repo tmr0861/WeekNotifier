@@ -7,7 +7,7 @@
         xmlns:helpers="clr-namespace:WeekNotifier.Helpers"
         xmlns:weekNotifier="clr-namespace:WeekNotifier"
         mc:Ignorable="d"
-        Title="Notify Icon Settings" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" Icon="AppIcon.ico" SizeToContent="WidthAndHeight" ShowInTaskbar="False"
+        Title="Notify Icon Settings" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" Icon="Resources/AppIcon.ico" SizeToContent="WidthAndHeight" ShowInTaskbar="False"
         d:DataContext="{d:DesignInstance weekNotifier:NotifyIconViewModel}">
     <Grid>
         <Grid.RowDefinitions>
