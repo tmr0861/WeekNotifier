@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WeekNotifier</name>
+    </assembly>
+    <members>
+        <member name="T:WeekNotifier.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.App.OnStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Application.Startup" /> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.StartupEventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:WeekNotifier.App.OnExit(System.Windows.ExitEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Application.Exit" /> event.
+            </summary>
+            <param name="e">An <see cref="T:System.Windows.ExitEventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:WeekNotifier.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Helpers.BaseConverter">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNotifier.Helpers.BaseConverter.ProvideValue(System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.Helpers.ColorConverter">
+            <summary>
+            Class ColorConverter.
+            Implements the <see cref="T:WeekNotifier.Helpers.BaseConverter" />
+            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Helpers.BaseConverter" />
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.Helpers.ColorExt">
+            <summary>
+            Class Color Extension Methods.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorExt.ToSwmColor(System.Drawing.Color)">
+            <summary>
+            Converts a System.Drawing.Color to a System.Windows.Media.Color.
+            </summary>
+            <param name="color">The System.Drawing.Color.</param>
+            <returns>System.Windows.Media.Color.</returns>
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorExt.ToSdColor(System.Windows.Media.Color)">
+            <summary>
+            Converts to System.Windows.Media.Color to a System.Drawing.Color.
+            </summary>
+            <param name="color">The System.Windows.Media.Color.</param>
+            <returns>System.Drawing.Color.</returns>
+        </member>
+        <member name="T:WeekNotifier.Helpers.DateHelper">
+            <summary>
+            Class DateHelper.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.DateHelper.GetIso8601WeekOfYear(System.DateTime)">
+            <summary>
+            Gets the ISO8601 week of year.
+            </summary>
+            <param name="date">The date.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="T:WeekNotifier.Helpers.DelegateCommand">
+            <summary>
+            Simplistic delegate command.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Helpers.DelegateCommand.CommandAction">
+            <summary>
+            Gets or sets the command action.
+            </summary>
+            <value>The command action.</value>
+        </member>
+        <member name="P:WeekNotifier.Helpers.DelegateCommand.CanExecuteFunc">
+            <summary>
+            Gets or sets the can execute function.
+            </summary>
+            <value>The can execute function.</value>
+        </member>
+        <member name="M:WeekNotifier.Helpers.DelegateCommand.Execute(System.Object)">
+            <summary>
+            Defines the method to be called when the command is invoked.
+            </summary>
+            <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to <see langword="null" />.</param>
+        </member>
+        <member name="M:WeekNotifier.Helpers.DelegateCommand.CanExecute(System.Object)">
+            <summary>
+            Defines the method that determines whether the command can execute in its current state.
+            </summary>
+            <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to <see langword="null" />.</param>
+            <returns><see langword="true" /> if this command can be executed; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="E:WeekNotifier.Helpers.DelegateCommand.CanExecuteChanged">
+            <summary>
+            Occurs when changes occur that affect whether or not the command should execute.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Helpers.ImageConverter">
+            <summary>
+            Class ImageConverter.
+            Implements the <see cref="T:WeekNotifier.Helpers.BaseConverter" />
+            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Helpers.BaseConverter" />
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ImageConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ImageConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.Helpers.ImageHelper">
+            <summary>
+            Class ImageHelper.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.ImageHelper.ToBitmapSource(System.Drawing.Bitmap)">
+            <summary>
+            Converts a System.Drawing.Bitmap to a System.Windows.Media.Imaging.BitmapSource.
+            </summary>
+            <param name="bitmap">The Bitmap to convert.</param>
+            <returns>BitmapSource.</returns>
+        </member>
+        <member name="T:WeekNotifier.MouseMover">
+            <summary>
+            Class MouseMover.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.MouseMover.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.MouseMover"/> class.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.MouseMover.Active">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:WeekNotifier.MouseMover"/> is active.
+            </summary>
+            <value><c>true</c> if active; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:WeekNotifier.MouseMover.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.NotifyIconViewModel">
+            <summary>
+            Provides bind-able properties and commands for the NotifyIcon.
+            </summary>
+        </member>
+        <member name="E:WeekNotifier.NotifyIconViewModel.RefreshIcon">
+            <summary>
+            Occurs when [refresh icon].
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NotifyIconViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.NotifyIconViewModel"/> class.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.ToggleSettingsWindowCommand">
+            <summary>
+            Gets the command to toggle the Settings Window Visibility.
+            </summary>
+            <value>The show hide settings command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.SaveSettingsCommand">
+            <summary>
+            Gets the save settings command.
+            </summary>
+            <value>The save settings command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.CancelSettingsCommand">
+            <summary>
+            Gets the cancel settings command.
+            </summary>
+            <value>The cancel settings command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.PickFontCommand">
+            <summary>
+            Gets the pick font command.
+            </summary>
+            <value>The pick font command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.RefreshCommand">
+            <summary>
+            Gets the refresh command that updates the current week number.
+            </summary>
+            <value>The refresh command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.ToggleMouseMoverCommand">
+            <summary>
+            Gets the toggle mouse mover command.
+            </summary>
+            <value>The toggle mouse mover command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.ExitApplicationCommand">
+            <summary>
+            Shuts down the application.
+            </summary>
+            <value>The exit application command.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.CurrentWeek">
+            <summary>
+            Gets or sets the week number.
+            </summary>
+            <value>The week number.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.ToolTipText">
+            <summary>
+            Gets the tool tip text.
+            </summary>
+            <value>The tool tip text.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.BackgroundColor">
+            <summary>
+            Gets or sets the color of the background.
+            </summary>
+            <value>The color of the background.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.FontColor">
+            <summary>
+            Gets or sets the color of the font.
+            </summary>
+            <value>The color of the font.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.FontType">
+            <summary>
+            Gets or sets the type of the font.
+            </summary>
+            <value>The type of the font.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.OffsetX">
+            <summary>
+            Gets or sets the offset x.
+            </summary>
+            <value>The offset x.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.OffsetY">
+            <summary>
+            Gets or sets the offset y.
+            </summary>
+            <value>The offset y.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.SampleWeek">
+            <summary>
+            Gets or sets the sample week.
+            </summary>
+            <value>The sample week.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.SampleIcon">
+            <summary>
+            Gets or sets the sample icon.
+            </summary>
+            <value>The sample icon.</value>
+        </member>
+        <member name="P:WeekNotifier.NotifyIconViewModel.CurrentIcon">
+            <summary>
+            Gets or sets the current icon.
+            </summary>
+            <value>The current icon.</value>
+        </member>
+        <member name="M:WeekNotifier.NotifyIconViewModel.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NotifyIconViewModel.GetIcon">
+            <summary>
+            Gets the icon representing the week of the current day.
+            </summary>
+            <returns>Icon.</returns>
+        </member>
+        <member name="M:WeekNotifier.NotifyIconViewModel.GetIcon(System.Int32)">
+            <summary>
+            Gets the icon representing the given week number.
+            </summary>
+            <param name="weekNumber">The week number.</param>
+            <returns>Icon.</returns>
+        </member>
+        <member name="E:WeekNotifier.NotifyIconViewModel.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.AppIcon">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.Calendar">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.CalendarBlue">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.CalendarImage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Properties.Resources.CalendarRed">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.SettingsWindow">
+            <summary>
+            Interaction logic for SettingsWindow.xaml
+            </summary>
+            <summary>
+            SettingsWindow
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.SettingsWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.SettingsWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.SettingsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.TraceSources">
+            <summary>
+            Trace Sources for Windows Service component
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.TraceSources.Names">
+            <summary>
+            TraceSource Names used in this assembly
+            </summary>
+        </member>
+        <member name="F:WeekNotifier.TraceSources.Names.WEEK_NOTIFIER">
+            <summary>
+            The WeekNotifier trace source
+            </summary>
+        </member>
+        <member name="F:WeekNotifier.TraceSources.Names.MOUSE_MOVER">
+            <summary>
+            The mouse mover trace source
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.TraceSources.WeekNotifier">
+            <summary>
+            Gets the WeekNotifier trace source.
+            </summary>
+            <value>
+            The WeekNumber Trace Source.
+            </value>
+        </member>
+        <member name="P:WeekNotifier.TraceSources.MouseMover">
+            <summary>
+            Gets the mouse mover Trace Source.
+            </summary>
+            <value>The mouse mover Trace Source.</value>
+        </member>
+        <member name="M:WeekNotifier.TraceSources.AsWeekNotifier(EEVCNA.Common.Utilities.Logging.TraceSourceManager)">
+            <summary>
+            Gets the WeekNotifier trace source.
+            </summary>
+            <param name="manager">The trace source manager.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WeekNotifier.TraceSources.AsMouseMover(EEVCNA.Common.Utilities.Logging.TraceSourceManager)">
+            <summary>
+            Gets the mouse mover trace source.
+            </summary>
+            <param name="manager">The trace source manager.</param>
+            <returns>TraceSource.</returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,47 @@
+﻿<Window x:Class="WeekNotifier.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:WeekNotifier.Helpers"
+        xmlns:weekNotifier="clr-namespace:WeekNotifier"
+        mc:Ignorable="d"
+        Title="Notify Icon Settings" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" Icon="Resources/AppIcon.ico" SizeToContent="WidthAndHeight" ShowInTaskbar="False"
+        d:DataContext="{d:DesignInstance weekNotifier:NotifyIconViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Ok" Grid.Column="3" Grid.Row="3" Width="75" IsDefault="True" Margin="20,20,10,20" HorizontalAlignment="Right" Command="{Binding SaveSettingsCommand}"/>
+        <Button Content="Cancel" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" Width="75" IsCancel="True" Margin="0,20,15,20" HorizontalAlignment="Right" Command="{Binding CancelSettingsCommand}"/>
+
+        <TextBlock Text="OffsetX:" Grid.Column="0" Grid.Row="0" Margin="6,6,3,3" VerticalAlignment="Center"/>
+        <TextBlock Text="OffsetY:" Grid.Column="0" Grid.Row="1" Margin="6,6,3,3" VerticalAlignment="Center"/>
+        <TextBlock Text="Font:" Grid.Column="0" Grid.Row="2" Margin="6,6,3,3" VerticalAlignment="Center"/>
+        <TextBlock Text="Sample Week:" Grid.Column="2" Grid.Row="0" Margin="6,6,3,3" VerticalAlignment="Center"/>
+        <TextBlock Text="Background:" Grid.Column="2" Grid.Row="1" Margin="6,6,3,3" VerticalAlignment="Center"/>
+
+        <xctk:IntegerUpDown Value="{Binding OffsetX}" Grid.Column="1" Grid.Row="0" Margin="3,6,10,3" Minimum="-10" Maximum="10" Increment="1"/>
+        <xctk:IntegerUpDown Value="{Binding OffsetY}" Grid.Column="1" Grid.Row="1" Margin="3,3,10,3" Minimum="-10" Maximum="10" Increment="1"/>
+        <xctk:IntegerUpDown Value="{Binding SampleWeek}" Grid.Column="3" Grid.Row="0" Margin="3,3,0,3" Minimum="1" Maximum="53" Increment="1" HorizontalAlignment="Left"/>
+
+        <xctk:ColorPicker SelectedColor="{Binding BackgroundColor, Converter={helpers:ColorConverter}}" Grid.Column="3" Grid.Row="1" Margin="3,3,6,3" DisplayColorAndName="True" HorizontalAlignment="Left" Width="109"/>
+        <TextBox Text="{Binding FontType}" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="2" Margin="3,3,6,3" IsReadOnly="True"/>
+        <Button Content="..." Grid.Column="4" Grid.Row="2" Margin="0,4,0,4" Width="20" Command="{Binding PickFontCommand}" HorizontalAlignment="Left"/>
+        <Image Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="40" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center"  Margin="0" Width="40"  Source="{Binding SampleIcon, Converter={helpers:ImageConverter}}" />
+
+    </Grid>
+</Window>
