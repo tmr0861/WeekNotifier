@@ -6,22 +6,22 @@
     <UseWPF>true</UseWPF>
     <Authors>Tom Richter</Authors>
     <Company>Group Trucks NA</Company>
-    <Description>Windows Notification Icon to show the current week number.</Description>
-    <Copyright>Copyright (c) 2020</Copyright>
+    <Description>Windows Notification Icon that shows the current week number.</Description>
+    <Copyright>Copyright © 2020</Copyright>
     <PackageProjectUrl>https://dev.azure.com/billsfan/Personal%20Projects</PackageProjectUrl>
     <PackageIcon>CalendarImage.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://dev.azure.com/billsfan/Personal%20Projects/_git/WeekNotifier</RepositoryUrl>
     <PackageReleaseNotes>Initial fully functioning WPF (hybrid) version</PackageReleaseNotes>
     <Version>2.0.0</Version>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>.\WeekNotifier.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>.\WeekNotifier.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\WeekNotifier.xml</DocumentationFile>
+    <OutputPath>bin\Debug</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
 
   <ItemGroup>
