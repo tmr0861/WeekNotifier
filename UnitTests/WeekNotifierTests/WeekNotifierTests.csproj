@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\WeekNotifier\WeekNotifier.csproj">
-      <Project>{a9375f2b-b354-4b57-8683-563d52561832}</Project>
+      <Project>{3c70a254-2464-467b-a788-18c00b7dc0b5}</Project>
       <Name>WeekNotifier</Name>
     </ProjectReference>
   </ItemGroup>
