@@ -79,6 +79,19 @@ namespace WeekNotifier
         };
 
         /// <summary>
+        /// Gets the command to toggle the about window.
+        /// </summary>
+        /// <value>The toggle about window command.</value>
+        public ICommand ToggleAboutWindowCommand => new DelegateCommand
+        {
+            CommandAction = () =>
+            {
+                var aboutWindow = new AboutBox();
+                aboutWindow.Show();
+            }
+        };
+
+        /// <summary>
         /// Gets the save settings command.
         /// </summary>
         /// <value>The save settings command.</value>

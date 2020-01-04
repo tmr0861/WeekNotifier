@@ -101,6 +101,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\Certificates\TRichter.pfx">
+      <Link>TRichter.pfx</Link>
+    </Content>
     <Content Include="Images\LargeTile.scale-100.png" />
     <Content Include="Images\LargeTile.scale-125.png" />
     <Content Include="Images\LargeTile.scale-150.png" />
@@ -152,7 +155,6 @@
     <Content Include="Images\Wide310x150Logo.scale-150.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
-    <None Include="TRichter.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeekNotifier\WeekNotifier.csproj">

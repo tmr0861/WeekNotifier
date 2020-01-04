@@ -11,6 +11,7 @@
     <ContextMenu x:Shared="false" x:Key="SysTrayMenu" d:DataContext="{d:DesignData NotifyIconViewModel}">
         <MenuItem Header="Refresh" Command="{Binding RefreshCommand}" FontWeight="Bold" />
         <MenuItem Header="Settings..." Command="{Binding ToggleSettingsWindowCommand}" />
+        <MenuItem Header="About..." Command="{Binding ToggleAboutWindowCommand}" />
         <Separator />
         <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>

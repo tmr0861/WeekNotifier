@@ -10,6 +10,12 @@
         Title="Notify Icon Settings" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" Icon="Resources/AppIcon.ico" SizeToContent="WidthAndHeight" ShowInTaskbar="False"
         d:DataContext="{d:DesignInstance weekNotifier:NotifyIconViewModel}">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="LightBlue" Offset="0"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
