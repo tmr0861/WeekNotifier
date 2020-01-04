@@ -10,7 +10,7 @@
   <Identity
     Name="2dbf1243-ff1d-44b5-b5f3-d949b878c4a2"
     Publisher="CN=trichter"
-    Version="2.0.2.0" />
+    Version="2.0.0.0" />
 
   <Properties>
     <DisplayName>WeekNotifier</DisplayName>
@@ -32,12 +32,18 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="WeekNotifier"
-        Description="Notification Icon that shows the current ISO8601 Week Number"
+        DisplayName="Week Number Notifier"
+        Description="Windows notification icon that shows the current ISO8601 week number."
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png" ShortName="Week Number">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile >
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
