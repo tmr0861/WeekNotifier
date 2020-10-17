@@ -13,7 +13,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://dev.azure.com/billsfan/Personal%20Projects/_git/WeekNotifier</RepositoryUrl>
     <PackageReleaseNotes>Initial fully functioning WPF (hybrid) version</PackageReleaseNotes>
-    <Version>2.0.0</Version>
+    <Version>2.0.2009</Version>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
     <Product>Week Number Notification Icon</Product>
   </PropertyGroup>

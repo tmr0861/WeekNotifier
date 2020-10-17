@@ -8,9 +8,9 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="2dbf1243-ff1d-44b5-b5f3-d949b878c4a2"
-    Publisher="CN=trichter"
-    Version="2.0.0.0" />
+    Name="TRichter.WeekNumberNotifier"
+    Publisher="CN=TRichterSW"
+    Version="2.0.2009.0" />
 
   <Properties>
     <DisplayName>Week Number Notifier</DisplayName>
@@ -61,7 +61,6 @@
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
     
   </Capabilities>

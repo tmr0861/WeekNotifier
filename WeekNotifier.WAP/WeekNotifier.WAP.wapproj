@@ -55,7 +55,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>BE47D3177077618EB56AD5C7559D403F6F4AED0A</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>9C575A85EB458E34955D1775395EB69F1E59BBBF</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
@@ -101,8 +101,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Certificates\TRichter.pfx">
-      <Link>TRichter.pfx</Link>
+    <Content Include="..\..\Certificates\TRichterSW.pfx">
+      <Link>TRichterSW.pfx</Link>
     </Content>
     <Content Include="Images\LargeTile.scale-100.png" />
     <Content Include="Images\LargeTile.scale-125.png" />
