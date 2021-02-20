@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="{Binding RelativeSource={RelativeSource Self}, Mode=OneTime, Path=ProductTitle}"
     Style="{DynamicResource AboutDialogStyle}" WindowStartupLocation="CenterScreen"
-    Icon="Resources/CalendarBlue.ico">
+    Icon="Resources/Calendar.ico">
     <Window.Resources>
         <!--<XmlDataProvider x:Key="AboutProvider" XPath="ApplicationInfo" IsAsynchronous="False" IsInitialLoadEnabled="True">
             <x:XData>

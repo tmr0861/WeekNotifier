@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Timers;
@@ -22,7 +23,6 @@ namespace WeekNotifier
     {
         #region Private Data
 
-        private readonly MouseMover _mouseMover = new MouseMover();
         private readonly double _refreshTimerInterval;
 
         private SettingsWindow _settingsWindow;
@@ -149,22 +149,10 @@ namespace WeekNotifier
         /// <value>The refresh command.</value>
         public ICommand RefreshCommand => new DelegateCommand
         {
-            CommandAction = () => CurrentWeek = DateTime.Today.GetIso8601WeekOfYear()
-        };
-
-        /// <summary>
-        /// Gets the toggle mouse mover command.
-        /// </summary>
-        /// <value>The toggle mouse mover command.</value>
-        public ICommand ToggleMouseMoverCommand => new DelegateCommand
-        {
             CommandAction = () =>
             {
-                // Toggle active
-                if (_mouseMover != null) _mouseMover.Active = !_mouseMover.Active;
-
-                // Refresh the Icon
-                CurrentIcon = GetIcon();
+                Log.Manager.AsWeekNotifier().LogInformation("Refresh Week Number");
+                CurrentWeek = DateTime.Today.GetIso8601WeekOfYear();
             }
         };
 
@@ -354,15 +342,12 @@ namespace WeekNotifier
         {
             try
             {
-                var bmp = _mouseMover != null && _mouseMover.Active
-                    ? Resources.CalendarRed.ToBitmap()
-                    : Resources.CalendarBlue.ToBitmap();
+                var bmp = Resources.Calendar.ToBitmap();
 
                 var g = Graphics.FromImage(bmp);
 
                 g.FillRectangle(new SolidBrush(BackgroundColor), new Rectangle(1, 8, 29, 22));
-                g.DrawString(weekNumber.ToString("00"),
-                    FontType, new SolidBrush(FontColor), OffsetX, OffsetY);
+                g.DrawString(weekNumber.ToString("00"), FontType, new SolidBrush(FontColor), OffsetX, OffsetY);
 
                 return Icon.FromHandle(bmp.GetHicon());
             }

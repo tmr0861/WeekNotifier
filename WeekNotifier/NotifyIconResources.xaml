@@ -24,7 +24,6 @@
     <tb:TaskbarIcon x:Key="NotifyIcon" 
                     ToolTipText="{Binding ToolTipText}"
                     DoubleClickCommand="{Binding RefreshCommand}"
-                    LeftClickCommand="{Binding ToggleMouseMoverCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
 
         <!-- self-assign a data context (done programmatically to set Icon) -->

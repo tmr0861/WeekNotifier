@@ -81,32 +81,12 @@ namespace WeekNotifier.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon CalendarBlue {
-            get {
-                object obj = ResourceManager.GetObject("CalendarBlue", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CalendarImage {
             get {
                 object obj = ResourceManager.GetObject("CalendarImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon CalendarRed {
-            get {
-                object obj = ResourceManager.GetObject("CalendarRed", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
     }
