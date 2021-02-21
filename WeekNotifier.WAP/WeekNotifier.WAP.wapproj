@@ -47,8 +47,8 @@
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppInstallerUri>C:\Users\trich\OneDrive\_dev\Installs</AppInstallerUri>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <EntryPointProjectUniqueName>..\WeekNotifier\WeekNotifier.csproj</EntryPointProjectUniqueName>
     <AppxPackageDir>C:\Users\trich\OneDrive\_dev\Published Packages\</AppxPackageDir>
+    <EntryPointProjectUniqueName>..\WeekNotifier.GDI\WeekNotifier.GDI.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AppxBundle>Auto</AppxBundle>
@@ -130,9 +130,7 @@
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeekNotifier\WeekNotifier.csproj">
-      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
-    </ProjectReference>
+    <ProjectReference Include="..\WeekNotifier.GDI\WeekNotifier.GDI.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
