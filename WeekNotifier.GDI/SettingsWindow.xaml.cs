@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WeekNotifier
+namespace WeekNotifier.GDI
 {
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml

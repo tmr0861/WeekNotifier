@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using EEVCNA.Common.Utilities.Logging;
 
-namespace WeekNotifier
+namespace WeekNotifier.GDI
 {
     /// <summary>
     /// Trace Sources for Windows Service component

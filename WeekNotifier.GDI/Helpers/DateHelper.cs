@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace WeekNotifier.Helpers
+namespace WeekNotifier.GDI.Helpers
 {
     /// <summary>
     /// Class DateHelper.

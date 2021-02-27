@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace WeekNotifier.Helpers
+namespace WeekNotifier.GDI.Helpers
 {
     /// <inheritdoc />
     public abstract class BaseConverter : MarkupExtension

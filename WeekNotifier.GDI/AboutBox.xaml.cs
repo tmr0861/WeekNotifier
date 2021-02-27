@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
 using System.Xml;
 
-namespace WeekNotifier
+namespace WeekNotifier.GDI
 {
     /// <summary>
     /// Interaction logic for AboutBox.xaml

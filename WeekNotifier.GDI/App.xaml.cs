@@ -3,7 +3,7 @@ using System.Windows;
 using EEVCNA.Common.Utilities.Logging;
 using Hardcodet.Wpf.TaskbarNotification;
 
-namespace WeekNotifier
+namespace WeekNotifier.GDI
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace WeekNotifier.Helpers
+namespace WeekNotifier.GDI.Helpers
 {
     /// <summary>
     /// Class ImageConverter.

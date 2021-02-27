@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{EE271772-BF08-45F6-A2AC-32073B15A39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifierTests", "UnitTests\WeekNotifier.GDI.Tests\WeekNotifier.GDI.Tests.csproj", "{0DB76007-B864-4D6A-ABCC-E53AA19D5A7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifier.GDI.Tests", "UnitTests\WeekNotifier.GDI.Tests\WeekNotifier.GDI.Tests.csproj", "{0DB76007-B864-4D6A-ABCC-E53AA19D5A7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeekNotifier", "WeekNotifier.GDI\WeekNotifier.GDI.csproj", "{3C70A254-2464-467B-A788-18C00B7DC0B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeekNotifier.GDI", "WeekNotifier.GDI\WeekNotifier.GDI.csproj", "{3C70A254-2464-467B-A788-18C00B7DC0B5}"
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WeekNotifier.WAP", "WeekNotifier.WAP\WeekNotifier.WAP.wapproj", "{97876506-66B6-46FD-8DA9-7132419EBE65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekNotifier", "WeekNotifier\WeekNotifier.csproj", "{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +74,8 @@ Global
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Debug|ARM64.ActiveCfg = Debug|Any CPU
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97876506-66B6-46FD-8DA9-7132419EBE65}.Debug|x86.Build.0 = Debug|Any CPU
+		{97876506-66B6-46FD-8DA9-7132419EBE65}.Debug|x86.Deploy.0 = Debug|Any CPU
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Release|Any CPU.Deploy.0 = Release|Any CPU
@@ -81,6 +85,26 @@ Global
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Release|x86.ActiveCfg = Release|x86
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Release|x86.Build.0 = Release|x86
 		{97876506-66B6-46FD-8DA9-7132419EBE65}.Release|x86.Deploy.0 = Release|x86
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|ARM.Build.0 = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|x64.Build.0 = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Debug|x86.Build.0 = Debug|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|ARM.Build.0 = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|ARM64.Build.0 = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|x64.ActiveCfg = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|x64.Build.0 = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|x86.ActiveCfg = Release|Any CPU
+		{4A0F63C9-8281-492B-B07C-422D3E3B8E8A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

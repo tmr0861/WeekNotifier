@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Timers;
@@ -8,13 +7,14 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using EEVCNA.Common.Utilities.Logging;
 using JetBrains.Annotations;
-using WeekNotifier.Helpers;
-using WeekNotifier.Properties;
+using WeekNotifier.GDI.Helpers;
+using WeekNotifier.GDI.Properties;
 using Timer = System.Timers.Timer;
 using Color = System.Drawing.Color;
 using Application = System.Windows.Application;
+using Settings = WeekNotifier.Properties.Settings;
 
-namespace WeekNotifier
+namespace WeekNotifier.GDI
 {
     /// <summary>
     /// Provides bind-able properties and commands for the NotifyIcon.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WeekNotifier.Helpers
+namespace WeekNotifier.GDI.Helpers
 {
     /// <summary>
     /// Simplistic delegate command.

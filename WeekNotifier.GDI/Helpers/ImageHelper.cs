@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace WeekNotifier.Helpers
+namespace WeekNotifier.GDI.Helpers
 {
     /// <summary>
     /// Class ImageHelper.

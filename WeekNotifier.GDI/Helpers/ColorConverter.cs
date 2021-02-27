@@ -5,7 +5,7 @@ using SDColor = System.Drawing.Color;
 using SWMColor = System.Windows.Media.Color;
 
 
-namespace WeekNotifier.Helpers
+namespace WeekNotifier.GDI.Helpers
 {
     /// <summary>
     /// Class ColorConverter.
