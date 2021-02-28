@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <Description>Windows taskbar notification icon that shows the current ISO8601 week number.</Description>
+    <Authors>Tom Richter</Authors>
+    <Company>Tom Richter</Company>
+    <PackageId>WeekNotifier</PackageId>
+    <Version>3.0.0</Version>
+    <Product>Week Number Notification Icon</Product>
+    <Copyright>Copyright (c) 2005-2021</Copyright>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <PackageIcon>AppImage.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\_source\home\WeekNotifier\WeekNotifier\WeekNotifier.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLightStd10" Version="5.4.1.2" />
+    <PackageReference Include="Richter.Common.Utilities" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\calendar.ico" />
+    <Resource Include="Resources\calendar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\AppImage.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
