@@ -3,23 +3,81 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:helpers="clr-namespace:WeekNotifier.Helpers"
+        xmlns:nud="clr-namespace:WeekNotifier.NumericUpDown"
         mc:Ignorable="d"
-        Title="Main" Height="450" Width="800"
-        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
+        Title="Notify Icon Settings" 
+        Height="280"
+        Width="300"
+        ResizeMode="NoResize"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}" >
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="LightBlue" Offset="0"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Grid.Column="0" Height="50" Width="50">
-            <Image Width="50" Source="{Binding CalendarImage}"/>
-            <Canvas Top="3">
-                <TextBlock Width="50" Text="{Binding WeekNumber}" TextAlignment="Center" FontSize="36" FontWeight="Bold"/>
-            </Canvas>
-        </Canvas>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10,0">
+            <TextBlock Text="Sample Week:" Margin="{StaticResource XSmallTopMargin}"/>
+            <nud:IntegerUpDown
+                    HorizontalAlignment="Left" Width="100" 
+                    Minimum="1" Maximum="53" Increment="1" 
+                    Value="{Binding WeekNumber, Mode=TwoWay}"/>
 
-        <Image Grid.Column="1" Width="50" Source="{Binding DrawnImage}"/>
+            <TextBlock Text="Text Size" Margin="{StaticResource XSmallTopMargin}"/>
+            <xctk:IntegerUpDown
+                    HorizontalAlignment="Left" Width="100"
+                    Minimum="10" Maximum="50" Increment="1" 
+                    UpdateValueOnEnterKey="False" TextAlignment="Left" DefaultValue="30" 
+                    Value="{Binding TextSize, Mode=TwoWay}"/>
+
+            <TextBlock Text="Background:" Margin="{StaticResource XSmallTopMargin}"/>
+            <xctk:ColorPicker
+                    DisplayColorAndName="True" HorizontalAlignment="Left" Width="100" 
+                    SelectedColor="{Binding BackgroundColor, Mode=TwoWay}"/>
+
+            <TextBlock Text="Text Color:" Margin="{StaticResource XSmallTopMargin}"/>
+            <xctk:ColorPicker
+                    DisplayColorAndName="True" HorizontalAlignment="Left" Width="100" 
+                    SelectedColor="{Binding TextColor, Mode=TwoWay}"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Image
+                Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
+                Source="{Binding SampleImage}" />
+            <Image
+                Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
+                Source="{Binding CurrentImage}" />
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+            HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
+            <StackPanel 
+                Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button 
+                Content="Cancel" IsCancel="True" 
+                Width="75" Height="20" Margin="10"
+                Command="{Binding CancelSettingsCommand}"/>
+                <Button 
+                    Content="Ok" IsDefault="True" 
+                    Width="75" Height="20" Margin="10"
+                    Command="{Binding SaveSettingsCommand}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 
 </Window>

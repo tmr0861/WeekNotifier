@@ -15,6 +15,8 @@
     <Copyright>Copyright (c) 2005-2021</Copyright>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
     <PackageIcon>AppImage.png</PackageIcon>
+    <RepositoryUrl>https://billsfan@dev.azure.com/billsfan/personal%20projects/_git/weeknotifier</RepositoryUrl>
+    <PackageProjectUrl>https://dev.azure.com/billsfan/personal%20projects</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,6 +24,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.2" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
     <PackageReference Include="MvvmLightStd10" Version="5.4.1.2" />
     <PackageReference Include="Richter.Common.Utilities" Version="2.1.0" />
   </ItemGroup>

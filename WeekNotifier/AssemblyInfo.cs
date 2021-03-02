@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : WeekNotifier
+// Author           : Tom Richter
+// Created          : 02-21-2021
+//
+// Last Modified By : Tom Richter
+// Last Modified On : 02-21-2021
+// ***********************************************************************
+// <copyright file="AssemblyInfo.cs" company="Tom Richter">
+//     Copyright (c) 2005-2021
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Windows;
 
 [assembly: ThemeInfo(

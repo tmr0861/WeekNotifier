@@ -12,6 +12,10 @@
             <viewModels:ViewModelLocator
                 x:Key="Locator"
                 d:IsDataSource="True" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/_Thickness.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

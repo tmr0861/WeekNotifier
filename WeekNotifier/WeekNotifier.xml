@@ -1,0 +1,392 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WeekNotifier</name>
+    </assembly>
+    <members>
+        <member name="T:WeekNotifier.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.App.Locator">
+            <summary>
+            Gets the locator.
+            </summary>
+            <value>The locator.</value>
+        </member>
+        <member name="M:WeekNotifier.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Helpers.BaseConverter">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNotifier.Helpers.BaseConverter.ProvideValue(System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.Helpers.ColorConverter">
+            <summary>
+            Class ColorConverter.
+            Implements the <see cref="T:WeekNotifier.Helpers.BaseConverter" />
+            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Helpers.BaseConverter" />
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.Helpers.ColorExt">
+            <summary>
+            Class Color Extension Methods.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorExt.ToSwmColor(System.Drawing.Color)">
+            <summary>
+            Converts a System.Drawing.Color to a System.Windows.Media.Color.
+            </summary>
+            <param name="color">The System.Drawing.Color.</param>
+            <returns>System.Windows.Media.Color.</returns>
+        </member>
+        <member name="M:WeekNotifier.Helpers.ColorExt.ToSdColor(System.Windows.Media.Color)">
+            <summary>
+            Converts to System.Windows.Media.Color to a System.Drawing.Color.
+            </summary>
+            <param name="color">The System.Windows.Media.Color.</param>
+            <returns>System.Drawing.Color.</returns>
+        </member>
+        <member name="T:WeekNotifier.Helpers.ImageConverter">
+            <summary>
+            Class ImageConverter.
+            Implements the <see cref="T:WeekNotifier.Helpers.BaseConverter" />
+            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Helpers.BaseConverter" />
+            <seealso cref="T:System.Windows.Data.IValueConverter" />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ImageConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:WeekNotifier.Helpers.ImageConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:WeekNotifier.Helpers.ImageHelper">
+            <summary>
+            Class ImageHelper.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.ImageHelper.ToBitmapSource(System.Drawing.Bitmap)">
+            <summary>
+            Converts a System.Drawing.Bitmap to a System.Windows.Media.Imaging.BitmapSource.
+            </summary>
+            <param name="bitmap">The Bitmap to convert.</param>
+            <returns>BitmapSource.</returns>
+        </member>
+        <member name="T:WeekNotifier.Models.Calendar">
+            <summary>
+            Class Calendar.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Models.Calendar.CreateInstance(System.Windows.Media.ImageSource,System.Int32)">
+            <summary>
+            Creates the instance of Calendar.
+            </summary>
+            <param name="calendarBackground">The calendar background.</param>
+            <param name="weekNumber">The week number.</param>
+            <returns>Calendar.</returns>
+        </member>
+        <member name="M:WeekNotifier.Models.Calendar.CreateInstance(System.Windows.Media.ImageSource)">
+            <summary>
+            Creates the instance of Calendar with the current ISO8601 week number.
+            </summary>
+            <param name="calendarBackground">The calendar background.</param>
+            <returns>Calendar.</returns>
+        </member>
+        <member name="P:WeekNotifier.Models.Calendar.WeekNumber">
+            <summary>
+            Gets or sets the week number.
+            </summary>
+            <value>The week number.</value>
+        </member>
+        <member name="P:WeekNotifier.Models.Calendar.TextSize">
+            <summary>
+            Gets or sets the size of the text.
+            </summary>
+            <value>The size of the text.</value>
+        </member>
+        <member name="P:WeekNotifier.Models.Calendar.Image">
+            <summary>
+            Gets or sets the icon.
+            </summary>
+            <value>The icon.</value>
+        </member>
+        <member name="P:WeekNotifier.Models.Calendar.BackgroundColor">
+            <summary>
+            Gets or sets the color of the background.
+            </summary>
+            <value>The color of the background.</value>
+        </member>
+        <member name="P:WeekNotifier.Models.Calendar.TextColor">
+            <summary>
+            Gets or sets the color of the text.
+            </summary>
+            <value>The color of the text.</value>
+        </member>
+        <member name="M:WeekNotifier.Models.Calendar.GetCurrentWeekNumber">
+            <summary>
+            Gets the current week number.
+            </summary>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="T:WeekNotifier.NumericUpDown.IntegerUpDown">
+            <summary>
+            Class IntegerUpDown.
+            Implements the <see cref="T:System.Windows.Controls.UserControl" />
+            Implements the <see cref="T:System.Windows.Markup.IComponentConnector" />
+            </summary>
+            <seealso cref="T:System.Windows.Controls.UserControl" />
+            <seealso cref="T:System.Windows.Markup.IComponentConnector" />
+            <summary>
+            IntegerUpDown
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.NumericUpDown.IntegerUpDown"/> class.
+            </summary>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.SilentErrorProperty">
+            <summary>
+            The silent error property
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.SilentError">
+            <summary>
+            Gets or sets a value indicating whether [silent error].
+            </summary>
+            <value><c>true</c> if [silent error]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.AllowManualEditProperty">
+            <summary>
+            The allow manual edit property
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.AllowManualEdit">
+            <summary>
+            Gets or sets a value indicating whether [allow manual edit].
+            </summary>
+            <value><c>true</c> if [allow manual edit]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.MinimumProperty">
+            <summary>
+            The minimum property
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Minimum">
+            <summary>
+            Gets or sets the minimum.
+            </summary>
+            <value>The minimum.</value>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.MaximumProperty">
+            <summary>
+            The maximum property
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Maximum">
+            <summary>
+            Gets or sets the maximum.
+            </summary>
+            <value>The maximum.</value>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.IncrementProperty">
+            <summary>
+            The increment property
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Increment">
+            <summary>
+            Gets or sets the increment.
+            </summary>
+            <value>The increment.</value>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.ValueProperty">
+            <summary>
+            The value property
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.ValueChangedEvent">
+            <summary>
+            The value changed event
+            </summary>
+        </member>
+        <member name="E:WeekNotifier.NumericUpDown.IntegerUpDown.ValueChanged">
+            <summary>
+            Occurs when [value changed].
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.IncreaseValue">
+            <summary>
+            Increase value
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.DecreaseValue">
+            <summary>
+            Decrease value
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.OnApplyTemplate">
+            <summary>
+            Apply new templates after setting new style
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.ViewModels.MainViewModel">
+            <summary>
+            Class MainViewModel.
+            Implements the <see cref="T:GalaSoft.MvvmLight.ViewModelBase" />
+            </summary>
+            <seealso cref="T:GalaSoft.MvvmLight.ViewModelBase" />
+        </member>
+        <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.MainViewModel"/> class.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.SaveSettingsCommand">
+            <summary>
+            Gets the save settings command.
+            </summary>
+            <value>The save settings command.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.CancelSettingsCommand">
+            <summary>
+            Gets the cancel settings command.
+            </summary>
+            <value>The cancel settings command.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.WeekNumber">
+            <summary>
+            Gets or sets the sample week number.
+            </summary>
+            <value>The sample week number.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.TextSize">
+            <summary>
+            Gets or sets the size of the text.
+            </summary>
+            <value>The size of the text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.BackgroundColor">
+            <summary>
+            Gets or sets the color of the background.
+            </summary>
+            <value>The color of the background.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.TextColor">
+            <summary>
+            Gets or sets the color of the text.
+            </summary>
+            <value>The color of the text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.SampleImage">
+            <summary>
+            Gets or sets the sample image.
+            </summary>
+            <value>The sample image.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.CurrentImage">
+            <summary>
+            Gets or sets the current image.
+            </summary>
+            <value>The current image.</value>
+        </member>
+        <member name="T:WeekNotifier.ViewModels.ViewModelLocator">
+            <summary>
+            Class ViewModelLocator.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.ViewModelLocator.MainViewModel">
+            <summary>
+            Gets the main view model.
+            </summary>
+            <value>The main view model.</value>
+        </member>
+        <member name="M:WeekNotifier.ViewModels.ViewModelLocator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.ViewModelLocator"/> class.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Views.MainView">
+            <summary>
+            Interaction logic for MainView.xaml
+            </summary>
+            <summary>
+            MainView
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Views.MainView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.Views.MainView"/> class.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Views.MainView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>
