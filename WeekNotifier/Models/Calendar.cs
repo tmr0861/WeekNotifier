@@ -32,23 +32,28 @@ namespace WeekNotifier.Models
             return new Calendar(calendarBackground);
         }
 
-        private readonly ImageSource _calendarBackground;
         private int _weekNumber;
         private Color _textColor = Colors.Purple;
         private Color _backgroundColor = Colors.Beige;
-        private int _textSize = 36;
+        private int _textSize = 42;
 
-        private Calendar(ImageSource calendarBackground) :
-            this(calendarBackground, DateTime.Today.ISO8601WeekOfYear())
+        private Calendar(ImageSource backgroundImage) :
+            this(backgroundImage, DateTime.Today.ISO8601WeekOfYear())
         {
         }
 
-        private Calendar(ImageSource calendarBackground, int weekNumber)
+        private Calendar(ImageSource backgroundImage, int weekNumber)
         {
-            _calendarBackground = calendarBackground;
+            BackgroundImage = backgroundImage;
             WeekNumber = weekNumber;
             Image = DrawIcon();
         }
+
+        /// <summary>
+        /// Gets the background image.
+        /// </summary>
+        /// <value>The background image.</value>
+        public ImageSource BackgroundImage { get; }
 
         /// <summary>
         /// Gets or sets the week number.
@@ -130,7 +135,7 @@ namespace WeekNotifier.Models
 
         private DrawingImage DrawIcon()
         {
-            return DrawIcon(_calendarBackground, WeekNumber);
+            return DrawIcon(BackgroundImage, WeekNumber);
         }
 
         private DrawingImage DrawIcon(ImageSource background, int weekNumber)

@@ -12,11 +12,33 @@
             App
             </summary>
         </member>
-        <member name="P:WeekNotifier.App.Locator">
+        <member name="M:WeekNotifier.App.#ctor">
             <summary>
-            Gets the locator.
+            Initializes a new instance of the <see cref="T:WeekNotifier.App"/> class.
             </summary>
-            <value>The locator.</value>
+        </member>
+        <member name="M:WeekNotifier.App.OnStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            Raises the System.Windows.Application.Startup event.
+            </summary>
+            <param name="e">A System.Windows.StartupEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:WeekNotifier.App.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+            <summary>
+            Used to register types with the container that will be used by your application.
+            </summary>
+            <param name="containerRegistry">The container registry.</param>
+        </member>
+        <member name="M:WeekNotifier.App.CreateShell">
+            <summary>
+            Creates the shell or main window of the application.
+            </summary>
+            <returns>The shell of the application.</returns>
+        </member>
+        <member name="M:WeekNotifier.App.OnInitialized">
+            <summary>
+            Contains actions that should occur last.
+            </summary>
         </member>
         <member name="M:WeekNotifier.App.InitializeComponent">
             <summary>
@@ -27,6 +49,43 @@
             <summary>
             Application Entry Point.
             </summary>
+        </member>
+        <member name="T:WeekNotifier.Contracts.Services.IApplicationInfoService">
+            <summary>
+            Interface IApplicationInfoService
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Contracts.Services.IApplicationInfoService.GetVersion">
+            <summary>
+            Gets the application package version.
+            </summary>
+            <returns>Version.</returns>
+        </member>
+        <member name="T:WeekNotifier.Contracts.Services.IPersistAndRestoreService">
+            <summary>
+            Interface IPersistAndRestoreService
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Contracts.Services.IPersistAndRestoreService.RestoreData">
+            <summary>
+            Restores the data.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Contracts.Services.IPersistAndRestoreService.PersistData">
+            <summary>
+            Persists the data.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Contracts.Services.ISystemService">
+            <summary>
+            Interface ISystemService
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Contracts.Services.ISystemService.OpenInWebBrowser(System.String)">
+            <summary>
+            Opens the in WebBrowser.
+            </summary>
+            <param name="url">The URL.</param>
         </member>
         <member name="T:WeekNotifier.Helpers.BaseConverter">
             <inheritdoc />
@@ -68,32 +127,28 @@
             <param name="color">The System.Windows.Media.Color.</param>
             <returns>System.Drawing.Color.</returns>
         </member>
-        <member name="T:WeekNotifier.Helpers.ImageConverter">
+        <member name="T:WeekNotifier.Models.AppConfig">
             <summary>
-            Class ImageConverter.
-            Implements the <see cref="T:WeekNotifier.Helpers.BaseConverter" />
-            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
-            </summary>
-            <seealso cref="T:WeekNotifier.Helpers.BaseConverter" />
-            <seealso cref="T:System.Windows.Data.IValueConverter" />
-        </member>
-        <member name="M:WeekNotifier.Helpers.ImageConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc />
-        </member>
-        <member name="M:WeekNotifier.Helpers.ImageConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc />
-        </member>
-        <member name="T:WeekNotifier.Helpers.ImageHelper">
-            <summary>
-            Class ImageHelper.
+            Class AppConfig.
             </summary>
         </member>
-        <member name="M:WeekNotifier.Helpers.ImageHelper.ToBitmapSource(System.Drawing.Bitmap)">
+        <member name="P:WeekNotifier.Models.AppConfig.ConfigurationsFolder">
             <summary>
-            Converts a System.Drawing.Bitmap to a System.Windows.Media.Imaging.BitmapSource.
+            Gets or sets the configurations folder.
             </summary>
-            <param name="bitmap">The Bitmap to convert.</param>
-            <returns>BitmapSource.</returns>
+            <value>The configurations folder.</value>
+        </member>
+        <member name="P:WeekNotifier.Models.AppConfig.AppPropertiesFileName">
+            <summary>
+            Gets or sets the name of the application properties file.
+            </summary>
+            <value>The name of the application properties file.</value>
+        </member>
+        <member name="P:WeekNotifier.Models.AppConfig.PrivacyStatement">
+            <summary>
+            Gets or sets the privacy statement.
+            </summary>
+            <value>The privacy statement.</value>
         </member>
         <member name="T:WeekNotifier.Models.Calendar">
             <summary>
@@ -114,6 +169,12 @@
             </summary>
             <param name="calendarBackground">The calendar background.</param>
             <returns>Calendar.</returns>
+        </member>
+        <member name="P:WeekNotifier.Models.Calendar.BackgroundImage">
+            <summary>
+            Gets the background image.
+            </summary>
+            <value>The background image.</value>
         </member>
         <member name="P:WeekNotifier.Models.Calendar.WeekNumber">
             <summary>
@@ -264,14 +325,74 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:WeekNotifier.Services.ApplicationInfoService">
+            <summary>
+            Class ApplicationInfoService.
+            Implements the <see cref="T:WeekNotifier.Contracts.Services.IApplicationInfoService" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Contracts.Services.IApplicationInfoService" />
+        </member>
+        <member name="M:WeekNotifier.Services.ApplicationInfoService.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.Services.ApplicationInfoService"/> class.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Services.ApplicationInfoService.GetVersion">
+            <summary>
+            Gets the application package version.
+            </summary>
+            <returns>Version.</returns>
+        </member>
+        <member name="T:WeekNotifier.Services.PersistAndRestoreService">
+            <summary>
+            Class PersistAndRestoreService.
+            Implements the <see cref="T:WeekNotifier.Contracts.Services.IPersistAndRestoreService" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Contracts.Services.IPersistAndRestoreService" />
+        </member>
+        <member name="M:WeekNotifier.Services.PersistAndRestoreService.#ctor(Richter.Common.Utilities.Contracts.Services.IFileService,WeekNotifier.Models.AppConfig)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.Services.PersistAndRestoreService"/> class.
+            </summary>
+            <param name="fileService">The file service.</param>
+            <param name="appConfig">The application configuration.</param>
+        </member>
+        <member name="M:WeekNotifier.Services.PersistAndRestoreService.PersistData">
+            <summary>
+            Persists the data.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Services.PersistAndRestoreService.RestoreData">
+            <summary>
+            Restores the data.
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.Services.SystemService">
+            <summary>
+            Class SystemService.
+            Implements the <see cref="T:WeekNotifier.Contracts.Services.ISystemService" />
+            </summary>
+            <seealso cref="T:WeekNotifier.Contracts.Services.ISystemService" />
+        </member>
+        <member name="M:WeekNotifier.Services.SystemService.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.Services.SystemService"/> class.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Services.SystemService.OpenInWebBrowser(System.String)">
+            <summary>
+            Opens the in WebBrowser.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
         <member name="T:WeekNotifier.ViewModels.MainViewModel">
             <summary>
             Class MainViewModel.
-            Implements the <see cref="T:GalaSoft.MvvmLight.ViewModelBase" />
+            Implements the <see cref="T:Prism.Mvvm.BindableBase" />
             </summary>
-            <seealso cref="T:GalaSoft.MvvmLight.ViewModelBase" />
+            <seealso cref="T:Prism.Mvvm.BindableBase" />
         </member>
-        <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor">
+        <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor(WeekNotifier.Models.Calendar)">
             <summary>
             Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.MainViewModel"/> class.
             </summary>
@@ -324,22 +445,6 @@
             </summary>
             <value>The current image.</value>
         </member>
-        <member name="T:WeekNotifier.ViewModels.ViewModelLocator">
-            <summary>
-            Class ViewModelLocator.
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.ViewModels.ViewModelLocator.MainViewModel">
-            <summary>
-            Gets the main view model.
-            </summary>
-            <value>The main view model.</value>
-        </member>
-        <member name="M:WeekNotifier.ViewModels.ViewModelLocator.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.ViewModelLocator"/> class.
-            </summary>
-        </member>
         <member name="T:WeekNotifier.Views.MainView">
             <summary>
             Interaction logic for MainView.xaml
@@ -356,36 +461,6 @@
         <member name="M:WeekNotifier.Views.MainView.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

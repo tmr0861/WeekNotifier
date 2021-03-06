@@ -18,7 +18,7 @@ namespace WeekNotifier.Views
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class MainView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainView"/> class.

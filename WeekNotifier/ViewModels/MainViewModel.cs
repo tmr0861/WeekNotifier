@@ -11,59 +11,52 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Prism.Commands;
+using Prism.Mvvm;
 using WeekNotifier.Models;
-using Calendar = WeekNotifier.Models.Calendar;
 
 namespace WeekNotifier.ViewModels
 {
     /// <summary>
     /// Class MainViewModel.
-    /// Implements the <see cref="GalaSoft.MvvmLight.ViewModelBase" />
+    /// Implements the <see cref="Prism.Mvvm.BindableBase" />
     /// </summary>
-    /// <seealso cref="GalaSoft.MvvmLight.ViewModelBase" />
-    public class MainViewModel : ViewModelBase
+    /// <seealso cref="Prism.Mvvm.BindableBase" />
+    public class MainViewModel : BindableBase
     {
-        private readonly Models.Calendar _currentCalendar;
-        private readonly Models.Calendar _sampleCalendar;
+        private readonly Calendar _currentCalendar;
+        private readonly Calendar _sampleCalendar;
         
-        private ICommand _saveSettingsCommand;
-        private ICommand _cancelSettingsCommand;
+        private DelegateCommand _saveSettingsCommand;
+        private DelegateCommand _cancelSettingsCommand;
         private ImageSource _currentImage;
         private ImageSource _sampleImage;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(Calendar currentCalendar)
         {
-            var bitmap = new BitmapImage(
-                new Uri("pack://application:,,,/Resources/calendar.png", UriKind.Absolute));
-
-            _currentCalendar = Calendar.CreateInstance(bitmap);
+            _currentCalendar = currentCalendar;
             _currentImage = _currentCalendar.Image;
             
-            _sampleCalendar = Calendar.CreateInstance(bitmap, WeekNumber);
+            _sampleCalendar = Calendar.CreateInstance(_currentCalendar.BackgroundImage, WeekNumber);
 
-            WeekNumber = 53;
-            TextSize = 40;
-            BackgroundColor = Colors.Yellow;
-            TextColor = Colors.Blue;
+            TextSize = _currentCalendar.TextSize;
+            BackgroundColor = _currentCalendar.BackgroundColor;
+            TextColor = _currentCalendar.TextColor;
+            SampleImage = _sampleCalendar.Image;
         }
 
         /// <summary>
         /// Gets the save settings command.
         /// </summary>
         /// <value>The save settings command.</value>
-        public ICommand SaveSettingsCommand => _saveSettingsCommand ??= new RelayCommand(() =>
+        public DelegateCommand SaveSettingsCommand => _saveSettingsCommand ??= new DelegateCommand(() =>
         {
             // Save the settings
             _currentCalendar.BackgroundColor = BackgroundColor;
@@ -72,20 +65,22 @@ namespace WeekNotifier.ViewModels
             CurrentImage = _currentCalendar.Image;
 
             // TODO: Close the window
+            
         });
 
         /// <summary>
         /// Gets the cancel settings command.
         /// </summary>
         /// <value>The cancel settings command.</value>
-        public ICommand CancelSettingsCommand => _cancelSettingsCommand ??= new RelayCommand(() =>
+        public DelegateCommand CancelSettingsCommand => _cancelSettingsCommand ??= new DelegateCommand(() =>
         {
             // Restore the initial settings
             BackgroundColor = _currentCalendar.BackgroundColor;
             TextColor = _currentCalendar.TextColor;
             TextSize = _currentCalendar.TextSize;
-            
+
             // TODO: Close the window
+            
         });
 
         /// <summary>
@@ -94,7 +89,7 @@ namespace WeekNotifier.ViewModels
         /// <value>The sample week number.</value>
         public int WeekNumber
         {
-            get => _sampleCalendar?.WeekNumber ?? 0;
+            get => _sampleCalendar?.WeekNumber ?? 53;
             set
             {
                 if (_sampleCalendar.WeekNumber == value) return;
@@ -110,13 +105,13 @@ namespace WeekNotifier.ViewModels
         /// <value>The size of the text.</value>
         public int TextSize
         {
-            get => _sampleCalendar?.TextSize ?? 36;
+            get => _sampleCalendar?.TextSize ?? 42;
             set
             {
                 if (value == _sampleCalendar.TextSize) return;
 
                 _sampleCalendar.TextSize = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
                 
                 SampleImage = _sampleCalendar.Image;
             }
@@ -134,7 +129,7 @@ namespace WeekNotifier.ViewModels
                 if (value.Equals(_sampleCalendar.BackgroundColor)) return;
                    
                 _sampleCalendar.BackgroundColor = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
 
                 SampleImage = _sampleCalendar.Image;
             }
@@ -152,7 +147,7 @@ namespace WeekNotifier.ViewModels
                 if (value.Equals(_sampleCalendar.TextColor)) return;
                    
                 _sampleCalendar.TextColor = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
 
                 SampleImage = _sampleCalendar.Image;
             }
@@ -165,7 +160,7 @@ namespace WeekNotifier.ViewModels
         public ImageSource SampleImage
         {
             get => _sampleImage;
-            set => Set(ref _sampleImage, value);
+            set => SetProperty(ref _sampleImage, value);
         }
 
         /// <summary>
@@ -175,7 +170,7 @@ namespace WeekNotifier.ViewModels
         public ImageSource CurrentImage
         {
             get => _currentImage;
-            set => Set(ref _currentImage, value);
+            set => SetProperty(ref _currentImage, value);
         }
 
     }
