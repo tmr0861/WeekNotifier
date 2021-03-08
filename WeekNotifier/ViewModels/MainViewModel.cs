@@ -1,22 +1,11 @@
-﻿// ***********************************************************************
-// Assembly         : WeekNotifier
-// Author           : Tom Richter
-// Created          : 02-21-2021
-//
-// Last Modified By : Tom Richter
-// Last Modified On : 02-21-2021
-// ***********************************************************************
-// <copyright file="MainViewModel.cs" company="Tom Richter">
-//     Copyright (c) 2005-2021
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-using System;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Mvvm;
+using Richter.Common.Utilities.Logging;
+using WeekNotifier.Contracts;
 using WeekNotifier.Models;
 
 namespace WeekNotifier.ViewModels
@@ -26,8 +15,9 @@ namespace WeekNotifier.ViewModels
     /// Implements the <see cref="Prism.Mvvm.BindableBase" />
     /// </summary>
     /// <seealso cref="Prism.Mvvm.BindableBase" />
-    public class MainViewModel : BindableBase
+    public class MainViewModel : BindableBase, ICloseWindows
     {
+        private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
         private readonly Calendar _currentCalendar;
         private readonly Calendar _sampleCalendar;
         
@@ -41,10 +31,12 @@ namespace WeekNotifier.ViewModels
         /// </summary>
         public MainViewModel(Calendar currentCalendar)
         {
+            _logger.LogVerbose("MainViewModel Construction");
+
             _currentCalendar = currentCalendar;
             _currentImage = _currentCalendar.Image;
             
-            _sampleCalendar = Calendar.CreateInstance(_currentCalendar.BackgroundImage, WeekNumber);
+            _sampleCalendar = Calendar.CreateInstance(_currentCalendar.BackgroundImage);
 
             TextSize = _currentCalendar.TextSize;
             BackgroundColor = _currentCalendar.BackgroundColor;
@@ -58,14 +50,21 @@ namespace WeekNotifier.ViewModels
         /// <value>The save settings command.</value>
         public DelegateCommand SaveSettingsCommand => _saveSettingsCommand ??= new DelegateCommand(() =>
         {
-            // Save the settings
+            _logger.LogInformation("Saving calendar properties");
+            
+            // Update the current Calendar values
             _currentCalendar.BackgroundColor = BackgroundColor;
             _currentCalendar.TextColor = TextColor;
             _currentCalendar.TextSize = TextSize;
             CurrentImage = _currentCalendar.Image;
 
-            // TODO: Close the window
-            
+            // Save the settings
+            Application.Current.Properties[nameof(TextSize)] = TextSize;
+            Application.Current.Properties[nameof(TextColor)] = TextColor;
+            Application.Current.Properties[nameof(BackgroundColor)] = BackgroundColor;
+
+            // Close the window
+            Close?.Invoke();
         });
 
         /// <summary>
@@ -74,13 +73,15 @@ namespace WeekNotifier.ViewModels
         /// <value>The cancel settings command.</value>
         public DelegateCommand CancelSettingsCommand => _cancelSettingsCommand ??= new DelegateCommand(() =>
         {
+            _logger.LogInformation("Restoring calendar properties");
+            
             // Restore the initial settings
             BackgroundColor = _currentCalendar.BackgroundColor;
             TextColor = _currentCalendar.TextColor;
             TextSize = _currentCalendar.TextSize;
 
-            // TODO: Close the window
-            
+            // Close the window
+            Close?.Invoke();
         });
 
         /// <summary>
@@ -111,8 +112,8 @@ namespace WeekNotifier.ViewModels
                 if (value == _sampleCalendar.TextSize) return;
 
                 _sampleCalendar.TextSize = value;
-                //RaisePropertyChanged();
-                
+                RaisePropertyChanged();
+               
                 SampleImage = _sampleCalendar.Image;
             }
         }
@@ -129,7 +130,7 @@ namespace WeekNotifier.ViewModels
                 if (value.Equals(_sampleCalendar.BackgroundColor)) return;
                    
                 _sampleCalendar.BackgroundColor = value;
-                //RaisePropertyChanged();
+                RaisePropertyChanged();
 
                 SampleImage = _sampleCalendar.Image;
             }
@@ -147,7 +148,7 @@ namespace WeekNotifier.ViewModels
                 if (value.Equals(_sampleCalendar.TextColor)) return;
                    
                 _sampleCalendar.TextColor = value;
-                //RaisePropertyChanged();
+                RaisePropertyChanged();
 
                 SampleImage = _sampleCalendar.Image;
             }
@@ -173,5 +174,19 @@ namespace WeekNotifier.ViewModels
             set => SetProperty(ref _currentImage, value);
         }
 
+        /// <summary>
+        /// Gets or sets the close action.
+        /// </summary>
+        /// <value>The close action.</value>
+        public Action Close { get; set; }
+
+        /// <summary>
+        /// Determines whether the windows can close.
+        /// </summary>
+        /// <returns><c>true</c> if the windows can close; otherwise, <c>false</c>.</returns>
+        public bool CanClose()
+        {
+            return true;
+        }
     }
 }

@@ -12,10 +12,11 @@
             App
             </summary>
         </member>
-        <member name="M:WeekNotifier.App.#ctor">
+        <member name="M:WeekNotifier.App.CreateShell">
             <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.App"/> class.
+            Creates the shell or main window of the application.
             </summary>
+            <returns>The shell of the application.</returns>
         </member>
         <member name="M:WeekNotifier.App.OnStartup(System.Windows.StartupEventArgs)">
             <summary>
@@ -29,17 +30,6 @@
             </summary>
             <param name="containerRegistry">The container registry.</param>
         </member>
-        <member name="M:WeekNotifier.App.CreateShell">
-            <summary>
-            Creates the shell or main window of the application.
-            </summary>
-            <returns>The shell of the application.</returns>
-        </member>
-        <member name="M:WeekNotifier.App.OnInitialized">
-            <summary>
-            Contains actions that should occur last.
-            </summary>
-        </member>
         <member name="M:WeekNotifier.App.InitializeComponent">
             <summary>
             InitializeComponent
@@ -49,6 +39,23 @@
             <summary>
             Application Entry Point.
             </summary>
+        </member>
+        <member name="T:WeekNotifier.Contracts.ICloseWindows">
+            <summary>
+            Interface ICloseWindows
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.Contracts.ICloseWindows.Close">
+            <summary>
+            Gets or sets the close action.
+            </summary>
+            <value>The close action.</value>
+        </member>
+        <member name="M:WeekNotifier.Contracts.ICloseWindows.CanClose">
+            <summary>
+            Determines whether the windows can close.
+            </summary>
+            <returns><c>true</c> if the windows can close; otherwise, <c>false</c>.</returns>
         </member>
         <member name="T:WeekNotifier.Contracts.Services.IApplicationInfoService">
             <summary>
@@ -127,6 +134,37 @@
             <param name="color">The System.Windows.Media.Color.</param>
             <returns>System.Drawing.Color.</returns>
         </member>
+        <member name="T:WeekNotifier.Helpers.WindowCloser">
+            <summary>
+            Class WindowCloser.
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.WindowCloser.GetEnableWindowClosing(System.Windows.DependencyObject)">
+            <summary>
+            Gets the enable window closing.
+            </summary>
+            <param name="obj">The object.</param>
+            <returns>bool.</returns>
+        </member>
+        <member name="M:WeekNotifier.Helpers.WindowCloser.SetEnableWindowClosing(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the enable window closing.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="F:WeekNotifier.Helpers.WindowCloser.EnableWindowClosingProperty">
+            <summary>
+            The enable window closing property
+            </summary>
+        </member>
+        <member name="M:WeekNotifier.Helpers.WindowCloser.OnEnableWindowClosingChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handles the <see cref="E:EnableWindowClosingChanged" /> event.
+            </summary>
+            <param name="d">The d.</param>
+            <param name="_">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="T:WeekNotifier.Models.AppConfig">
             <summary>
             Class AppConfig.
@@ -176,6 +214,12 @@
             </summary>
             <value>The background image.</value>
         </member>
+        <member name="P:WeekNotifier.Models.Calendar.Image">
+            <summary>
+            Gets or sets the calendar image.
+            </summary>
+            <value>The calendar image.</value>
+        </member>
         <member name="P:WeekNotifier.Models.Calendar.WeekNumber">
             <summary>
             Gets or sets the week number.
@@ -188,11 +232,11 @@
             </summary>
             <value>The size of the text.</value>
         </member>
-        <member name="P:WeekNotifier.Models.Calendar.Image">
+        <member name="P:WeekNotifier.Models.Calendar.TextColor">
             <summary>
-            Gets or sets the icon.
+            Gets or sets the color of the text.
             </summary>
-            <value>The icon.</value>
+            <value>The color of the text.</value>
         </member>
         <member name="P:WeekNotifier.Models.Calendar.BackgroundColor">
             <summary>
@@ -200,129 +244,15 @@
             </summary>
             <value>The color of the background.</value>
         </member>
-        <member name="P:WeekNotifier.Models.Calendar.TextColor">
-            <summary>
-            Gets or sets the color of the text.
-            </summary>
-            <value>The color of the text.</value>
-        </member>
         <member name="M:WeekNotifier.Models.Calendar.GetCurrentWeekNumber">
             <summary>
             Gets the current week number.
             </summary>
             <returns>System.Int32.</returns>
         </member>
-        <member name="T:WeekNotifier.NumericUpDown.IntegerUpDown">
+        <member name="M:WeekNotifier.Models.Calendar.RestoreSavedSettings">
             <summary>
-            Class IntegerUpDown.
-            Implements the <see cref="T:System.Windows.Controls.UserControl" />
-            Implements the <see cref="T:System.Windows.Markup.IComponentConnector" />
-            </summary>
-            <seealso cref="T:System.Windows.Controls.UserControl" />
-            <seealso cref="T:System.Windows.Markup.IComponentConnector" />
-            <summary>
-            IntegerUpDown
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.NumericUpDown.IntegerUpDown"/> class.
-            </summary>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.SilentErrorProperty">
-            <summary>
-            The silent error property
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.SilentError">
-            <summary>
-            Gets or sets a value indicating whether [silent error].
-            </summary>
-            <value><c>true</c> if [silent error]; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.AllowManualEditProperty">
-            <summary>
-            The allow manual edit property
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.AllowManualEdit">
-            <summary>
-            Gets or sets a value indicating whether [allow manual edit].
-            </summary>
-            <value><c>true</c> if [allow manual edit]; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.MinimumProperty">
-            <summary>
-            The minimum property
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Minimum">
-            <summary>
-            Gets or sets the minimum.
-            </summary>
-            <value>The minimum.</value>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.MaximumProperty">
-            <summary>
-            The maximum property
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Maximum">
-            <summary>
-            Gets or sets the maximum.
-            </summary>
-            <value>The maximum.</value>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.IncrementProperty">
-            <summary>
-            The increment property
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Increment">
-            <summary>
-            Gets or sets the increment.
-            </summary>
-            <value>The increment.</value>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.ValueProperty">
-            <summary>
-            The value property
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.NumericUpDown.IntegerUpDown.Value">
-            <summary>
-            Gets or sets the value.
-            </summary>
-            <value>The value.</value>
-        </member>
-        <member name="F:WeekNotifier.NumericUpDown.IntegerUpDown.ValueChangedEvent">
-            <summary>
-            The value changed event
-            </summary>
-        </member>
-        <member name="E:WeekNotifier.NumericUpDown.IntegerUpDown.ValueChanged">
-            <summary>
-            Occurs when [value changed].
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.IncreaseValue">
-            <summary>
-            Increase value
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.DecreaseValue">
-            <summary>
-            Decrease value
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.OnApplyTemplate">
-            <summary>
-            Apply new templates after setting new style
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.NumericUpDown.IntegerUpDown.InitializeComponent">
-            <summary>
-            InitializeComponent
+            Restores the saved settings.
             </summary>
         </member>
         <member name="T:WeekNotifier.Services.ApplicationInfoService">
@@ -385,6 +315,36 @@
             </summary>
             <param name="url">The URL.</param>
         </member>
+        <member name="T:WeekNotifier.TraceSources">
+            <summary>
+            Trace Sources for Windows Service component
+            </summary>
+        </member>
+        <member name="T:WeekNotifier.TraceSources.Names">
+            <summary>
+            TraceSource Names used in this assembly
+            </summary>
+        </member>
+        <member name="F:WeekNotifier.TraceSources.Names.WEEK_NOTIFIER">
+            <summary>
+            The WeekNotifier trace source
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.TraceSources.WeekNotifier">
+            <summary>
+            Gets the WeekNotifier trace source.
+            </summary>
+            <value>
+            The WeekNumber Trace Source.
+            </value>
+        </member>
+        <member name="M:WeekNotifier.TraceSources.AsWeekNotifier(Richter.Common.Utilities.Logging.TraceSourceManager)">
+            <summary>
+            Gets the WeekNotifier trace source.
+            </summary>
+            <param name="manager">The trace source manager.</param>
+            <returns></returns>
+        </member>
         <member name="T:WeekNotifier.ViewModels.MainViewModel">
             <summary>
             Class MainViewModel.
@@ -445,6 +405,18 @@
             </summary>
             <value>The current image.</value>
         </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.Close">
+            <summary>
+            Gets or sets the close action.
+            </summary>
+            <value>The close action.</value>
+        </member>
+        <member name="M:WeekNotifier.ViewModels.MainViewModel.CanClose">
+            <summary>
+            Determines whether the windows can close.
+            </summary>
+            <returns><c>true</c> if the windows can close; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="T:WeekNotifier.Views.MainView">
             <summary>
             Interaction logic for MainView.xaml
@@ -461,6 +433,36 @@
         <member name="M:WeekNotifier.Views.MainView.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

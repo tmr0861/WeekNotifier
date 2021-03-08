@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using System.Windows;
 using Richter.Common.Utilities.Contracts.Services;
 using WeekNotifier.Contracts.Services;
 using WeekNotifier.Models;
@@ -34,12 +35,9 @@ namespace WeekNotifier.Services
         /// </summary>
         public void PersistData()
         {
-            if (App.Current.Properties != null)
-            {
-                var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);
-                var fileName = _appConfig.AppPropertiesFileName;
-                _fileService.Save(folderPath, fileName, App.Current.Properties);
-            }
+            var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);
+            var fileName = _appConfig.AppPropertiesFileName;
+            _fileService.Save(folderPath, fileName, Application.Current.Properties);
         }
 
         /// <summary>
@@ -50,12 +48,11 @@ namespace WeekNotifier.Services
             var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);
             var fileName = _appConfig.AppPropertiesFileName;
             var properties = _fileService.Read<IDictionary>(folderPath, fileName);
-            if (properties != null)
+            if (properties == null) return;
+            
+            foreach (DictionaryEntry property in properties)
             {
-                foreach (DictionaryEntry property in properties)
-                {
-                    App.Current.Properties.Add(property.Key, property.Value);
-                }
+                Application.Current.Properties.Add(property.Key, property.Value);
             }
         }
     }

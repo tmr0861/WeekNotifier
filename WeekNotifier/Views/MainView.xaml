@@ -8,6 +8,9 @@
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:iconPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:viewModels="clr-namespace:WeekNotifier.ViewModels"
+    xmlns:helpers="clr-namespace:WeekNotifier.Helpers"
+    xmlns:tb="http://www.hardcodet.net/taskbar"
+    xmlns:views="clr-namespace:WeekNotifier.Views"
     mc:Ignorable="d"
     Title="Notify Icon Settings"
     GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
@@ -18,7 +21,9 @@
     ShowMinButton="False"
     WindowStartupLocation="CenterScreen" 
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}" 
-    ShowInTaskbar="False">
+    ShowInTaskbar="False"
+    helpers:WindowCloser.EnableWindowClosing="True">
+    
     <mah:MetroWindow.IconTemplate>
         <DataTemplate>
             <Image 
@@ -27,6 +32,7 @@
                 />
         </DataTemplate>
     </mah:MetroWindow.IconTemplate>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -68,9 +74,13 @@
             <Image
                 Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
                 Source="{Binding SampleImage}" />
-            <Image
+            <!--<Image
                 Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
-                Source="{Binding CurrentImage}" />
+                Source="{Binding CurrentImage}" />-->
+            <tb:TaskbarIcon 
+                IconSource="pack://application:,,,/Resources/calendar.ico"
+                ToolTipText="Hello World!"/>
+
 
         </StackPanel>
 
