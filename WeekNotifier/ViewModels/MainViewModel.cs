@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Mvvm;
 using Richter.Common.Utilities.Logging;
@@ -20,12 +22,24 @@ namespace WeekNotifier.ViewModels
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
         private readonly Calendar _currentCalendar;
         private readonly Calendar _sampleCalendar;
-        
+
         private DelegateCommand _saveSettingsCommand;
         private DelegateCommand _cancelSettingsCommand;
-        private ImageSource _currentImage;
-        private ImageSource _sampleImage;
+        private BitmapSource _currentImage;
+        private BitmapSource _sampleImage;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
+        public MainViewModel()
+        {
+            _sampleCalendar = DesignerProperties.GetIsInDesignMode(new DependencyObject()) 
+                ? Calendar.CreateInstance() 
+                : Calendar.CreateInstance(_currentCalendar.BackgroundImage);
+
+            SampleImage = _sampleCalendar.Image;
+        }
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
@@ -35,7 +49,7 @@ namespace WeekNotifier.ViewModels
 
             _currentCalendar = currentCalendar;
             _currentImage = _currentCalendar.Image;
-            
+
             _sampleCalendar = Calendar.CreateInstance(_currentCalendar.BackgroundImage);
 
             TextSize = _currentCalendar.TextSize;
@@ -51,7 +65,7 @@ namespace WeekNotifier.ViewModels
         public DelegateCommand SaveSettingsCommand => _saveSettingsCommand ??= new DelegateCommand(() =>
         {
             _logger.LogInformation("Saving calendar properties");
-            
+
             // Update the current Calendar values
             _currentCalendar.BackgroundColor = BackgroundColor;
             _currentCalendar.TextColor = TextColor;
@@ -64,7 +78,7 @@ namespace WeekNotifier.ViewModels
             Application.Current.Properties[nameof(BackgroundColor)] = BackgroundColor;
 
             // Close the window
-            Close?.Invoke();
+            //Close?.Invoke();
         });
 
         /// <summary>
@@ -74,14 +88,14 @@ namespace WeekNotifier.ViewModels
         public DelegateCommand CancelSettingsCommand => _cancelSettingsCommand ??= new DelegateCommand(() =>
         {
             _logger.LogInformation("Restoring calendar properties");
-            
+
             // Restore the initial settings
             BackgroundColor = _currentCalendar.BackgroundColor;
             TextColor = _currentCalendar.TextColor;
             TextSize = _currentCalendar.TextSize;
 
             // Close the window
-            Close?.Invoke();
+            //Close?.Invoke();
         });
 
         /// <summary>
@@ -94,7 +108,7 @@ namespace WeekNotifier.ViewModels
             set
             {
                 if (_sampleCalendar.WeekNumber == value) return;
-                
+
                 _sampleCalendar.WeekNumber = value;
                 SampleImage = _sampleCalendar.Image;
             }
@@ -113,11 +127,11 @@ namespace WeekNotifier.ViewModels
 
                 _sampleCalendar.TextSize = value;
                 RaisePropertyChanged();
-               
+
                 SampleImage = _sampleCalendar.Image;
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the color of the background.
         /// </summary>
@@ -128,7 +142,7 @@ namespace WeekNotifier.ViewModels
             set
             {
                 if (value.Equals(_sampleCalendar.BackgroundColor)) return;
-                   
+
                 _sampleCalendar.BackgroundColor = value;
                 RaisePropertyChanged();
 
@@ -146,7 +160,7 @@ namespace WeekNotifier.ViewModels
             set
             {
                 if (value.Equals(_sampleCalendar.TextColor)) return;
-                   
+
                 _sampleCalendar.TextColor = value;
                 RaisePropertyChanged();
 
@@ -158,7 +172,7 @@ namespace WeekNotifier.ViewModels
         /// Gets or sets the sample image.
         /// </summary>
         /// <value>The sample image.</value>
-        public ImageSource SampleImage
+        public BitmapSource SampleImage
         {
             get => _sampleImage;
             set => SetProperty(ref _sampleImage, value);
@@ -168,7 +182,7 @@ namespace WeekNotifier.ViewModels
         /// Gets or sets the current image.
         /// </summary>
         /// <value>The current image.</value>
-        public ImageSource CurrentImage
+        public BitmapSource CurrentImage
         {
             get => _currentImage;
             set => SetProperty(ref _currentImage, value);

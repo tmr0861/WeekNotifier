@@ -23,7 +23,7 @@
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}" 
     ShowInTaskbar="False"
     helpers:WindowCloser.EnableWindowClosing="True">
-    
+
     <mah:MetroWindow.IconTemplate>
         <DataTemplate>
             <Image 
@@ -33,7 +33,8 @@
         </DataTemplate>
     </mah:MetroWindow.IconTemplate>
 
-    <Grid>
+    <Grid
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True }">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
@@ -74,13 +75,10 @@
             <Image
                 Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
                 Source="{Binding SampleImage}" />
-            <!--<Image
-                Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
-                Source="{Binding CurrentImage}" />-->
-            <tb:TaskbarIcon 
-                IconSource="pack://application:,,,/Resources/calendar.ico"
-                ToolTipText="Hello World!"/>
 
+            <tb:TaskbarIcon 
+                IconSource="{Binding CurrentImage}"
+                ToolTipText="Hello World!"/>
 
         </StackPanel>
 

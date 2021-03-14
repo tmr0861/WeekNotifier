@@ -208,6 +208,12 @@
             <param name="calendarBackground">The calendar background.</param>
             <returns>Calendar.</returns>
         </member>
+        <member name="M:WeekNotifier.Models.Calendar.CreateInstance">
+            <summary>
+            Creates the instance of Calendar with default image and week.
+            </summary>
+            <returns>WpfPrismApp.Models.Calendar.</returns>
+        </member>
         <member name="P:WeekNotifier.Models.Calendar.BackgroundImage">
             <summary>
             Gets the background image.
@@ -351,6 +357,11 @@
             Implements the <see cref="T:Prism.Mvvm.BindableBase" />
             </summary>
             <seealso cref="T:Prism.Mvvm.BindableBase" />
+        </member>
+        <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.MainViewModel"/> class.
+            </summary>
         </member>
         <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor(WeekNotifier.Models.Calendar)">
             <summary>

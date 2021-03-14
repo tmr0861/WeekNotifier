@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Threading;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Richter.Common.Utilities.Extensions;
 using Richter.Common.Utilities.Logging;
 using static System.Windows.Media.ColorConverter;
@@ -16,6 +16,22 @@ namespace WeekNotifier.Models
     /// </summary>
     public class Calendar
     {
+        private const int IMAGE_WIDTH = 50;
+        private const int IMAGE_HEIGHT = 50;
+        private static readonly BitmapSource DefaultBackground;
+
+        static Calendar()
+        {
+            // Define parameters used to create the BitmapSource.
+            var pf = PixelFormats.Bgr32;
+            var rawStride = (IMAGE_WIDTH * pf.BitsPerPixel + 7) / 8;
+            var rawImage = new byte[rawStride * IMAGE_HEIGHT];
+
+            // Create a BitmapSource.
+            DefaultBackground = BitmapSource.Create(IMAGE_WIDTH, IMAGE_HEIGHT,
+                96, 96, pf, null, rawImage, rawStride);
+        }
+
         /// <summary>
         /// Creates the instance of Calendar.
         /// </summary>
@@ -24,7 +40,7 @@ namespace WeekNotifier.Models
         /// <returns>Calendar.</returns>
         public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber)
         {
-            return new (calendarBackground, weekNumber);
+            return new(calendarBackground, weekNumber);
         }
 
         /// <summary>
@@ -37,11 +53,25 @@ namespace WeekNotifier.Models
             return new(calendarBackground);
         }
 
+        /// <summary>
+        /// Creates the instance of Calendar with default image and week.
+        /// </summary>
+        /// <returns>WpfPrismApp.Models.Calendar.</returns>
+        public static Calendar CreateInstance()
+        {
+            return new();
+        }
+
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
         private int _weekNumber;
-        private int _textSize = 42;
-        private Color _textColor = Colors.Purple;
-        private Color _backgroundColor = Colors.Beige;
+        private int _textSize = 40;
+        private Color _textColor = Colors.Black;
+        private Color _backgroundColor = Colors.White;
+
+        private Calendar() :
+            this(DefaultBackground)
+        {
+        }
 
         private Calendar(ImageSource backgroundImage) :
             this(backgroundImage, DateTime.Today.ISO8601WeekOfYear())
@@ -65,7 +95,7 @@ namespace WeekNotifier.Models
         /// Gets or sets the calendar image.
         /// </summary>
         /// <value>The calendar image.</value>
-        public ImageSource Image { get; private set; }
+        public BitmapSource Image { get; private set; }
 
         /// <summary>
         /// Gets or sets the week number.
@@ -111,7 +141,7 @@ namespace WeekNotifier.Models
             set
             {
                 if (value.Equals(_textColor)) return;
-                
+
                 _logger.LogVerbose($"Text color changed to {value}");
                 _textColor = value;
                 Image = DrawIcon();
@@ -184,13 +214,13 @@ namespace WeekNotifier.Models
                 _logger.LogWarning($"Unable to parse background color: {e.Message}");
             }
         }
-        
-        private DrawingImage DrawIcon()
+
+        private BitmapImage DrawIcon()
         {
             return DrawIcon(BackgroundImage, WeekNumber);
         }
 
-        private DrawingImage DrawIcon(ImageSource background, int weekNumber)
+        private BitmapImage DrawIcon(ImageSource background, int weekNumber)
         {
             var visual = new DrawingVisual();
 
@@ -207,25 +237,40 @@ namespace WeekNotifier.Models
 
                 text.SetFontWeight(FontWeights.Bold);
 
-                const double imageWidth = 50d;
-                const double imageHeight = 50d;
-                const int rectX = 1;
-                const int rectY = 12;
 
-                // Center the text horizontally
-                var textLocationX = (imageWidth / 2) - (text.Width / 2);
+                // Center the text horizontally and vertically
+                var textLocationX = (IMAGE_WIDTH / 2d) - (text.Width / 2);
+                var textLocationY = ((IMAGE_HEIGHT / 2d) - (text.Height / 2)) + 2;
 
-                var textLocationY = ((imageHeight / 2) - (text.Height / 2)) + 2;
+                const int rectOffsetX = 1;
+                const int rectOffsetY = 12;
 
-                drawingContext.DrawImage(background, new Rect(0, 0, imageWidth, imageHeight));
+                // Now draw the background, a colored rectangle and the text
+                drawingContext.DrawImage(background, new Rect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT));
 
                 drawingContext.DrawRectangle(new SolidColorBrush(BackgroundColor), null,
-                    new Rect(rectX, rectY, imageWidth - rectX * 2, imageHeight - rectY - 2));
+                    new Rect(rectOffsetX, rectOffsetY,
+                        IMAGE_WIDTH - rectOffsetX * 2, IMAGE_HEIGHT - rectOffsetY - 2));
 
                 drawingContext.DrawText(text, new Point(textLocationX, textLocationY));
             }
 
-            return new DrawingImage(visual.Drawing);
+            // Save the visual as a BitmapImage (is there a better way?)
+            var renderTargetBitmap = new RenderTargetBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(visual);
+
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+
+            using var stream = new MemoryStream();
+
+            encoder.Save(stream);
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = stream;
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.EndInit();
+            return bitmapImage;
         }
 
     }
