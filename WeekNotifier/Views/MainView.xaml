@@ -4,25 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:iconPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:viewModels="clr-namespace:WeekNotifier.ViewModels"
-    xmlns:helpers="clr-namespace:WeekNotifier.Helpers"
     xmlns:tb="http://www.hardcodet.net/taskbar"
-    xmlns:views="clr-namespace:WeekNotifier.Views"
+    xmlns:helpers1="clr-namespace:Richter.Common.WpfUtils.Helpers;assembly=Richter.Common.WpfUtils"
     mc:Ignorable="d"
-    Title="Notify Icon Settings"
-    GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
-    ResizeMode="NoResize"
-    Height="640"
-    Width="640"
-    ShowMaxRestoreButton="False"
-    ShowMinButton="False"
-    WindowStartupLocation="CenterScreen" 
+    Title="{Binding AppTitle}"
+    Style="{StaticResource MainWindow}"
+    GlowBrush="{StaticResource MahApps.Brushes.Accent}"
+    WindowStartupLocation="CenterScreen"
+    helpers1:WindowCloser.EnableWindowClosing="True"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}" 
-    ShowInTaskbar="False"
-    helpers:WindowCloser.EnableWindowClosing="True">
+    d:DesignHeight="512"
+    d:DesignWidth="630"
+    >
 
     <mah:MetroWindow.IconTemplate>
         <DataTemplate>
@@ -36,6 +32,7 @@
     <Grid
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True }">
         <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -44,60 +41,112 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10,0">
-            <TextBlock Text="Sample Week:" Margin="{StaticResource XSmallTopMargin}"/>
-            <Slider
-                Minimum="1" Maximum="53" 
-                Value="{Binding WeekNumber, Mode=TwoWay}"/>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Text="Settings" />
 
-            <TextBlock Text="Text Size" Margin="{StaticResource XSmallTopMargin}"/>
-            <Slider
-                Minimum="30" Maximum="48"
-                Value="{Binding TextSize, Mode=TwoWay}"/>
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <StackPanel 
+                Margin="{StaticResource MediumLeftRightMargin}" 
+                CanVerticallyScroll="True" 
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <mah:ColorPalette 
-                Header="Background Color" 
-                Margin="{StaticResource XSmallTopMargin}"
-                HorizontalAlignment="Left"
-                ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
-                SelectedItem="{Binding BackgroundColor, Mode=TwoWay}"/>
 
-            <mah:ColorPalette 
-                Header="Text Color" 
-                Margin="{StaticResource SmallTopMargin}"
-                HorizontalAlignment="Left"
-                ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
-                SelectedItem="{Binding TextColor, Mode=TwoWay}"/>
+                <TextBlock 
+                    Text="Icon Settings" 
+                    Style="{StaticResource SubtitleTextStyle}"/>
+                <TextBlock 
+                    Text="Sample Week:"
+                    Margin="{StaticResource SmallTopMargin}"
+                    />
+                <Slider
+                    Minimum="1" Maximum="53" 
+                    Value="{Binding WeekNumber, Mode=TwoWay}"/>
 
-        </StackPanel>
+                <TextBlock 
+                    Text="Text Size" 
+                    Margin="{StaticResource SmallTopMargin}"
+                    />
+                <Slider
+                    Minimum="30" Maximum="48"
+                    Value="{Binding TextSize, Mode=TwoWay}"/>
 
-        <StackPanel Grid.Row="0" Grid.Column="1">
+                <mah:ColorPalette 
+                    Header="Background Color" 
+                    HorizontalAlignment="Left"
+                    Margin="{StaticResource SmallTopMargin}"
+                    ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
+                    SelectedItem="{Binding BackgroundColor, Mode=TwoWay}"/>
+
+                <mah:ColorPalette 
+                    Header="Text Color" 
+                    HorizontalAlignment="Left"
+                    Margin="{StaticResource SmallTopMargin}"
+                    ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
+                    SelectedItem="{Binding TextColor, Mode=TwoWay}"/>
+
+                <StackPanel 
+                    Margin="{StaticResource MediumTopMargin}"
+                    Orientation="Horizontal">
+                    <TextBlock 
+                        Text="About "
+                        Style="{StaticResource SubtitleTextStyle}"
+                        />
+                    <TextBlock 
+                        Text="{Binding AppTitle, Mode=OneWay}" 
+                        Style="{StaticResource SubtitleTextStyle}"
+                        />
+                </StackPanel>
+                <TextBlock
+                    Text="{Binding VersionDescription, Mode=OneWay}"
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Style="{StaticResource BodyTextStyle}" 
+                    />
+                <TextBlock
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Style="{StaticResource BodyTextStyle}"
+                    Text="{Binding AppDescription, Mode=OneWay}" />
+
+                <TextBlock
+                    Margin="{StaticResource SmallTopBottomMargin}"
+                    Style="{StaticResource BodyTextStyle}"
+                    Text="{Binding Copyright, Mode=OneWay}" />
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
             <Image
                 Width="50" Height="50" VerticalAlignment="Top" Margin="30,20"
                 Source="{Binding SampleImage}" />
 
             <tb:TaskbarIcon 
-                IconSource="{Binding CurrentImage}"
+                IconSource="{Binding IconImage}"
                 ToolTipText="Hello World!"/>
 
         </StackPanel>
 
         <StackPanel 
-            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
             HorizontalAlignment="Stretch" 
-            Background="{DynamicResource MahApps.Brushes.Accent}">
+            Background="{StaticResource MahApps.Brushes.Accent}">
             <StackPanel 
                 Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button 
-                    Content="Cancel" IsCancel="True" 
                     Width="62" Margin="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Style="{DynamicResource MahApps.Styles.Button.Flat}"
-                    Command="{Binding CancelSettingsCommand}"
-                    />
+                    Style="{StaticResource MahApps.Styles.Button.Flat}"
+                    IsCancel="True" 
+                    Content="Cancel"
+                    ToolTip="Cancel the toolbar icon settings"
+                    Command="{Binding CancelSettingsCommand}"/>
+
                 <Button 
-                    Content="Ok" IsDefault="True" 
                     Width="62" Margin="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Style="{DynamicResource MahApps.Styles.Button.Flat}"
+                    Style="{StaticResource MahApps.Styles.Button.Flat}"
+                    IsDefault="True" 
+                    Content="Save"
+                    ToolTip="Save the toolbar icon settings"
                     Command="{Binding SaveSettingsCommand}"
                     />
             </StackPanel>

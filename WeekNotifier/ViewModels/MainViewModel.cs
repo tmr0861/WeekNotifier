@@ -1,13 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Mvvm;
+using Richter.Common.Utilities.Contracts.Services;
 using Richter.Common.Utilities.Logging;
-using WeekNotifier.Contracts;
+using Richter.Common.WpfUtils.Contracts;
 using WeekNotifier.Models;
 
 namespace WeekNotifier.ViewModels
@@ -20,12 +23,15 @@ namespace WeekNotifier.ViewModels
     public class MainViewModel : BindableBase, ICloseWindows
     {
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
-        private readonly Calendar _currentCalendar;
+        private readonly IApplicationInfoService _applicationInfoService;
+
+        private readonly Calendar _iconCalendar;
         private readonly Calendar _sampleCalendar;
 
-        private DelegateCommand _saveSettingsCommand;
-        private DelegateCommand _cancelSettingsCommand;
-        private BitmapSource _currentImage;
+        private ICommand _saveSettingsCommand;
+        private ICommand _cancelSettingsCommand;
+        
+        private BitmapSource _iconImage;
         private BitmapSource _sampleImage;
 
         /// <summary>
@@ -33,71 +39,81 @@ namespace WeekNotifier.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            _sampleCalendar = DesignerProperties.GetIsInDesignMode(new DependencyObject()) 
-                ? Calendar.CreateInstance() 
-                : Calendar.CreateInstance(_currentCalendar.BackgroundImage);
+            _sampleCalendar = DesignerProperties.GetIsInDesignMode(new DependencyObject())
+                ? Calendar.CreateInstance()
+                : Calendar.CreateInstance(_iconCalendar.BackgroundImage);
 
             SampleImage = _sampleCalendar.Image;
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
-        public MainViewModel(Calendar currentCalendar)
+        /// <param name="iconCalendar">The icon calendar.</param>
+        /// <param name="applicationInfoService">The application information service.</param>
+        public MainViewModel(Calendar iconCalendar, IApplicationInfoService applicationInfoService)
         {
             _logger.LogVerbose("MainViewModel Construction");
 
-            _currentCalendar = currentCalendar;
-            _currentImage = _currentCalendar.Image;
+            _applicationInfoService = applicationInfoService;
+            
+            _iconCalendar = iconCalendar;
+            _iconImage = _iconCalendar.Image;
 
-            _sampleCalendar = Calendar.CreateInstance(_currentCalendar.BackgroundImage);
+            _sampleCalendar = Calendar.CreateInstance(_iconCalendar.BackgroundImage);
 
-            TextSize = _currentCalendar.TextSize;
-            BackgroundColor = _currentCalendar.BackgroundColor;
-            TextColor = _currentCalendar.TextColor;
+            TextSize = _iconCalendar.TextSize;
+            BackgroundColor = _iconCalendar.BackgroundColor;
+            TextColor = _iconCalendar.TextColor;
             SampleImage = _sampleCalendar.Image;
         }
+
+        #region Bindable Commands
 
         /// <summary>
         /// Gets the save settings command.
         /// </summary>
         /// <value>The save settings command.</value>
-        public DelegateCommand SaveSettingsCommand => _saveSettingsCommand ??= new DelegateCommand(() =>
-        {
-            _logger.LogInformation("Saving calendar properties");
+        public ICommand SaveSettingsCommand => _saveSettingsCommand
+            ??= new DelegateCommand(() =>
+            {
+                _logger.LogInformation("Saving calendar properties");
 
-            // Update the current Calendar values
-            _currentCalendar.BackgroundColor = BackgroundColor;
-            _currentCalendar.TextColor = TextColor;
-            _currentCalendar.TextSize = TextSize;
-            CurrentImage = _currentCalendar.Image;
+                // Update the current Calendar values
+                _iconCalendar.BackgroundColor = BackgroundColor;
+                _iconCalendar.TextColor = TextColor;
+                _iconCalendar.TextSize = TextSize;
+                IconImage = _iconCalendar.Image;
 
-            // Save the settings
-            Application.Current.Properties[nameof(TextSize)] = TextSize;
-            Application.Current.Properties[nameof(TextColor)] = TextColor;
-            Application.Current.Properties[nameof(BackgroundColor)] = BackgroundColor;
+                // Save the settings
+                Application.Current.Properties[nameof(TextSize)] = TextSize;
+                Application.Current.Properties[nameof(TextColor)] = TextColor;
+                Application.Current.Properties[nameof(BackgroundColor)] = BackgroundColor;
 
-            // Close the window
-            //Close?.Invoke();
-        });
+                // Close the window
+                //Close?.Invoke();
+            });
 
         /// <summary>
         /// Gets the cancel settings command.
         /// </summary>
         /// <value>The cancel settings command.</value>
-        public DelegateCommand CancelSettingsCommand => _cancelSettingsCommand ??= new DelegateCommand(() =>
-        {
-            _logger.LogInformation("Restoring calendar properties");
+        public ICommand CancelSettingsCommand => _cancelSettingsCommand
+            ??= new DelegateCommand(() =>
+            {
+                _logger.LogInformation("Restoring calendar properties");
 
-            // Restore the initial settings
-            BackgroundColor = _currentCalendar.BackgroundColor;
-            TextColor = _currentCalendar.TextColor;
-            TextSize = _currentCalendar.TextSize;
+                // Restore the initial settings
+                BackgroundColor = _iconCalendar.BackgroundColor;
+                TextColor = _iconCalendar.TextColor;
+                TextSize = _iconCalendar.TextSize;
 
-            // Close the window
-            //Close?.Invoke();
-        });
-
+                // Close the window
+                //Close?.Invoke();
+            });
+        
+        #endregion
+        
         /// <summary>
         /// Gets or sets the sample week number.
         /// </summary>
@@ -182,11 +198,49 @@ namespace WeekNotifier.ViewModels
         /// Gets or sets the current image.
         /// </summary>
         /// <value>The current image.</value>
-        public BitmapSource CurrentImage
+        public BitmapSource IconImage
         {
-            get => _currentImage;
-            set => SetProperty(ref _currentImage, value);
+            get => _iconImage;
+            set => SetProperty(ref _iconImage, value);
         }
+
+        #region About Information Properties
+
+        /// <summary>
+        /// Gets the application title.
+        /// </summary>
+        /// <value>The application title.</value>
+        public string AppTitle => _applicationInfoService.GetProduct();
+        
+        /// <summary>
+        /// Gets or sets the version description.
+        /// </summary>
+        /// <value>The version description.</value>
+        public string VersionDescription => $"Version: {_applicationInfoService.GetVersion()}";
+
+        /// <summary>
+        /// Gets or sets the application description.
+        /// </summary>
+        /// <value>The application description.</value>
+        public string AppDescription => _applicationInfoService.GetDescription();
+
+        /// <summary>
+        /// Gets or sets the copyright statement.
+        /// </summary>
+        /// <value>The copyright statement.</value>
+        public string Copyright
+        {
+            get
+            {
+                var sb = new StringBuilder(_applicationInfoService.GetCopyright());
+
+                sb.Append($" {_applicationInfoService.GetCompany()} All Rights Reserved.");
+
+                return sb.ToString();
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Gets or sets the close action.
@@ -202,5 +256,6 @@ namespace WeekNotifier.ViewModels
         {
             return true;
         }
+
     }
 }

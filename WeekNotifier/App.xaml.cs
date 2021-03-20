@@ -2,20 +2,18 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using System.Windows.Media.Imaging;
 using Microsoft.Extensions.Configuration;
-using Prism;
 using Prism.Ioc;
-using Prism.Unity;
 using Richter.Common.Utilities.Contracts.Services;
 using Richter.Common.Utilities.Logging;
 using Richter.Common.Utilities.Services;
-using WeekNotifier.Contracts.Services;
+using Richter.Common.WpfUtils.Contracts.Services;
+using Richter.Common.WpfUtils.Models;
+using Richter.Common.WpfUtils.Services;
 using WeekNotifier.Models;
-using WeekNotifier.Services;
 using WeekNotifier.Views;
 
 namespace WeekNotifier

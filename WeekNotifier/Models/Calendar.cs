@@ -27,7 +27,7 @@ namespace WeekNotifier.Models
             var rawStride = (IMAGE_WIDTH * pf.BitsPerPixel + 7) / 8;
             var rawImage = new byte[rawStride * IMAGE_HEIGHT];
 
-            // Create a BitmapSource.
+            // Create a blank BitmapSource for the background.
             DefaultBackground = BitmapSource.Create(IMAGE_WIDTH, IMAGE_HEIGHT,
                 96, 96, pf, null, rawImage, rawStride);
         }

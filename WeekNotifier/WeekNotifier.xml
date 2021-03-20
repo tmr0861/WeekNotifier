@@ -40,154 +40,6 @@
             Application Entry Point.
             </summary>
         </member>
-        <member name="T:WeekNotifier.Contracts.ICloseWindows">
-            <summary>
-            Interface ICloseWindows
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.Contracts.ICloseWindows.Close">
-            <summary>
-            Gets or sets the close action.
-            </summary>
-            <value>The close action.</value>
-        </member>
-        <member name="M:WeekNotifier.Contracts.ICloseWindows.CanClose">
-            <summary>
-            Determines whether the windows can close.
-            </summary>
-            <returns><c>true</c> if the windows can close; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="T:WeekNotifier.Contracts.Services.IApplicationInfoService">
-            <summary>
-            Interface IApplicationInfoService
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Contracts.Services.IApplicationInfoService.GetVersion">
-            <summary>
-            Gets the application package version.
-            </summary>
-            <returns>Version.</returns>
-        </member>
-        <member name="T:WeekNotifier.Contracts.Services.IPersistAndRestoreService">
-            <summary>
-            Interface IPersistAndRestoreService
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Contracts.Services.IPersistAndRestoreService.RestoreData">
-            <summary>
-            Restores the data.
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Contracts.Services.IPersistAndRestoreService.PersistData">
-            <summary>
-            Persists the data.
-            </summary>
-        </member>
-        <member name="T:WeekNotifier.Contracts.Services.ISystemService">
-            <summary>
-            Interface ISystemService
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Contracts.Services.ISystemService.OpenInWebBrowser(System.String)">
-            <summary>
-            Opens the in WebBrowser.
-            </summary>
-            <param name="url">The URL.</param>
-        </member>
-        <member name="T:WeekNotifier.Helpers.BaseConverter">
-            <inheritdoc />
-        </member>
-        <member name="M:WeekNotifier.Helpers.BaseConverter.ProvideValue(System.IServiceProvider)">
-            <inheritdoc />
-        </member>
-        <member name="T:WeekNotifier.Helpers.ColorConverter">
-            <summary>
-            Class ColorConverter.
-            Implements the <see cref="T:WeekNotifier.Helpers.BaseConverter" />
-            Implements the <see cref="T:System.Windows.Data.IValueConverter" />
-            </summary>
-            <seealso cref="T:WeekNotifier.Helpers.BaseConverter" />
-            <seealso cref="T:System.Windows.Data.IValueConverter" />
-        </member>
-        <member name="M:WeekNotifier.Helpers.ColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc />
-        </member>
-        <member name="M:WeekNotifier.Helpers.ColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc />
-        </member>
-        <member name="T:WeekNotifier.Helpers.ColorExt">
-            <summary>
-            Class Color Extension Methods.
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Helpers.ColorExt.ToSwmColor(System.Drawing.Color)">
-            <summary>
-            Converts a System.Drawing.Color to a System.Windows.Media.Color.
-            </summary>
-            <param name="color">The System.Drawing.Color.</param>
-            <returns>System.Windows.Media.Color.</returns>
-        </member>
-        <member name="M:WeekNotifier.Helpers.ColorExt.ToSdColor(System.Windows.Media.Color)">
-            <summary>
-            Converts to System.Windows.Media.Color to a System.Drawing.Color.
-            </summary>
-            <param name="color">The System.Windows.Media.Color.</param>
-            <returns>System.Drawing.Color.</returns>
-        </member>
-        <member name="T:WeekNotifier.Helpers.WindowCloser">
-            <summary>
-            Class WindowCloser.
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Helpers.WindowCloser.GetEnableWindowClosing(System.Windows.DependencyObject)">
-            <summary>
-            Gets the enable window closing.
-            </summary>
-            <param name="obj">The object.</param>
-            <returns>bool.</returns>
-        </member>
-        <member name="M:WeekNotifier.Helpers.WindowCloser.SetEnableWindowClosing(System.Windows.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the enable window closing.
-            </summary>
-            <param name="obj">The object.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="F:WeekNotifier.Helpers.WindowCloser.EnableWindowClosingProperty">
-            <summary>
-            The enable window closing property
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Helpers.WindowCloser.OnEnableWindowClosingChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
-            <summary>
-            Handles the <see cref="E:EnableWindowClosingChanged" /> event.
-            </summary>
-            <param name="d">The d.</param>
-            <param name="_">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="T:WeekNotifier.Models.AppConfig">
-            <summary>
-            Class AppConfig.
-            </summary>
-        </member>
-        <member name="P:WeekNotifier.Models.AppConfig.ConfigurationsFolder">
-            <summary>
-            Gets or sets the configurations folder.
-            </summary>
-            <value>The configurations folder.</value>
-        </member>
-        <member name="P:WeekNotifier.Models.AppConfig.AppPropertiesFileName">
-            <summary>
-            Gets or sets the name of the application properties file.
-            </summary>
-            <value>The name of the application properties file.</value>
-        </member>
-        <member name="P:WeekNotifier.Models.AppConfig.PrivacyStatement">
-            <summary>
-            Gets or sets the privacy statement.
-            </summary>
-            <value>The privacy statement.</value>
-        </member>
         <member name="T:WeekNotifier.Models.Calendar">
             <summary>
             Class Calendar.
@@ -261,66 +113,6 @@
             Restores the saved settings.
             </summary>
         </member>
-        <member name="T:WeekNotifier.Services.ApplicationInfoService">
-            <summary>
-            Class ApplicationInfoService.
-            Implements the <see cref="T:WeekNotifier.Contracts.Services.IApplicationInfoService" />
-            </summary>
-            <seealso cref="T:WeekNotifier.Contracts.Services.IApplicationInfoService" />
-        </member>
-        <member name="M:WeekNotifier.Services.ApplicationInfoService.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.Services.ApplicationInfoService"/> class.
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Services.ApplicationInfoService.GetVersion">
-            <summary>
-            Gets the application package version.
-            </summary>
-            <returns>Version.</returns>
-        </member>
-        <member name="T:WeekNotifier.Services.PersistAndRestoreService">
-            <summary>
-            Class PersistAndRestoreService.
-            Implements the <see cref="T:WeekNotifier.Contracts.Services.IPersistAndRestoreService" />
-            </summary>
-            <seealso cref="T:WeekNotifier.Contracts.Services.IPersistAndRestoreService" />
-        </member>
-        <member name="M:WeekNotifier.Services.PersistAndRestoreService.#ctor(Richter.Common.Utilities.Contracts.Services.IFileService,WeekNotifier.Models.AppConfig)">
-            <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.Services.PersistAndRestoreService"/> class.
-            </summary>
-            <param name="fileService">The file service.</param>
-            <param name="appConfig">The application configuration.</param>
-        </member>
-        <member name="M:WeekNotifier.Services.PersistAndRestoreService.PersistData">
-            <summary>
-            Persists the data.
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Services.PersistAndRestoreService.RestoreData">
-            <summary>
-            Restores the data.
-            </summary>
-        </member>
-        <member name="T:WeekNotifier.Services.SystemService">
-            <summary>
-            Class SystemService.
-            Implements the <see cref="T:WeekNotifier.Contracts.Services.ISystemService" />
-            </summary>
-            <seealso cref="T:WeekNotifier.Contracts.Services.ISystemService" />
-        </member>
-        <member name="M:WeekNotifier.Services.SystemService.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.Services.SystemService"/> class.
-            </summary>
-        </member>
-        <member name="M:WeekNotifier.Services.SystemService.OpenInWebBrowser(System.String)">
-            <summary>
-            Opens the in WebBrowser.
-            </summary>
-            <param name="url">The URL.</param>
-        </member>
         <member name="T:WeekNotifier.TraceSources">
             <summary>
             Trace Sources for Windows Service component
@@ -363,10 +155,12 @@
             Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.MainViewModel"/> class.
             </summary>
         </member>
-        <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor(WeekNotifier.Models.Calendar)">
+        <member name="M:WeekNotifier.ViewModels.MainViewModel.#ctor(WeekNotifier.Models.Calendar,Richter.Common.Utilities.Contracts.Services.IApplicationInfoService)">
             <summary>
             Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.MainViewModel"/> class.
             </summary>
+            <param name="iconCalendar">The icon calendar.</param>
+            <param name="applicationInfoService">The application information service.</param>
         </member>
         <member name="P:WeekNotifier.ViewModels.MainViewModel.SaveSettingsCommand">
             <summary>
@@ -410,11 +204,35 @@
             </summary>
             <value>The sample image.</value>
         </member>
-        <member name="P:WeekNotifier.ViewModels.MainViewModel.CurrentImage">
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.IconImage">
             <summary>
             Gets or sets the current image.
             </summary>
             <value>The current image.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.AppTitle">
+            <summary>
+            Gets the application title.
+            </summary>
+            <value>The application title.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.VersionDescription">
+            <summary>
+            Gets or sets the version description.
+            </summary>
+            <value>The version description.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.AppDescription">
+            <summary>
+            Gets or sets the application description.
+            </summary>
+            <value>The application description.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.MainViewModel.Copyright">
+            <summary>
+            Gets or sets the copyright statement.
+            </summary>
+            <value>The copyright statement.</value>
         </member>
         <member name="P:WeekNotifier.ViewModels.MainViewModel.Close">
             <summary>
@@ -427,6 +245,28 @@
             Determines whether the windows can close.
             </summary>
             <returns><c>true</c> if the windows can close; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:WeekNotifier.ViewModels.NotifyIconViewModel">
+            <summary>
+            Provides bindable properties and commands for the NotifyIcon. In this sample, the
+            view model is assigned to the NotifyIcon in XAML. Alternatively, the startup routing
+            in App.xaml.cs could have created this view model, and assigned it to the NotifyIcon.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ShowWindowCommand">
+            <summary>
+            Shows a window, if none is already open.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.HideWindowCommand">
+            <summary>
+            Hides the main window. This command is only enabled if a window is open.
+            </summary>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ExitApplicationCommand">
+            <summary>
+            Shuts down the application.
+            </summary>
         </member>
         <member name="T:WeekNotifier.Views.MainView">
             <summary>
