@@ -2,11 +2,14 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Windows;
 using System.Windows.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Extensions.Configuration;
 using Prism.Ioc;
+using Prism.Unity;
 using Richter.Common.Utilities.Contracts.Services;
 using Richter.Common.Utilities.Logging;
 using Richter.Common.Utilities.Services;
@@ -25,6 +28,7 @@ namespace WeekNotifier
     {
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
         private string[] _startUpArgs;
+        private TaskbarIcon _notifyIcon;
 
         /// <summary>
         /// Creates the shell or main window of the application.
@@ -32,24 +36,23 @@ namespace WeekNotifier
         /// <returns>The shell of the application.</returns>
         protected override Window CreateShell()
         {
-            //Need to do this before MainViewModel is constructed
+            return null;
+        }
+
+        /// <summary>
+        /// Contains actions that should occur last.
+        /// </summary>
+        protected override async void OnInitialized()
+        {
             var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
             persistAndRestoreService.RestoreData();
             
             var calendar = Container.Resolve<Calendar>();
-            calendar.RestoreSavedSettings();
-            
-            return Container.Resolve<MainView>();
-        }
+            calendar.RestoreSettings();
 
-        ///// <summary>
-        ///// Contains actions that should occur last.
-        ///// </summary>
-        //protected override async void OnInitialized()
-        //{
-        //    base.OnInitialized();
-        //    await Task.CompletedTask;
-        //}
+            base.OnInitialized();
+            await Task.CompletedTask;
+        }
 
         /// <summary>
         /// Raises the System.Windows.Application.Startup event.
@@ -60,6 +63,8 @@ namespace WeekNotifier
             _startUpArgs = e.Args;
             _logger.Switch.Level = SourceLevels.All;
             base.OnStartup(e);
+ 
+            _notifyIcon = Container.Resolve<NotifyIconView>().TaskbarIcon;
         }
 
         /// <summary>
@@ -71,14 +76,13 @@ namespace WeekNotifier
             var bitmap = new BitmapImage(
                 new Uri("pack://application:,,,/Resources/calendar.png", UriKind.Absolute));
             containerRegistry.RegisterSingleton<Calendar>(()=> Calendar.CreateInstance(bitmap));
-
+            
             // Core Services
             containerRegistry.Register<IFileService, FileService>();
 
             // App Services
             containerRegistry.Register<IApplicationInfoService, ApplicationInfoService>();
-            containerRegistry.Register<ISystemService, SystemService>();
-            containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();
+            containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();  
 
             // Configuration
             var configuration = BuildConfiguration();
@@ -105,6 +109,8 @@ namespace WeekNotifier
         {
             var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
             persistAndRestoreService.PersistData();
+            
+            _notifyIcon.Dispose(); //the icon would clean up automatically, but this is cleaner
         }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -112,7 +118,7 @@ namespace WeekNotifier
             // TODO WTS: Please log and handle the exception as appropriate to your scenario
             // For more info see https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
 
-            _logger.LogError(e.Exception);
+            _logger.LogError(e.Exception as Exception);
             
         }
         

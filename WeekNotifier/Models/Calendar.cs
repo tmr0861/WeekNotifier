@@ -1,10 +1,14 @@
-﻿using System;
+﻿#nullable enable
+using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using JetBrains.Annotations;
 using Richter.Common.Utilities.Extensions;
 using Richter.Common.Utilities.Logging;
 using static System.Windows.Media.ColorConverter;
@@ -14,7 +18,7 @@ namespace WeekNotifier.Models
     /// <summary>
     /// Class Calendar.
     /// </summary>
-    public class Calendar
+    public class Calendar : INotifyPropertyChanged
     {
         private const int IMAGE_WIDTH = 50;
         private const int IMAGE_HEIGHT = 50;
@@ -33,14 +37,12 @@ namespace WeekNotifier.Models
         }
 
         /// <summary>
-        /// Creates the instance of Calendar.
+        /// Creates the instance of Calendar with default image and week.
         /// </summary>
-        /// <param name="calendarBackground">The calendar background.</param>
-        /// <param name="weekNumber">The week number.</param>
-        /// <returns>Calendar.</returns>
-        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber)
+        /// <returns>WpfPrismApp.Models.Calendar.</returns>
+        public static Calendar CreateInstance()
         {
-            return new(calendarBackground, weekNumber);
+            return new();
         }
 
         /// <summary>
@@ -54,12 +56,14 @@ namespace WeekNotifier.Models
         }
 
         /// <summary>
-        /// Creates the instance of Calendar with default image and week.
+        /// Creates the instance of Calendar.
         /// </summary>
-        /// <returns>WpfPrismApp.Models.Calendar.</returns>
-        public static Calendar CreateInstance()
+        /// <param name="calendarBackground">The calendar background.</param>
+        /// <param name="weekNumber">The week number.</param>
+        /// <returns>Calendar.</returns>
+        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber)
         {
-            return new();
+            return new(calendarBackground, weekNumber);
         }
 
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
@@ -67,6 +71,7 @@ namespace WeekNotifier.Models
         private int _textSize = 40;
         private Color _textColor = Colors.Black;
         private Color _backgroundColor = Colors.White;
+        private BitmapSource _image = null!;
 
         private Calendar() :
             this(DefaultBackground)
@@ -95,7 +100,15 @@ namespace WeekNotifier.Models
         /// Gets or sets the calendar image.
         /// </summary>
         /// <value>The calendar image.</value>
-        public BitmapSource Image { get; private set; }
+        public BitmapSource Image
+        {
+            get => _image;
+            private set
+            {
+                _image = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the week number.
@@ -178,8 +191,10 @@ namespace WeekNotifier.Models
         /// <summary>
         /// Restores the saved settings.
         /// </summary>
-        public void RestoreSavedSettings()
+        public void RestoreSettings()
         {
+            _logger.LogInformation("Restoring calendar properties");
+
             if (Application.Current.Properties.Contains(nameof(TextSize)))
             {
                 if (int.TryParse(Application.Current.Properties[nameof(TextSize)]?.ToString(), out var ts))
@@ -215,6 +230,19 @@ namespace WeekNotifier.Models
             }
         }
 
+        /// <summary>
+        /// Saves the settings.
+        /// </summary>
+        public void SaveSettings()
+        {
+            _logger.LogInformation("Saving calendar properties");
+            
+            // Save the settings
+            Application.Current.Properties[nameof(TextSize)] = TextSize;
+            Application.Current.Properties[nameof(TextColor)] = TextColor;
+            Application.Current.Properties[nameof(BackgroundColor)] = BackgroundColor;
+        }
+        
         private BitmapImage DrawIcon()
         {
             return DrawIcon(BackgroundImage, WeekNumber);
@@ -273,5 +301,23 @@ namespace WeekNotifier.Models
             return bitmapImage;
         }
 
+        #region INotifyPropertyChanged Implementation
+
+        /// <summary>
+        /// Occurs when [property changed].
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null!)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

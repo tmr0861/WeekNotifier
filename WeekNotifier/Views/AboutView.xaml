@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WeekNotifier.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:viewModels="clr-namespace:WeekNotifier.ViewModels"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:AboutViewModel, IsDesignTimeCreatable=True}"
+             >
+    <Grid>
+        <StackPanel>
+            <StackPanel 
+                Orientation="Horizontal">
+                <TextBlock 
+                    Text="About "
+                    Style="{StaticResource SubtitleTextStyle}"
+                />
+                <TextBlock 
+                    Text="{Binding AppTitle, Mode=OneWay}" 
+                    Style="{StaticResource SubtitleTextStyle}"
+                />
+            </StackPanel>
+            <TextBlock
+                Text="{Binding VersionDescription, Mode=OneWay}"
+                Margin="{StaticResource XSmallTopMargin}"
+                Style="{StaticResource BodyTextStyle}" 
+            />
+            <TextBlock
+                Text="{Binding AppDescription, Mode=OneWay}"
+                Margin="{StaticResource XSmallTopMargin}"
+                Style="{StaticResource BodyTextStyle}"
+            />
+            <TextBlock
+                Text="{Binding Copyright, Mode=OneWay}"
+                Margin="{StaticResource SmallTopBottomMargin}"
+                Style="{StaticResource BodyTextStyle}"
+            />
+        </StackPanel>
+    </Grid>
+</UserControl>

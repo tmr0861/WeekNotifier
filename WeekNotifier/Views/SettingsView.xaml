@@ -1,0 +1,70 @@
+﻿<UserControl 
+    x:Class="WeekNotifier.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:WeekNotifier.ViewModels"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d"
+    d:DesignWidth ="1000" 
+    d:DataContext="{d:DesignInstance viewModels:SettingsViewModel, IsDesignTimeCreatable=True}"
+    >
+    <Grid>
+        <StackPanel>
+            <TextBlock 
+                Text="Icon Settings" 
+                Style="{StaticResource SubtitleTextStyle}"
+            />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock 
+                        Text="Sample Week:"
+                        Margin="{StaticResource SmallTopMargin}"
+                    />
+                    <Slider
+                        Minimum="1" Maximum="53" 
+                        Value="{Binding WeekNumber, Mode=TwoWay}"
+                    />
+                    <TextBlock 
+                        Text="Text Size" 
+                        Margin="{StaticResource SmallTopMargin}"
+                    />
+                    <Slider
+                        Minimum="30" Maximum="48"
+                        Value="{Binding TextSize, Mode=TwoWay}"
+                    />
+                </StackPanel>
+                <Image
+                    Grid.Column="1"
+                    Width="75" Height="75" 
+                    Margin="{StaticResource MediumTopLeftMargin}"
+                    Source="{Binding SampleImage}" 
+                />
+            </Grid>
+
+            <mah:ColorPalette 
+                Header="Background Color" 
+                HorizontalAlignment="Left"
+                Margin="{StaticResource SmallTopMargin}"
+                ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
+                SelectedItem="{Binding BackgroundColor, Mode=TwoWay}"
+            />
+            <mah:ColorPalette 
+                Header="Text Color" 
+                HorizontalAlignment="Left"
+                Margin="{StaticResource SmallTopMargin}"
+                ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
+                SelectedItem="{Binding TextColor, Mode=TwoWay}"
+            />
+        </StackPanel>
+
+    </Grid>
+</UserControl>

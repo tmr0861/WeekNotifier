@@ -1,38 +1,116 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Accessibility;
 using Prism.Commands;
+using Prism.Ioc;
+using Prism.Mvvm;
+using WeekNotifier.Models;
+using WeekNotifier.Views;
 
 namespace WeekNotifier.ViewModels
 {
     /// <summary>
-    /// Provides bindable properties and commands for the NotifyIcon. In this sample, the
-    /// view model is assigned to the NotifyIcon in XAML. Alternatively, the startup routing
-    /// in App.xaml.cs could have created this view model, and assigned it to the NotifyIcon.
+    /// Class NotifyIconViewModel.
+    /// Implements the <see cref="Prism.Mvvm.BindableBase" />
     /// </summary>
-    public class NotifyIconViewModel
+    /// <seealso cref="Prism.Mvvm.BindableBase" />
+    public class NotifyIconViewModel : BindableBase
     {
+        private readonly IContainerExtension _container;
+        private BitmapSource _iconImage;
+        private Window _mainView;
+        private bool _canShowWindow = true;
+
         /// <summary>
-        /// Shows a window, if none is already open.
+        /// Initializes a new instance of the <see cref="NotifyIconViewModel" /> class.
         /// </summary>
-        public ICommand ShowWindowCommand =>
-            new DelegateCommand(() =>
+        /// <param name="calendar">The calendar.</param>
+        /// <param name="container">T
+        /// ]\\\he container.</param>
+        public NotifyIconViewModel(Calendar calendar, IContainerExtension container)
+        {
+            _container = container;
+
+            IconImage = calendar.Image;
+            calendar.PropertyChanged += (_, _) => IconImage = calendar.Image;
+            
+            ExitCommand = new DelegateCommand(ExitApp);
+            ShowWindowCommand = new DelegateCommand(ShowWindow).ObservesCanExecute(() => CanShowWindow);
+            HideWindowCommand = new DelegateCommand(HideWindow, CanHideWindow);
+        }
+
+        /// <summary>
+        /// Gets the show window command.
+        /// </summary>
+        /// <value>The show window command.</value>
+        public DelegateCommand ShowWindowCommand { get; }
+
+        /// <summary>
+        /// Gets the hide window command.
+        /// </summary>
+        /// <value>The hide window command.</value>
+        public DelegateCommand HideWindowCommand { get; }
+
+        /// <summary>
+        /// Gets the exit command.
+        /// </summary>
+        /// <value>The exit command.</value>
+        public DelegateCommand ExitCommand { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance can show window.
+        /// </summary>
+        /// <value><c>true</c> if this instance can show window; otherwise, <c>false</c>.</value>
+        public bool CanShowWindow
+        {
+            get => _canShowWindow;
+            set
             {
-            });
+                SetProperty(ref _canShowWindow, value);
+                HideWindowCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         /// <summary>
-        /// Hides the main window. This command is only enabled if a window is open.
+        /// Gets or sets the icon image.
         /// </summary>
-        public ICommand HideWindowCommand =>
-            new DelegateCommand(() =>
-            {
-
-            });
-
+        /// <value>The icon image.</value>
+        public BitmapSource IconImage
+        {
+            get => _iconImage;
+            set => SetProperty(ref _iconImage, value);
+        }
 
         /// <summary>
-        /// Shuts down the application.
+        /// Gets the tool tip text.
         /// </summary>
-        public ICommand ExitApplicationCommand =>
-            new DelegateCommand(() => Application.Current.Shutdown());
+        /// <value>The tool tip text.</value>
+        public string ToolTipText => "Double-click for window, right-click for menu";
+
+        private void ShowWindow()
+        {
+            _mainView = _container.Resolve<MainView>();
+            _mainView.Loaded += (sender, args) => CanShowWindow = false;
+            _mainView.Unloaded += (sender, args) => CanShowWindow = true;
+            _mainView?.Show();
+        }
+
+        private void HideWindow()
+        {
+            _mainView?.Close();
+        }
+
+        private void ExitApp()
+        {
+            Application.Current.Shutdown();
+        }
+
+        private bool CanHideWindow()
+        {
+            return !CanShowWindow;
+        }
+
     }
 }
