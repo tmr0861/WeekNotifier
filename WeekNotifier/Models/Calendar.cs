@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using JetBrains.Annotations;
 using Richter.Common.Utilities.Extensions;
 using Richter.Common.Utilities.Logging;
@@ -22,8 +23,12 @@ namespace WeekNotifier.Models
     {
         private const int IMAGE_WIDTH = 50;
         private const int IMAGE_HEIGHT = 50;
+        private const double UPDATE_TIMER_MINUTES = 1d;
         private static readonly BitmapSource DefaultBackground;
 
+        /// <summary>
+        /// Creates a blank bitmapsource image in case no background is given.
+        /// </summary>
         static Calendar()
         {
             // Define parameters used to create the BitmapSource.
@@ -60,13 +65,16 @@ namespace WeekNotifier.Models
         /// </summary>
         /// <param name="calendarBackground">The calendar background.</param>
         /// <param name="weekNumber">The week number.</param>
+        /// <param name="autoUpdate">Optional enable automatic update of week number.</param>
         /// <returns>Calendar.</returns>
-        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber)
+        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber, bool autoUpdate = false)
         {
-            return new(calendarBackground, weekNumber);
+            return new(calendarBackground, weekNumber, autoUpdate);
         }
 
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
+        private readonly DispatcherTimer _updateTimer = new();
+
         private int _weekNumber;
         private int _textSize = 40;
         private Color _textColor = Colors.Black;
@@ -79,15 +87,19 @@ namespace WeekNotifier.Models
         }
 
         private Calendar(ImageSource backgroundImage) :
-            this(backgroundImage, DateTime.Today.ISO8601WeekOfYear())
+            this(backgroundImage, DateTime.Today.ISO8601WeekOfYear(), false)
         {
         }
 
-        private Calendar(ImageSource backgroundImage, int weekNumber)
+        private Calendar(ImageSource backgroundImage, int weekNumber, bool autoUpdate)
         {
             BackgroundImage = backgroundImage;
             WeekNumber = weekNumber;
             Image = DrawIcon();
+
+            _updateTimer.Tick += UpdateTimer_Tick;
+            _updateTimer.Interval = TimeSpan.FromMinutes(UPDATE_TIMER_MINUTES);
+            AutoUpdate = autoUpdate;
         }
 
         /// <summary>
@@ -179,13 +191,19 @@ namespace WeekNotifier.Models
         }
 
         /// <summary>
-        /// Gets the current week number.
+        /// Gets or sets whether automatic update of week number is enabled.
         /// </summary>
-        /// <returns>System.Int32.</returns>
-        public int GetCurrentWeekNumber()
+        /// <value>Automatic update of week number enabled or disabled.</value>
+        public bool AutoUpdate
         {
-            WeekNumber = DateTime.Today.ISO8601WeekOfYear();
-            return WeekNumber;
+            get => _updateTimer.IsEnabled;
+            set
+            {
+                if (value == _updateTimer.IsEnabled) return;
+
+                _logger.LogInformation($"Week Number Automatic Update {(value ? "Enabled" : "Disabled")}");
+                _updateTimer.IsEnabled = value;
+            }
         }
 
         /// <summary>
@@ -236,13 +254,13 @@ namespace WeekNotifier.Models
         public void SaveSettings()
         {
             _logger.LogInformation("Saving calendar properties");
-            
+
             // Save the settings
             Application.Current.Properties[nameof(TextSize)] = TextSize;
             Application.Current.Properties[nameof(TextColor)] = TextColor;
             Application.Current.Properties[nameof(BackgroundColor)] = BackgroundColor;
         }
-        
+
         private BitmapImage DrawIcon()
         {
             return DrawIcon(BackgroundImage, WeekNumber);
@@ -299,6 +317,12 @@ namespace WeekNotifier.Models
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             bitmapImage.EndInit();
             return bitmapImage;
+        }
+
+        private void UpdateTimer_Tick(object? sender, EventArgs e)
+        {
+            _logger.LogVerbose("Update Timer fired...");
+            WeekNumber = DateTime.Now.ISO8601WeekOfYear();
         }
 
         #region INotifyPropertyChanged Implementation

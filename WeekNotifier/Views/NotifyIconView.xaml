@@ -39,9 +39,10 @@
         <tb:TaskbarIcon 
             Name="TaskbarIcon"
             IconSource="{Binding IconImage}"
-            ToolTipText="Hello World!"
+            ToolTipText="{Binding ToolTipText}"
             DoubleClickCommand="{Binding ShowWindowCommand}"
-            ContextMenu="{StaticResource SysTrayMenu}">
+            ContextMenu="{StaticResource SysTrayMenu}"
+            >
         </tb:TaskbarIcon>
     </ContentControl>
 </UserControl>

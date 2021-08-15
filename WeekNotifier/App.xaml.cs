@@ -61,7 +61,7 @@ namespace WeekNotifier
         protected override void OnStartup(StartupEventArgs e)
         {
             _startUpArgs = e.Args;
-            _logger.Switch.Level = SourceLevels.All;
+            _logger.Switch.Level = SourceLevels.Information;
             base.OnStartup(e);
  
             _notifyIcon = Container.Resolve<NotifyIconView>().TaskbarIcon;

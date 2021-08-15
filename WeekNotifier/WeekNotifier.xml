@@ -50,6 +50,11 @@
             Class Calendar.
             </summary>
         </member>
+        <member name="M:WeekNotifier.Models.Calendar.#cctor">
+            <summary>
+            Creates a blank bitmapsource image in case no background is given.
+            </summary>
+        </member>
         <member name="M:WeekNotifier.Models.Calendar.CreateInstance">
             <summary>
             Creates the instance of Calendar with default image and week.
@@ -63,12 +68,13 @@
             <param name="calendarBackground">The calendar background.</param>
             <returns>Calendar.</returns>
         </member>
-        <member name="M:WeekNotifier.Models.Calendar.CreateInstance(System.Windows.Media.ImageSource,System.Int32)">
+        <member name="M:WeekNotifier.Models.Calendar.CreateInstance(System.Windows.Media.ImageSource,System.Int32,System.Boolean)">
             <summary>
             Creates the instance of Calendar.
             </summary>
             <param name="calendarBackground">The calendar background.</param>
             <param name="weekNumber">The week number.</param>
+            <param name="autoUpdate">Optional enable automatic update of week number.</param>
             <returns>Calendar.</returns>
         </member>
         <member name="P:WeekNotifier.Models.Calendar.BackgroundImage">
@@ -107,11 +113,11 @@
             </summary>
             <value>The color of the background.</value>
         </member>
-        <member name="M:WeekNotifier.Models.Calendar.GetCurrentWeekNumber">
+        <member name="P:WeekNotifier.Models.Calendar.AutoUpdate">
             <summary>
-            Gets the current week number.
+            Gets or sets whether automatic update of week number is enabled.
             </summary>
-            <returns>System.Int32.</returns>
+            <value>Automatic update of week number enabled or disabled.</value>
         </member>
         <member name="M:WeekNotifier.Models.Calendar.RestoreSettings">
             <summary>

@@ -1,8 +1,5 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using Accessibility;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Mvvm;
@@ -39,6 +36,8 @@ namespace WeekNotifier.ViewModels
             ExitCommand = new DelegateCommand(ExitApp);
             ShowWindowCommand = new DelegateCommand(ShowWindow).ObservesCanExecute(() => CanShowWindow);
             HideWindowCommand = new DelegateCommand(HideWindow, CanHideWindow);
+
+            calendar.AutoUpdate = true;
         }
 
         /// <summary>
@@ -87,7 +86,7 @@ namespace WeekNotifier.ViewModels
         /// Gets the tool tip text.
         /// </summary>
         /// <value>The tool tip text.</value>
-        public string ToolTipText => "Double-click for window, right-click for menu";
+        public string ToolTipText => "Double-click for Settings window, right-click for menu";
 
         private void ShowWindow()
         {
