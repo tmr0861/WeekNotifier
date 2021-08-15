@@ -10,7 +10,7 @@
   <Identity
     Name="TRichter.WeekNumberNotifier"
     Publisher="CN=TRichterSW"
-    Version="2.1.2107.0" />
+    Version="2.1.2132.0" />
 
   <Properties>
     <DisplayName>Week Number Notifier</DisplayName>

@@ -10,6 +10,7 @@
     xmlns:helpers="clr-namespace:Richter.Common.WpfUtils.Helpers;assembly=Richter.Common.WpfUtils"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:weekNotifier="clr-namespace:WeekNotifier"
+    xmlns:views="clr-namespace:WeekNotifier.Views"
     prism:ViewModelLocator.AutoWireViewModel="True"
     Style="{StaticResource MainWindow}"
     GlowBrush="{StaticResource MahApps.Brushes.Accent}"
@@ -18,8 +19,8 @@
     helpers:WindowCloser.EnableWindowClosing="True"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}" 
-    d:DesignHeight="520"
-    d:DesignWidth="640"
+    d:DesignHeight="700"
+    d:DesignWidth="940"
     >
 
     <mah:MetroWindow.IconTemplate>
@@ -49,13 +50,8 @@
                 CanVerticallyScroll="True" 
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ContentControl 
-                    prism:RegionManager.RegionName="{x:Static weekNotifier:RegionNames.SETTINGS_REGION}" 
-                    />
-                <ContentControl 
-                    prism:RegionManager.RegionName="{x:Static weekNotifier:RegionNames.ABOUT_REGION}"   
-                    Margin="{StaticResource SmallTopMargin}"
-                    />
+                <views:SettingsView/>
+                <views:AboutView Margin="{StaticResource SmallTopMargin}"/>
             </StackPanel>
         </ScrollViewer>
 

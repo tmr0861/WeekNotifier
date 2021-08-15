@@ -1,4 +1,8 @@
-﻿using Prism.Regions;
+﻿using System.Linq;
+using System.Reflection.Emit;
+using Prism.Ioc;
+using Prism.Regions;
+using WeekNotifier.ViewModels;
 
 namespace WeekNotifier.Views
 {
@@ -8,15 +12,16 @@ namespace WeekNotifier.Views
     public partial class MainView
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainView"/> class.
+        /// Initializes a new instance of the <see cref="MainView" /> class.
         /// </summary>
-        /// <param name="regionManager"></param>
-        public MainView(IRegionManager regionManager)
+        public MainView(IContainerExtension container)
         {
             InitializeComponent();
 
-            regionManager.RegisterViewWithRegion(RegionNames.SETTINGS_REGION, typeof(SettingsView));
-            regionManager.RegisterViewWithRegion(RegionNames.ABOUT_REGION, typeof(AboutView));
+            var mainViewModel = container.Resolve<MainViewModel>();
+
+            // Save will get done first.  This way no matter how you close the window, it restores settings.
+            Closing += (_, _) => mainViewModel.RestoreSettings();
         }
     }
 }

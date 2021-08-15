@@ -17,6 +17,7 @@ using Richter.Common.WpfUtils.Contracts.Services;
 using Richter.Common.WpfUtils.Models;
 using Richter.Common.WpfUtils.Services;
 using WeekNotifier.Models;
+using WeekNotifier.ViewModels;
 using WeekNotifier.Views;
 
 namespace WeekNotifier

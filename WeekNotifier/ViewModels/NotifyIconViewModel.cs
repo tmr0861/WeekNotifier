@@ -1,8 +1,22 @@
-﻿using System.Windows;
+﻿// ***********************************************************************
+// Assembly         : WeekNotifier
+// Author           : Tom Richter
+// Created          : 03-20-2021
+//
+// Last Modified By : Tom Richter
+// Last Modified On : 08-15-2021
+// ***********************************************************************
+// <copyright file="NotifyIconViewModel.cs" company="Tom Richter">
+//     Copyright (c) 2005-2021
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System.Windows;
 using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Mvvm;
+using Richter.Common.Utilities.Logging;
 using WeekNotifier.Models;
 using WeekNotifier.Views;
 
@@ -18,7 +32,7 @@ namespace WeekNotifier.ViewModels
         private readonly IContainerExtension _container;
         private BitmapSource _iconImage;
         private Window _mainView;
-        private bool _canShowWindow = true;
+        private bool _canShowSettings = true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NotifyIconViewModel" /> class.
@@ -28,29 +42,30 @@ namespace WeekNotifier.ViewModels
         /// ]\\\he container.</param>
         public NotifyIconViewModel(Calendar calendar, IContainerExtension container)
         {
+            Log.Manager.AsWeekNotifier().LogVerbose("Creating NotifyIconVM");
             _container = container;
 
             IconImage = calendar.Image;
             calendar.PropertyChanged += (_, _) => IconImage = calendar.Image;
             
             ExitCommand = new DelegateCommand(ExitApp);
-            ShowWindowCommand = new DelegateCommand(ShowWindow).ObservesCanExecute(() => CanShowWindow);
-            HideWindowCommand = new DelegateCommand(HideWindow, CanHideWindow);
+            LoadSettingsCommand = new DelegateCommand(LoadSettings).ObservesCanExecute(() => CanShowSettings);
+            CloseSettingsCommand = new DelegateCommand(CloseSettings, CanCloseSettings);
 
             calendar.AutoUpdate = true;
         }
 
         /// <summary>
-        /// Gets the show window command.
+        /// Gets the load settings window command.
         /// </summary>
-        /// <value>The show window command.</value>
-        public DelegateCommand ShowWindowCommand { get; }
+        /// <value>The load settings window command.</value>
+        public DelegateCommand LoadSettingsCommand { get; }
 
         /// <summary>
-        /// Gets the hide window command.
+        /// Gets the close settings window command.
         /// </summary>
-        /// <value>The hide window command.</value>
-        public DelegateCommand HideWindowCommand { get; }
+        /// <value>The close settings window command.</value>
+        public DelegateCommand CloseSettingsCommand { get; }
 
         /// <summary>
         /// Gets the exit command.
@@ -62,13 +77,13 @@ namespace WeekNotifier.ViewModels
         /// Gets or sets a value indicating whether this instance can show window.
         /// </summary>
         /// <value><c>true</c> if this instance can show window; otherwise, <c>false</c>.</value>
-        public bool CanShowWindow
+        public bool CanShowSettings
         {
-            get => _canShowWindow;
+            get => _canShowSettings;
             set
             {
-                SetProperty(ref _canShowWindow, value);
-                HideWindowCommand.RaiseCanExecuteChanged();
+                SetProperty(ref _canShowSettings, value);
+                CloseSettingsCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -88,15 +103,50 @@ namespace WeekNotifier.ViewModels
         /// <value>The tool tip text.</value>
         public string ToolTipText => "Double-click for Settings window, right-click for menu";
 
-        private void ShowWindow()
+        /// <summary>
+        /// Gets the load settings menu text.
+        /// </summary>
+        /// <value>The load settings text.</value>
+        public string LoadSettingsMenuText => "Show Settings";
+
+        /// <summary>
+        /// Gets the load settings menu tool tip text.
+        /// </summary>
+        /// <value>The load settings menu tool tip text.</value>
+        public string LoadSettingsMenuToolTipText => "Show the settings window";
+
+        /// <summary>
+        /// Gets the close settings menu text.
+        /// </summary>
+        /// <value>The close settings menu text.</value>
+        public string CloseSettingsMenuText => "Close Settings";
+
+        /// <summary>
+        /// Gets the close settings menu tool tip text.
+        /// </summary>
+        /// <value>The close settings menu tool tip text.</value>
+        public string CloseSettingsMenuToolTipText => "Close the settings window";
+
+        /// <summary>
+        /// Gets the exit application menu text.
+        /// </summary>
+        /// <value>The exit application menu text.</value>
+        public string ExitAppMenuText => "Exit";
+
+        /// <summary>
+        /// Gets the exit application menu tool tip text.
+        /// </summary>
+        /// <value>The exit application menu tool tip text.</value>
+        public string ExitAppMenuToolTipText => "Exit the Application";
+
+        private void LoadSettings()
         {
             _mainView = _container.Resolve<MainView>();
-            _mainView.Loaded += (sender, args) => CanShowWindow = false;
-            _mainView.Unloaded += (sender, args) => CanShowWindow = true;
+            _mainView.IsVisibleChanged += (o, args) => CanShowSettings = !(bool) args.NewValue;
             _mainView?.Show();
         }
 
-        private void HideWindow()
+        private void CloseSettings()
         {
             _mainView?.Close();
         }
@@ -106,9 +156,9 @@ namespace WeekNotifier.ViewModels
             Application.Current.Shutdown();
         }
 
-        private bool CanHideWindow()
+        private bool CanCloseSettings()
         {
-            return !CanShowWindow;
+            return !CanShowSettings;
         }
 
     }

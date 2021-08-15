@@ -18,19 +18,22 @@
                 x:Key="SysTrayMenu" 
                 x:Shared="false">
                 <MenuItem 
-                    Header="Show Window" 
-                    Command="{Binding ShowWindowCommand}" 
-                    ToolTip="Show the settings window"
+                    Command="{Binding LoadSettingsCommand}" 
+                    Header="{Binding LoadSettingsMenuText}" 
+                    ToolTip="{Binding LoadSettingsMenuToolTipText}"
                 />
                 <MenuItem 
-                    Header="Hide Window" 
-                    Command="{Binding HideWindowCommand}" 
+                    Command="{Binding CloseSettingsCommand}"
+                    Header="{Binding CloseSettingsMenuText}" 
+                    ToolTip="{Binding CloseSettingsMenuToolTipText}"
                 />
                 <Separator/>
                 <MenuItem 
-                    Header="Exit" 
-                    Command="{Binding ExitCommand}"/>
-                
+                    Command="{Binding ExitCommand}"
+                    Header="{Binding ExitAppMenuText}"
+                    ToolTip="{Binding ExitAppMenuToolTipText}"
+                />
+
             </ContextMenu>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -40,7 +43,7 @@
             Name="TaskbarIcon"
             IconSource="{Binding IconImage}"
             ToolTipText="{Binding ToolTipText}"
-            DoubleClickCommand="{Binding ShowWindowCommand}"
+            DoubleClickCommand="{Binding LoadSettingsCommand}"
             ContextMenu="{StaticResource SysTrayMenu}"
             >
         </tb:TaskbarIcon>

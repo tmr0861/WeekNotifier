@@ -8,8 +8,8 @@
         TargetType="{x:Type controls:MetroWindow}"
         BasedOn="{StaticResource {x:Type controls:MetroWindow}}">
         <Setter Property="ShowTitleBar" Value="True" />
-        <Setter Property="Height" Value="650" />
-        <Setter Property="Width" Value="660" />
+        <Setter Property="Height" Value="700" />
+        <Setter Property="Width" Value="940" />
         <Setter Property="MinHeight" Value="480" />
         <Setter Property="MinWidth" Value="570" />
         <Setter Property="ResizeMode" Value="CanResize" />

@@ -140,21 +140,6 @@
             </summary>
             <param name="propertyName">Name of the property.</param>
         </member>
-        <member name="T:WeekNotifier.RegionNames">
-            <summary>
-            Class RegionNames.
-            </summary>
-        </member>
-        <member name="F:WeekNotifier.RegionNames.SETTINGS_REGION">
-            <summary>
-            The Settings region
-            </summary>
-        </member>
-        <member name="F:WeekNotifier.RegionNames.ABOUT_REGION">
-            <summary>
-            The About region
-            </summary>
-        </member>
         <member name="T:WeekNotifier.TraceSources">
             <summary>
             Trace Sources for Windows Service component
@@ -274,6 +259,11 @@
             </summary>
             <returns><c>true</c> if the windows can close; otherwise, <c>false</c>.</returns>
         </member>
+        <member name="M:WeekNotifier.ViewModels.MainViewModel.RestoreSettings">
+            <summary>
+            Restores the settings.
+            </summary>
+        </member>
         <member name="T:WeekNotifier.ViewModels.NotifyIconViewModel">
             <summary>
             Class NotifyIconViewModel.
@@ -289,17 +279,17 @@
             <param name="container">T
             ]\\\he container.</param>
         </member>
-        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ShowWindowCommand">
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.LoadSettingsCommand">
             <summary>
-            Gets the show window command.
+            Gets the load settings window command.
             </summary>
-            <value>The show window command.</value>
+            <value>The load settings window command.</value>
         </member>
-        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.HideWindowCommand">
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CloseSettingsCommand">
             <summary>
-            Gets the hide window command.
+            Gets the close settings window command.
             </summary>
-            <value>The hide window command.</value>
+            <value>The close settings window command.</value>
         </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ExitCommand">
             <summary>
@@ -307,7 +297,7 @@
             </summary>
             <value>The exit command.</value>
         </member>
-        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CanShowWindow">
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CanShowSettings">
             <summary>
             Gets or sets a value indicating whether this instance can show window.
             </summary>
@@ -324,6 +314,42 @@
             Gets the tool tip text.
             </summary>
             <value>The tool tip text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.LoadSettingsMenuText">
+            <summary>
+            Gets the load settings menu text.
+            </summary>
+            <value>The load settings text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.LoadSettingsMenuToolTipText">
+            <summary>
+            Gets the load settings menu tool tip text.
+            </summary>
+            <value>The load settings menu tool tip text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CloseSettingsMenuText">
+            <summary>
+            Gets the close settings menu text.
+            </summary>
+            <value>The close settings menu text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CloseSettingsMenuToolTipText">
+            <summary>
+            Gets the close settings menu tool tip text.
+            </summary>
+            <value>The close settings menu tool tip text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ExitAppMenuText">
+            <summary>
+            Gets the exit application menu text.
+            </summary>
+            <value>The exit application menu text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ExitAppMenuToolTipText">
+            <summary>
+            Gets the exit application menu tool tip text.
+            </summary>
+            <value>The exit application menu tool tip text.</value>
         </member>
         <member name="T:WeekNotifier.ViewModels.SettingsViewModel">
             <summary>
@@ -399,11 +425,10 @@
             MainView
             </summary>
         </member>
-        <member name="M:WeekNotifier.Views.MainView.#ctor(Prism.Regions.IRegionManager)">
+        <member name="M:WeekNotifier.Views.MainView.#ctor(Prism.Ioc.IContainerExtension)">
             <summary>
-            Initializes a new instance of the <see cref="T:WeekNotifier.Views.MainView"/> class.
+            Initializes a new instance of the <see cref="T:WeekNotifier.Views.MainView" /> class.
             </summary>
-            <param name="regionManager"></param>
         </member>
         <member name="M:WeekNotifier.Views.MainView.InitializeComponent">
             <summary>
@@ -436,9 +461,44 @@
             SettingsView
             </summary>
         </member>
+        <member name="M:WeekNotifier.Views.SettingsView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WeekNotifier.Views.SettingsView"/> class.
+            </summary>
+        </member>
         <member name="M:WeekNotifier.Views.SettingsView.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

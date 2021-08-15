@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>3.0.2111.0</AssemblyVersion>
-    <FileVersion>3.0.2111.0</FileVersion>
+    <AssemblyVersion>3.0.2132.0</AssemblyVersion>
+    <FileVersion>3.0.2132.0</FileVersion>
     <Description>Windows taskbar notification icon that shows the current ISO8601 week number.</Description>
     <Authors>Tom Richter</Authors>
     <Company>Tom Richter</Company>
@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.19" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.20" />
     <PackageReference Include="MahApps.Metro" Version="2.4.4" />
     <PackageReference Include="MahApps.Metro.IconPacks.BootstrapIcons" Version="4.8.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
@@ -32,6 +32,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
+    <PackageReference Include="Richter.Common.Utilities" Version="2.2.0" />
+    <PackageReference Include="Richter.Common.WpfUtils" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,11 +46,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Richter.Common\Utilities\Richter.Common.Utilities.csproj" />
-    <ProjectReference Include="..\..\Richter.Common\WpfUtils\Richter.Common.WpfUtils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Prism.Mvvm;
+using Richter.Common.Utilities.Logging;
 using WeekNotifier.Models;
 
 namespace WeekNotifier.ViewModels
@@ -38,6 +39,7 @@ namespace WeekNotifier.ViewModels
         /// <param name="calendar">The calendar.</param>
         public SettingsViewModel(Calendar calendar)
         {
+            Log.Manager.AsWeekNotifier().LogVerbose("Creating SettingsVM");
             _calendar = calendar;
             
             _sampleCalendar = Calendar.CreateInstance(_calendar.BackgroundImage, 53);

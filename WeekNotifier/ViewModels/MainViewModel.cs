@@ -1,11 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Mvvm;
 using Richter.Common.Utilities.Contracts.Services;
@@ -22,8 +18,6 @@ namespace WeekNotifier.ViewModels
     /// <seealso cref="Prism.Mvvm.BindableBase" />
     public class MainViewModel : BindableBase, ICloseWindows
     {
-        private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
-
         private readonly Calendar _calendar;
 
         private ICommand _saveSettingsCommand;
@@ -46,6 +40,7 @@ namespace WeekNotifier.ViewModels
         /// <param name="applicationInfoService">The application information service.</param>
         public MainViewModel(Calendar calendar, IApplicationInfoService applicationInfoService)
         {
+            Log.Manager.AsWeekNotifier().LogVerbose("Creating MainVM");
             AppTitle = applicationInfoService.GetProduct();
             
             _calendar = calendar;
@@ -72,8 +67,6 @@ namespace WeekNotifier.ViewModels
         public ICommand CancelSettingsCommand => _cancelSettingsCommand
             ??= new DelegateCommand(() =>
             {
-                // Restore settings and close the window
-                _calendar.RestoreSettings();
                 Close?.Invoke();
             });
 
@@ -100,5 +93,12 @@ namespace WeekNotifier.ViewModels
             return true;
         }
 
+        /// <summary>
+        /// Restores the settings.
+        /// </summary>
+        public void RestoreSettings()
+        {
+            _calendar.RestoreSettings();
+        }
     }
 }

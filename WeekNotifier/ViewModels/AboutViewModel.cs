@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Richter.Common.Utilities.Contracts.Services;
+using Richter.Common.Utilities.Logging;
 using Richter.Common.Utilities.Services;
 
 namespace WeekNotifier.ViewModels
@@ -29,6 +30,7 @@ namespace WeekNotifier.ViewModels
         /// <param name="applicationInfoService">The application information service.</param>
         public AboutViewModel(IApplicationInfoService applicationInfoService)
         {
+            Log.Manager.AsWeekNotifier().LogVerbose("Creating AboutVM");
             _applicationInfoService = applicationInfoService;
         }
 
