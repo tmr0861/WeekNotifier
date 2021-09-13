@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Mvvm;
+using Richter.Common.Utilities.Contracts.Services;
 using Richter.Common.Utilities.Logging;
 using WeekNotifier.Models;
 using WeekNotifier.Views;
@@ -38,22 +39,30 @@ namespace WeekNotifier.ViewModels
         /// Initializes a new instance of the <see cref="NotifyIconViewModel" /> class.
         /// </summary>
         /// <param name="calendar">The calendar.</param>
-        /// <param name="container">T
-        /// ]\\\he container.</param>
-        public NotifyIconViewModel(Calendar calendar, IContainerExtension container)
+        /// <param name="container">The container.</param>
+        /// <param name="applicationInfoService">The application information service.</param>
+        public NotifyIconViewModel(Calendar calendar, IContainerExtension container, 
+            IApplicationInfoService applicationInfoService)
         {
             Log.Manager.AsWeekNotifier().LogVerbose("Creating NotifyIconVM");
             _container = container;
+            AppTitle = applicationInfoService.GetProduct();
 
             IconImage = calendar.Image;
             calendar.PropertyChanged += (_, _) => IconImage = calendar.Image;
-            
-            ExitCommand = new DelegateCommand(ExitApp);
+
+            RefreshCommand = new DelegateCommand(calendar.Refresh);
             LoadSettingsCommand = new DelegateCommand(LoadSettings).ObservesCanExecute(() => CanShowSettings);
-            CloseSettingsCommand = new DelegateCommand(CloseSettings, CanCloseSettings);
+            ExitCommand = new DelegateCommand(ExitApp);
 
             calendar.AutoUpdate = true;
         }
+
+        /// <summary>
+        /// Gets the refresh command.
+        /// </summary>
+        /// <value>The refresh command.</value>
+        public DelegateCommand RefreshCommand { get; }
 
         /// <summary>
         /// Gets the load settings window command.
@@ -62,16 +71,16 @@ namespace WeekNotifier.ViewModels
         public DelegateCommand LoadSettingsCommand { get; }
 
         /// <summary>
-        /// Gets the close settings window command.
-        /// </summary>
-        /// <value>The close settings window command.</value>
-        public DelegateCommand CloseSettingsCommand { get; }
-
-        /// <summary>
         /// Gets the exit command.
         /// </summary>
         /// <value>The exit command.</value>
         public DelegateCommand ExitCommand { get; }
+
+        /// <summary>
+        /// Gets the application title.
+        /// </summary>
+        /// <value>The application title.</value>
+        public string AppTitle { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance can show window.
@@ -80,11 +89,8 @@ namespace WeekNotifier.ViewModels
         public bool CanShowSettings
         {
             get => _canShowSettings;
-            set
-            {
-                SetProperty(ref _canShowSettings, value);
-                CloseSettingsCommand.RaiseCanExecuteChanged();
-            }
+            set => SetProperty(ref _canShowSettings, value);
+            //CloseSettingsCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -101,31 +107,31 @@ namespace WeekNotifier.ViewModels
         /// Gets the tool tip text.
         /// </summary>
         /// <value>The tool tip text.</value>
-        public string ToolTipText => "Double-click for Settings window, right-click for menu";
+        public string ToolTipText => "Double-click to refresh icon, right-click for menu";
+
+        /// <summary>
+        /// Refresh menu text.
+        /// </summary>
+        /// <value>The refresh menu text.</value>
+        public string RefreshMenuText => "Refresh";
+
+        /// <summary>
+        /// Refresh menu tool tip text.
+        /// </summary>
+        /// <value>The refresh menu tool tip text.</value>
+        public string RefreshMenuToolTipText => "Refresh the Icon";
 
         /// <summary>
         /// Gets the load settings menu text.
         /// </summary>
         /// <value>The load settings text.</value>
-        public string LoadSettingsMenuText => "Show Settings";
+        public string LoadSettingsMenuText => "Settings";
 
         /// <summary>
         /// Gets the load settings menu tool tip text.
         /// </summary>
         /// <value>The load settings menu tool tip text.</value>
         public string LoadSettingsMenuToolTipText => "Show the settings window";
-
-        /// <summary>
-        /// Gets the close settings menu text.
-        /// </summary>
-        /// <value>The close settings menu text.</value>
-        public string CloseSettingsMenuText => "Close Settings";
-
-        /// <summary>
-        /// Gets the close settings menu tool tip text.
-        /// </summary>
-        /// <value>The close settings menu tool tip text.</value>
-        public string CloseSettingsMenuToolTipText => "Close the settings window";
 
         /// <summary>
         /// Gets the exit application menu text.
@@ -146,19 +152,9 @@ namespace WeekNotifier.ViewModels
             _mainView?.Show();
         }
 
-        private void CloseSettings()
-        {
-            _mainView?.Close();
-        }
-
         private void ExitApp()
         {
             Application.Current.Shutdown();
-        }
-
-        private bool CanCloseSettings()
-        {
-            return !CanShowSettings;
         }
 
     }

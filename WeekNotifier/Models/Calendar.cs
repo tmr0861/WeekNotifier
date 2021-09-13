@@ -207,6 +207,14 @@ namespace WeekNotifier.Models
         }
 
         /// <summary>
+        /// Refreshes icon image.
+        /// </summary>
+        public void Refresh()
+        {
+            Image = DrawIcon();
+        }
+
+        /// <summary>
         /// Restores the saved settings.
         /// </summary>
         public void RestoreSettings()
@@ -286,7 +294,7 @@ namespace WeekNotifier.Models
 
                 // Center the text horizontally and vertically
                 var textLocationX = (IMAGE_WIDTH / 2d) - (text.Width / 2);
-                var textLocationY = ((IMAGE_HEIGHT / 2d) - (text.Height / 2)) + 2;
+                var textLocationY = (IMAGE_HEIGHT / 2d) - (text.Height / 2) + 2;
 
                 const int rectOffsetX = 1;
                 const int rectOffsetY = 12;
@@ -339,6 +347,7 @@ namespace WeekNotifier.Models
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null!)
         {
+            _logger.LogVerbose($"OnPropertyChanged: {propertyName}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

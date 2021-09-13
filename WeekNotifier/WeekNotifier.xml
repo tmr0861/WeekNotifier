@@ -119,6 +119,11 @@
             </summary>
             <value>Automatic update of week number enabled or disabled.</value>
         </member>
+        <member name="M:WeekNotifier.Models.Calendar.Refresh">
+            <summary>
+            Refreshes icon image.
+            </summary>
+        </member>
         <member name="M:WeekNotifier.Models.Calendar.RestoreSettings">
             <summary>
             Restores the saved settings.
@@ -279,17 +284,17 @@
             <param name="container">T
             ]\\\he container.</param>
         </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.RefreshCommand">
+            <summary>
+            Gets the refresh command.
+            </summary>
+            <value>The refresh command.</value>
+        </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.LoadSettingsCommand">
             <summary>
             Gets the load settings window command.
             </summary>
             <value>The load settings window command.</value>
-        </member>
-        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CloseSettingsCommand">
-            <summary>
-            Gets the close settings window command.
-            </summary>
-            <value>The close settings window command.</value>
         </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ExitCommand">
             <summary>
@@ -315,6 +320,18 @@
             </summary>
             <value>The tool tip text.</value>
         </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.RefreshMenuText">
+            <summary>
+            Refresh menu text.
+            </summary>
+            <value>The refresh menu text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.RefreshMenuToolTipText">
+            <summary>
+            Refresh menu tool tip text.
+            </summary>
+            <value>The refresh menu tool tip text.</value>
+        </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.LoadSettingsMenuText">
             <summary>
             Gets the load settings menu text.
@@ -326,18 +343,6 @@
             Gets the load settings menu tool tip text.
             </summary>
             <value>The load settings menu tool tip text.</value>
-        </member>
-        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CloseSettingsMenuText">
-            <summary>
-            Gets the close settings menu text.
-            </summary>
-            <value>The close settings menu text.</value>
-        </member>
-        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CloseSettingsMenuToolTipText">
-            <summary>
-            Gets the close settings menu tool tip text.
-            </summary>
-            <value>The close settings menu tool tip text.</value>
         </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.ExitAppMenuText">
             <summary>
@@ -469,36 +474,6 @@
         <member name="M:WeekNotifier.Views.SettingsView.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

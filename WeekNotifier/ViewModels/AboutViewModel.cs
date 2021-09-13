@@ -21,7 +21,6 @@ namespace WeekNotifier.ViewModels
         /// </summary>
         public AboutViewModel() : this(new ApplicationInfoService())
         {
-            
         }
         
         /// <summary>
