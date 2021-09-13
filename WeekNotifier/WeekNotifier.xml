@@ -61,6 +61,13 @@
             </summary>
             <returns>WpfPrismApp.Models.Calendar.</returns>
         </member>
+        <member name="M:WeekNotifier.Models.Calendar.CreateInstance(System.Int32)">
+            <summary>
+            Creates the instance of Calendar with default image.
+            </summary>
+            <param name="weekNumber">The week number.</param>
+            <returns>WeekNotifier.Models.Calendar.</returns>
+        </member>
         <member name="M:WeekNotifier.Models.Calendar.CreateInstance(System.Windows.Media.ImageSource)">
             <summary>
             Creates the instance of Calendar with the current ISO8601 week number.
@@ -276,13 +283,13 @@
             </summary>
             <seealso cref="T:Prism.Mvvm.BindableBase" />
         </member>
-        <member name="M:WeekNotifier.ViewModels.NotifyIconViewModel.#ctor(WeekNotifier.Models.Calendar,Prism.Ioc.IContainerExtension)">
+        <member name="M:WeekNotifier.ViewModels.NotifyIconViewModel.#ctor(WeekNotifier.Models.Calendar,Prism.Ioc.IContainerExtension,Richter.Common.Utilities.Contracts.Services.IApplicationInfoService)">
             <summary>
             Initializes a new instance of the <see cref="T:WeekNotifier.ViewModels.NotifyIconViewModel" /> class.
             </summary>
             <param name="calendar">The calendar.</param>
-            <param name="container">T
-            ]\\\he container.</param>
+            <param name="container">The container.</param>
+            <param name="applicationInfoService">The application information service.</param>
         </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.RefreshCommand">
             <summary>
@@ -301,6 +308,12 @@
             Gets the exit command.
             </summary>
             <value>The exit command.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.AppTitle">
+            <summary>
+            Gets the application title.
+            </summary>
+            <value>The application title.</value>
         </member>
         <member name="P:WeekNotifier.ViewModels.NotifyIconViewModel.CanShowSettings">
             <summary>
@@ -474,6 +487,36 @@
         <member name="M:WeekNotifier.Views.SettingsView.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

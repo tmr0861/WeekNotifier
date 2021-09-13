@@ -24,6 +24,7 @@ namespace WeekNotifier.Models
         private const int IMAGE_WIDTH = 50;
         private const int IMAGE_HEIGHT = 50;
         private const double UPDATE_TIMER_MINUTES = 1d;
+        private const int MAX_WEEK_NUMBER = 99;
         private static readonly BitmapSource DefaultBackground;
 
         /// <summary>
@@ -45,20 +46,21 @@ namespace WeekNotifier.Models
         /// Creates the instance of Calendar with default image and week.
         /// </summary>
         /// <returns>WpfPrismApp.Models.Calendar.</returns>
-        public static Calendar CreateInstance()
-        {
-            return new();
-        }
+        public static Calendar CreateInstance() => new();
+
+        /// <summary>
+        /// Creates the instance of Calendar with default image.
+        /// </summary>
+        /// <param name="weekNumber">The week number.</param>
+        /// <returns>WeekNotifier.Models.Calendar.</returns>
+        public static Calendar CreateInstance(int weekNumber) => new(weekNumber);
 
         /// <summary>
         /// Creates the instance of Calendar with the current ISO8601 week number.
         /// </summary>
         /// <param name="calendarBackground">The calendar background.</param>
         /// <returns>Calendar.</returns>
-        public static Calendar CreateInstance(ImageSource calendarBackground)
-        {
-            return new(calendarBackground);
-        }
+        public static Calendar CreateInstance(ImageSource calendarBackground) => new(calendarBackground);
 
         /// <summary>
         /// Creates the instance of Calendar.
@@ -67,10 +69,8 @@ namespace WeekNotifier.Models
         /// <param name="weekNumber">The week number.</param>
         /// <param name="autoUpdate">Optional enable automatic update of week number.</param>
         /// <returns>Calendar.</returns>
-        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber, bool autoUpdate = false)
-        {
-            return new(calendarBackground, weekNumber, autoUpdate);
-        }
+        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber, 
+            bool autoUpdate = false) => new(calendarBackground, weekNumber, autoUpdate);
 
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
         private readonly DispatcherTimer _updateTimer = new();
@@ -84,6 +84,12 @@ namespace WeekNotifier.Models
         private Calendar() :
             this(DefaultBackground)
         {
+        }
+
+        private Calendar(int weekNumber) : 
+            this(DefaultBackground, weekNumber, false)
+        {
+
         }
 
         private Calendar(ImageSource backgroundImage) :
@@ -132,6 +138,12 @@ namespace WeekNotifier.Models
             set
             {
                 if (_weekNumber == value) return;
+
+                // Keep week number to 2 digits to fit on icon
+                if (value > MAX_WEEK_NUMBER)
+                {
+                    throw new ArgumentOutOfRangeException( nameof(value), "Week number cannot exceed 2 digits.");
+                }
 
                 _logger.LogVerbose($"Week number changed to {value}");
                 _weekNumber = value;
