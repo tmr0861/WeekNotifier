@@ -7,7 +7,7 @@
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:iconPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:viewModels="clr-namespace:WeekNotifier.ViewModels"
-    xmlns:helpers="clr-namespace:Richter.Common.WpfUtils.Helpers;assembly=Richter.Common.WpfUtils"
+    xmlns:helpers="clr-namespace:Richter.Common.Wpf.Utilities.Helpers;assembly=Richter.Common.Wpf.Utilities"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:weekNotifier="clr-namespace:WeekNotifier"
     xmlns:views="clr-namespace:WeekNotifier.Views"

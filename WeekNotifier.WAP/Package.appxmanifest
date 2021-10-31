@@ -8,13 +8,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="TRichter.WeekNumberNotifier"
-    Publisher="CN=TRichterSW"
-    Version="3.1.2137.0" />
+    Name="17509TomRichter.WeekNumberNotifier"
+    Publisher="CN=FC4FAFAD-CBF3-4BC5-9C9F-D8A160FE86D2"
+    Version="3.1.2143.0" />
 
   <Properties>
     <DisplayName>Week Number Notifier</DisplayName>
-    <PublisherDisplayName>Tom Richter</PublisherDisplayName>
+    <PublisherDisplayName>Tom Richter Software</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 

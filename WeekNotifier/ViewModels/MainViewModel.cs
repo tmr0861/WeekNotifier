@@ -2,11 +2,12 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Prism.Commands;
 using Prism.Mvvm;
 using Richter.Common.Utilities.Contracts.Services;
 using Richter.Common.Utilities.Logging;
-using Richter.Common.WpfUtils.Contracts;
+using Richter.Common.Wpf.Utilities.Contracts;
 using WeekNotifier.Models;
 
 namespace WeekNotifier.ViewModels
