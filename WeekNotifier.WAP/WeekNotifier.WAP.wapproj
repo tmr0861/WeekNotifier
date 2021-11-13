@@ -47,7 +47,7 @@
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <AppInstallerUri>$(OneDrive)\_dev\Published Packages</AppInstallerUri>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <AppxPackageDir>D:\_source\home\WeekNotifier\AppPackages\</AppxPackageDir>
+    <AppxPackageDir>..\AppPackages\</AppxPackageDir>
     <EntryPointProjectUniqueName>..\WeekNotifier\WeekNotifier.csproj</EntryPointProjectUniqueName>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
