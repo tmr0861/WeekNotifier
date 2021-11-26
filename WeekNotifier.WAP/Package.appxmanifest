@@ -10,7 +10,7 @@
   <Identity
     Name="17509TomRichter.WeekNumberNotifier"
     Publisher="CN=FC4FAFAD-CBF3-4BC5-9C9F-D8A160FE86D2"
-    Version="3.1.2147.0" />
+    Version="3.2.2147.0" />
 
   <Properties>
     <DisplayName>Week Number Notifier</DisplayName>
