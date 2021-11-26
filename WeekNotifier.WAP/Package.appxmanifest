@@ -8,8 +8,8 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="17509TomRichter.WeekNumberNotifier"
-    Publisher="CN=FC4FAFAD-CBF3-4BC5-9C9F-D8A160FE86D2"
+    Name="TomRichter.WeekNumberNotifier"
+    Publisher="CN=TRichterSW"
     Version="3.2.2147.0" />
 
   <Properties>
