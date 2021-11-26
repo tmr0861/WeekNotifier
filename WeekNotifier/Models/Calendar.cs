@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using JetBrains.Annotations;
+using Microsoft.Win32;
 using Richter.Common.Utilities.Extensions;
 using Richter.Common.Utilities.Logging;
 using static System.Windows.Media.ColorConverter;
@@ -23,8 +24,8 @@ namespace WeekNotifier.Models
     {
         private const int IMAGE_WIDTH = 50;
         private const int IMAGE_HEIGHT = 50;
-        private const double UPDATE_TIMER_MINUTES = 1d;
         private const int MAX_WEEK_NUMBER = 99;
+        private const double UPDATE_TIMER_MINUTES = 1d;
         private static readonly BitmapSource DefaultBackground;
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace WeekNotifier.Models
         /// <param name="weekNumber">The week number.</param>
         /// <param name="autoUpdate">Optional enable automatic update of week number.</param>
         /// <returns>Calendar.</returns>
-        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber, 
+        public static Calendar CreateInstance(ImageSource calendarBackground, int weekNumber,
             bool autoUpdate = false) => new(calendarBackground, weekNumber, autoUpdate);
 
         private readonly TraceSource _logger = Log.Manager.AsWeekNotifier();
@@ -80,13 +81,14 @@ namespace WeekNotifier.Models
         private Color _textColor = Colors.Black;
         private Color _backgroundColor = Colors.White;
         private BitmapSource _image = null!;
+        private bool _displaySettingsChanged;
 
         private Calendar() :
             this(DefaultBackground)
         {
         }
 
-        private Calendar(int weekNumber) : 
+        private Calendar(int weekNumber) :
             this(DefaultBackground, weekNumber, false)
         {
 
@@ -106,6 +108,7 @@ namespace WeekNotifier.Models
             _updateTimer.Tick += UpdateTimer_Tick;
             _updateTimer.Interval = TimeSpan.FromMinutes(UPDATE_TIMER_MINUTES);
             AutoUpdate = autoUpdate;
+            SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
 
         /// <summary>
@@ -142,7 +145,7 @@ namespace WeekNotifier.Models
                 // Keep week number to 2 digits to fit on icon
                 if (value > MAX_WEEK_NUMBER)
                 {
-                    throw new ArgumentOutOfRangeException( nameof(value), "Week number cannot exceed 2 digits.");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Week number cannot exceed 2 digits.");
                 }
 
                 _logger.LogVerbose($"Week number changed to {value}");
@@ -223,6 +226,7 @@ namespace WeekNotifier.Models
         /// </summary>
         public void Refresh()
         {
+            _logger.LogInformation("Refreshing Icon!");
             Image = DrawIcon();
         }
 
@@ -343,6 +347,19 @@ namespace WeekNotifier.Models
         {
             _logger.LogVerbose("Update Timer fired...");
             WeekNumber = DateTime.Now.ISO8601WeekOfYear();
+
+            if (!_displaySettingsChanged) return;
+
+            Refresh();
+            _displaySettingsChanged = false;
+        }
+
+        private void SystemEvents_DisplaySettingsChanged(object? sender, EventArgs e)
+        {
+            _logger.LogInformation("Display Settings Changed!");
+            // Refresh immediately and also the next time the timer fires, just to be sure! Arrgh!!
+            Refresh();
+            _displaySettingsChanged = true;
         }
 
         #region INotifyPropertyChanged Implementation
@@ -364,5 +381,14 @@ namespace WeekNotifier.Models
         }
 
         #endregion
+
+        /// <summary>
+        /// Finalizes this instance.
+        /// </summary>
+        ~Calendar()
+        {
+            // Unhook the event handler to avoid memory leaks
+            SystemEvents.DisplaySettingsChanged -= SystemEvents_DisplaySettingsChanged;
+        }
     }
 }
