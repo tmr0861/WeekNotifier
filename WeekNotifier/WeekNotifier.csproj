@@ -18,19 +18,11 @@
     <RepositoryUrl>https://billsfan@dev.azure.com/billsfan/personal%20projects/_git/weeknotifier</RepositoryUrl>
     <PackageProjectUrl>https://dev.azure.com/billsfan/personal%20projects</PackageProjectUrl>
     <PackageReleaseNotes>Added Refresh command and revamped menu</PackageReleaseNotes>
-    <Platforms>AnyCPU;x64;x86</Platforms>
+    <Platforms>AnyCPU</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\_source\home\WeekNotifier\WeekNotifier\WeekNotifier.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <DocumentationFile>C:\_source\home\WeekNotifier\WeekNotifier\WeekNotifier.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DocumentationFile>C:\_source\home\WeekNotifier\WeekNotifier\WeekNotifier.xml</DocumentationFile>
   </PropertyGroup>
 
