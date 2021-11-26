@@ -61,11 +61,17 @@ namespace WeekNotifier.ViewModels
             {
                 var sb = new StringBuilder(_applicationInfoService.GetCopyright());
 
-                sb.Append($" {_applicationInfoService.GetCompany()}. All Rights Reserved.");
+                _ = sb.Append($" {_applicationInfoService.GetCompany()}. All Rights Reserved.");
 
                 return sb.ToString();
             }
         }
+
+        /// <summary>
+        /// Gets the about text.
+        /// </summary>
+        /// <value>The about text.</value>
+        public static string AboutText => "About ";
 
     }
 }

@@ -14,26 +14,26 @@
             <StackPanel 
                 Orientation="Horizontal">
                 <TextBlock 
-                    Text="About "
+                    Text="{Binding AboutText}"
                     Style="{StaticResource SubtitleTextStyle}"
                 />
                 <TextBlock 
-                    Text="{Binding AppTitle, Mode=OneWay}" 
+                    Text="{Binding AppTitle}" 
                     Style="{StaticResource SubtitleTextStyle}"
                 />
             </StackPanel>
             <TextBlock
-                Text="{Binding VersionDescription, Mode=OneWay}"
+                Text="{Binding VersionDescription}"
                 Margin="{StaticResource XSmallTopMargin}"
                 Style="{StaticResource BodyTextStyle}" 
             />
             <TextBlock
-                Text="{Binding AppDescription, Mode=OneWay}"
+                Text="{Binding AppDescription}"
                 Margin="{StaticResource XSmallTopMargin}"
                 Style="{StaticResource BodyTextStyle}"
             />
             <TextBlock
-                Text="{Binding Copyright, Mode=OneWay}"
+                Text="{Binding Copyright}"
                 Margin="{StaticResource SmallTopBottomMargin}"
                 Style="{StaticResource BodyTextStyle}"
             />

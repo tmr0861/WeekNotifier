@@ -9,7 +9,6 @@ using System.Windows.Media.Imaging;
 using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Extensions.Configuration;
 using Prism.Ioc;
-using Prism.Unity;
 using Richter.Common.Utilities.Contracts.Services;
 using Richter.Common.Utilities.Logging;
 using Richter.Common.Utilities.Services;
@@ -17,7 +16,6 @@ using Richter.Common.Wpf.Utilities.Contracts.Services;
 using Richter.Common.Wpf.Utilities.Models;
 using Richter.Common.Wpf.Utilities.Services;
 using WeekNotifier.Models;
-using WeekNotifier.ViewModels;
 using WeekNotifier.Views;
 
 namespace WeekNotifier
@@ -116,11 +114,8 @@ namespace WeekNotifier
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            // TODO WTS: Please log and handle the exception as appropriate to your scenario
-            // For more info see https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
-
-            _logger.LogError(e.Exception as Exception);
-            
+            _logger.LogError(e.Exception);
+            Current.Shutdown(e.Exception.HResult);
         }
         
 

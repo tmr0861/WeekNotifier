@@ -90,7 +90,6 @@ namespace WeekNotifier.ViewModels
         {
             get => _canShowSettings;
             set => SetProperty(ref _canShowSettings, value);
-            //CloseSettingsCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -107,43 +106,43 @@ namespace WeekNotifier.ViewModels
         /// Gets the tool tip text.
         /// </summary>
         /// <value>The tool tip text.</value>
-        public string ToolTipText => "Double-click to refresh icon, right-click for menu";
+        public static string ToolTipText => "Double-click to refresh icon, right-click for menu";
 
         /// <summary>
         /// Refresh menu text.
         /// </summary>
         /// <value>The refresh menu text.</value>
-        public string RefreshMenuText => "Refresh";
+        public static string RefreshMenuText => "Refresh";
 
         /// <summary>
         /// Refresh menu tool tip text.
         /// </summary>
         /// <value>The refresh menu tool tip text.</value>
-        public string RefreshMenuToolTipText => "Refresh the Icon";
+        public static string RefreshMenuToolTipText => "Refresh the Icon";
 
         /// <summary>
         /// Gets the load settings menu text.
         /// </summary>
         /// <value>The load settings text.</value>
-        public string LoadSettingsMenuText => "Settings";
+        public static string LoadSettingsMenuText => "Settings";
 
         /// <summary>
         /// Gets the load settings menu tool tip text.
         /// </summary>
         /// <value>The load settings menu tool tip text.</value>
-        public string LoadSettingsMenuToolTipText => "Show the settings window";
+        public static string LoadSettingsMenuToolTipText => "Show the settings window";
 
         /// <summary>
         /// Gets the exit application menu text.
         /// </summary>
         /// <value>The exit application menu text.</value>
-        public string ExitAppMenuText => "Exit";
+        public static string ExitAppMenuText => "Exit";
 
         /// <summary>
         /// Gets the exit application menu tool tip text.
         /// </summary>
         /// <value>The exit application menu tool tip text.</value>
-        public string ExitAppMenuToolTipText => "Exit the Application";
+        public static string ExitAppMenuToolTipText => "Exit the Application";
 
         private void LoadSettings()
         {
@@ -152,7 +151,7 @@ namespace WeekNotifier.ViewModels
             _mainView?.Show();
         }
 
-        private void ExitApp()
+        private static void ExitApp()
         {
             Application.Current.Shutdown();
         }

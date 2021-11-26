@@ -152,6 +152,11 @@
             </summary>
             <param name="propertyName">Name of the property.</param>
         </member>
+        <member name="M:WeekNotifier.Models.Calendar.Finalize">
+            <summary>
+            Finalizes this instance.
+            </summary>
+        </member>
         <member name="T:WeekNotifier.TraceSources">
             <summary>
             Trace Sources for Windows Service component
@@ -221,6 +226,12 @@
             Gets or sets the copyright statement.
             </summary>
             <value>The copyright statement.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.AboutViewModel.AboutText">
+            <summary>
+            Gets the about text.
+            </summary>
+            <value>The about text.</value>
         </member>
         <member name="T:WeekNotifier.ViewModels.MainViewModel">
             <summary>
@@ -416,6 +427,36 @@
             Gets or sets the color of the text.
             </summary>
             <value>The color of the text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.SettingsViewModel.SettingsTitleText">
+            <summary>
+            Gets the settings title text.
+            </summary>
+            <value>The settings title text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.SettingsViewModel.TextSizeTitleText">
+            <summary>
+            Gets the text size title text.
+            </summary>
+            <value>The text size title text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.SettingsViewModel.SampleWeekTitleText">
+            <summary>
+            Gets the sample week title text.
+            </summary>
+            <value>The sample week title text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.SettingsViewModel.BackgroundColorHeaderText">
+            <summary>
+            Gets the background color header text.
+            </summary>
+            <value>The background color header text.</value>
+        </member>
+        <member name="P:WeekNotifier.ViewModels.SettingsViewModel.TextColorHeaderText">
+            <summary>
+            Gets the text color header text.
+            </summary>
+            <value>The text color header text.</value>
         </member>
         <member name="T:WeekNotifier.Views.AboutView">
             <summary>

@@ -15,7 +15,7 @@
     <Grid>
         <StackPanel>
             <TextBlock 
-                Text="Icon Settings" 
+                Text="{Binding SettingsTitleText}" 
                 Style="{StaticResource SubtitleTextStyle}"
             />
             <Grid>
@@ -26,7 +26,7 @@
 
                 <StackPanel Grid.Column="0">
                     <TextBlock 
-                        Text="Sample Week:"
+                        Text="{Binding SampleWeekTitleText}"
                         Margin="{StaticResource SmallTopMargin}"
                     />
                     <Slider
@@ -34,7 +34,7 @@
                         Value="{Binding WeekNumber, Mode=TwoWay}"
                     />
                     <TextBlock 
-                        Text="Text Size" 
+                        Text="{Binding TextSizeTitleText}" 
                         Margin="{StaticResource SmallTopMargin}"
                     />
                     <Slider
@@ -51,14 +51,14 @@
             </Grid>
 
             <mah:ColorPalette 
-                Header="Background Color" 
+                Header="{Binding BackgroundColorHeaderText}" 
                 HorizontalAlignment="Left"
                 Margin="{StaticResource SmallTopMargin}"
                 ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"
                 SelectedItem="{Binding BackgroundColor, Mode=TwoWay}"
             />
             <mah:ColorPalette 
-                Header="Text Color" 
+                Header="{Binding TextSizeTitleText}" 
                 HorizontalAlignment="Left"
                 Margin="{StaticResource SmallTopMargin}"
                 ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}"

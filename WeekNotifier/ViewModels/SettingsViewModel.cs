@@ -116,5 +116,35 @@ namespace WeekNotifier.ViewModels
                 _sampleCalendar.TextColor = value;
             }
         }
+
+        /// <summary>
+        /// Gets the settings title text.
+        /// </summary>
+        /// <value>The settings title text.</value>
+        public static string SettingsTitleText => "Icon Settings";
+
+        /// <summary>
+        /// Gets the text size title text.
+        /// </summary>
+        /// <value>The text size title text.</value>
+        public static string TextSizeTitleText => "Text Size";
+
+        /// <summary>
+        /// Gets the sample week title text.
+        /// </summary>
+        /// <value>The sample week title text.</value>
+        public static string SampleWeekTitleText => "Sample Week";
+
+        /// <summary>
+        /// Gets the background color header text.
+        /// </summary>
+        /// <value>The background color header text.</value>
+        public static string BackgroundColorHeaderText => "Background Color";
+
+        /// <summary>
+        /// Gets the text color header text.
+        /// </summary>
+        /// <value>The text color header text.</value>
+        public static string TextColorHeaderText => "Text Color";
     }
 }
