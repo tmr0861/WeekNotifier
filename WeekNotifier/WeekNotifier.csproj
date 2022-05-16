@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0-g8081131be1" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0-g5aed852490" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks.BootstrapIcons" Version="4.11.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
